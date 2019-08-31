@@ -81,7 +81,7 @@
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="younger个人博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="younger个人博客">
 <meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
@@ -115,7 +115,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/page/2/">
 
 
 
@@ -291,7 +291,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/servlet-jsp/请求参数与请求属性的区别/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/servlet-jsp/servlet总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="younger">
@@ -310,7 +310,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/08/31/servlet-jsp/请求参数与请求属性的区别/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2019/08/31/servlet-jsp/servlet总结/" itemprop="url">Untitled</a></h1>
         
 
         <div class="post-meta">
@@ -362,7 +362,19 @@
       
         
           
-            <p>这个问题对于J2EE的初学者都会遇到，那么下面就从数据传递方向和用法简单聊一下，个人拙见！<br>相同点：二者都是封装在request中<br>    param: JSP–&gt;Servlet    [客户端]<br>     <strong>String getParameter(String name)</strong>，即只能返回String类型数据。 setParameter()这一说。<br>    attribute:Servlet–&gt;Servlet/JSP  [容器内]<br>    void setAttribute(String name,Obejct o);<br>    Object getAttribute(String name);<br>    先在request中set，然后才能在request中get                  </p>
+            <p>#####一、简介</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">在服务器端运行的Java程序,主要作用是控制Java Web程序的业务逻辑</span><br><span class="line">该程序段主要组成:Init() service() destroy()</span><br><span class="line">在服务器中,当servlet的实例只创建一个</span><br><span class="line">Init()在首次创建servlet实例是进行调用,初始化相关参数。</span><br><span class="line">Destroy()在servlet销毁时,被调用</span><br><span class="line">Service() 主要提供请求的处理，它在servlet的生命周期中可以多次被调用</span><br></pre></td></tr></table></figure>
+
+<p>######service中包含两个方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">处理Get请求</span><br><span class="line">    doGet(HttpServletReqquest request,HttpServletResponse response)</span><br><span class="line">处理Post请求</span><br><span class="line">    doPost(HttpServletReqquest request,HttpServletResponse response)</span><br><span class="line">简要介绍request、response</span><br><span class="line">request:存储请求的一些信息</span><br><span class="line">request.getParameter(&quot;paraName&quot;);//从JSP页面或URL中获取参数值，返回字符串类型</span><br><span class="line">request.setAttribute(&quot;name&quot;,variable);//设置一个键值对,通常传递给JSP页面或另外一个servlet。variable可以为任意类型</span><br><span class="line">request.getAttribute(&quot;name&quot;);//取出与name相对应的属性值</span><br><span class="line">request.getCookies();//获取从浏览器传来的Cookies返回值类型Cookie[] ，通常在JSP页面获取从而预填写相关内容</span><br><span class="line">request.getSession()//获取Session</span><br><span class="line">request.getRequestDispatcher(&quot;url&quot;).forward(request, response);//转发，服务器内进行</span><br><span class="line">request.getInputStream();//获取输入字节流(没有字符流)</span><br><span class="line">注:Session在域上的方法与request差不多,只是Session作用在一次会话的范围内，而request作用在一次请求范围内</span><br><span class="line">response</span><br><span class="line">response.getOutputStream(); //获取字节输出流</span><br><span class="line">response.getWriter(); //获取字节输出流</span><br><span class="line">response.addCookie(cookie);//在反应中添加一个cookie</span><br><span class="line">response.sendRedirect(&quot;url&quot;);//重定向到url</span><br></pre></td></tr></table></figure>
+
+<p>#####二、重定向与转发的区别</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1、A、浏览器行为 重定向时，浏览器至少会发送两次请求，并且地址栏的URL会改变。</span><br><span class="line">     第一次请求:浏览器向服务器发送一个请求，服务器收到请求后，向浏览器发送一个重定向连接，然后浏览器接收到这个连接</span><br><span class="line">	 第二次请求:浏览器依据连接向服务器再次发送请求,服务器收到请求后向浏览器发送响应，浏览器收到响应后并显示到页面</span><br><span class="line">   B、服务器行为 浏览器只请求一次。转发是在服务器内部进行的，浏览器并不知道，它的地址栏是不会变的</span><br><span class="line">2、A、转发是可以携带数据的，也就是说在转发servlet之间可以共享数据的（常用request）</span><br><span class="line">	 B、重定向不能携带数据，因为重定向可以到另一个网站</span><br><span class="line">3、A、转发只能在本站点内之间</span><br><span class="line">   B、重定向可以到任何URL</span><br><span class="line">注意: 转发不需要带项目名,重定向需要带项目名</span><br></pre></td></tr></table></figure>
+
+<p>#####三、Cookie简单用法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">创建: Cookie cookie = new Cookie(&quot;name&quot;,value);</span><br><span class="line">cookie.getName();//获取Name</span><br><span class="line">cookie.getValue(&quot;name&quot;);//获取name对应的值</span><br><span class="line">Cookie与Session的关系</span><br><span class="line">Cookie 存储一个键值对，主要用途识别浏览器端用户的身份和保存一些信息,例如用户名和密码。</span><br><span class="line">Session:表示一次回话,可以包含多次请求。</span><br><span class="line">原理：</span><br><span class="line">    由于Http是无状态的协议，意味着每个请求都是相对独立的，那么服务器就需要一种机制来识别具体用户，</span><br><span class="line">所以Session和Cookie油然而生(当然有其他方法来实现这一机制)，服务端要为特定的用户来创建特定的Session，保存在服务器中。</span><br><span class="line">而Cookie就是在浏览器和服务器之间来回跑，里面包含Session ID,用来标识特定的用户。</span><br><span class="line">当第一次浏览器向服务器发送一个请求时，服务器会为用户创建一个Session，并会向响应中添加一个Cookie，该Cookie中包含Sesson ID。</span><br><span class="line">浏览器收到响应后,会把Cookie保存下来，在下次再次向该网站发送请求时，会携带Cookie(其中包含Session ID)，</span><br><span class="line">服务器收到请求后，可以依据Cookie中的Session iD来识别特定的用户。</span><br></pre></td></tr></table></figure>
+
+<p>详细资料:<a href="http://www.blogjava.net/cheneyfree/archive/2007/05/26/120168.html" target="_blank" rel="noopener">http://www.blogjava.net/cheneyfree/archive/2007/05/26/120168.html</a></p>
 
           
         
@@ -411,7 +423,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/servlet-jsp/监听器/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/servlet-jsp/JSTL标签总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="younger">
@@ -430,7 +442,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/08/31/servlet-jsp/监听器/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2019/08/31/servlet-jsp/JSTL标签总结/" itemprop="url">Untitled</a></h1>
         
 
         <div class="post-meta">
@@ -482,784 +494,29 @@
       
         
           
-            <p>首先只需了解有哪些监听器，主要监听器由什么事件触发即可</p>
-<p>#API<br><img src="https://upload-images.jianshu.io/upload_images/7032759-e2e9e1804a481d0f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br><img src="https://upload-images.jianshu.io/upload_images/7032759-e44924ebe3a2cf5b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+            <p><strong>在html中起到逻辑控制作用</strong><br>1、设置标签库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ taglib prefix=&quot;c&quot; uri=&quot;http://java.sun.com/jsp/jstl/core&quot; %&gt;</span><br></pre></td></tr></table></figure>
 
-          
-        
-      
-    </div>
-    
-    
-    
+<p>2、&lt;c:set/&gt;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;c:set var=&quot;name&quot; value=&quot;&quot; scope=&quot;Scope&quot;/&gt;</span><br><span class="line">相当于在Scope.setAttribute(&quot;name&quot;,value);</span><br></pre></td></tr></table></figure>
 
-    
+<p>3、&lt;c:if test=””&gt;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;c:if test=&quot;$&#123;..&#125;&quot;&gt;</span><br><span class="line">&lt;/c:if&gt;</span><br><span class="line">test的值为true或false</span><br></pre></td></tr></table></figure>
 
-    
+<p>4、&lt;c:choose&gt; &lt;c:when&gt; &lt;c:otherwise&gt;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;c:choose&gt;</span><br><span class="line">	&lt;c:when test=&quot;&quot;&gt;</span><br><span class="line">	&lt;/c:when&gt;</span><br><span class="line">	&lt;c:when test=&quot;&quot;&gt;</span><br><span class="line">	&lt;c:otherwise&gt;</span><br><span class="line">	&lt;/c:otherwise&gt;</span><br><span class="line">&lt;/c:choose&gt;</span><br></pre></td></tr></table></figure>
 
-    
+<p>5、&lt;c:forEach&gt;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">某个域中的遍历集合</span><br><span class="line">&lt;c:forEach var = &quot;item&quot;  items=&quot;$&#123;Scope.list&#125;&quot;&gt; &lt;!-- item属于list中的元素--&gt;</span><br><span class="line">&lt;/c:forEach&gt;</span><br></pre></td></tr></table></figure>
 
-    <footer class="post-footer">
-      
+<p>6、&lt;c:url&gt;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;c:url  value =&quot;&quot;/&gt;</span><br><span class="line">eg: &lt;a href = &quot;&lt;c:url value=&quot;/index.jsp&quot;/&gt;&quot; /&gt;Index &lt;/a&gt;</span><br></pre></td></tr></table></figure>
 
-      
+<p>7、&lt;c:param&gt;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;c:param name=&quot;name&quot; value=&quot;value&quot; /&gt;</span><br></pre></td></tr></table></figure>
 
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/servlet-jsp/应用体系结构/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="younger">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="younger个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/31/servlet-jsp/应用体系结构/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-31T17:21:01+08:00">
-                2019-08-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="一、简单流程图"><a href="#一、简单流程图" class="headerlink" title="一、简单流程图"></a>一、简单流程图</h3><p><img src="https://upload-images.jianshu.io/upload_images/7032759-b2eebecd52375f11.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
-<h3 id="二、容器"><a href="#二、容器" class="headerlink" title="二、容器"></a>二、容器</h3><p>####1、什么是容器<br>Servlet没有main()方法。它们受控于另一个Java应用，这个Java应用称为容器。Tomcat就是一个容器。<br>如果web服务器应用收到一个指向某servlet的请求，此时服务器不是把这个请求直接交给servlet本身，而是交给部署该servlet的容器。再由容器调用servlet的方法，如doPost()或doGet()</p>
-<p>####2、容器的作用<br>(1)利用容器提供的方法，可以轻松让servlet与Web服务器对话，屏蔽掉网络底层，使程序员更加专注业务本身。<br>(2)容器控制着servlet的生与死。它会加载类、实例化和初始化servlet、调用servlet的方法，并使servlet对象能够被垃圾回收。<br>(3)容器会为每一个servlet请求创建一个Java线程</p>
-<p>###三、容器处理请求<br><img src="https://upload-images.jianshu.io/upload_images/7032759-2b2790d2353ee2c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br><img src="https://upload-images.jianshu.io/upload_images/7032759-f26f5031803f7e60.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br><img src="https://upload-images.jianshu.io/upload_images/7032759-33837e5c8d012212.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br><img src="https://upload-images.jianshu.io/upload_images/7032759-3d4da6a6c9ecbfd0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br>简要过程:容器收到一个servlet请求,随后将request封装为HttpServletRequest和HttpServletResponse对象。根据URL映射到一个servlet，并为请求创建或分配一个线程，HttpservletRequest对象和HttpsevletResponse对象被传递给servlet线程。然后容器调用servlet的service方法，service方法依据时请求方法get还是post，调用doGet或doPost方法。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/servlet-jsp/属性/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="younger">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="younger个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/31/servlet-jsp/属性/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-31T17:21:01+08:00">
-                2019-08-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>####什么是属性</p>
-<blockquote>
-<p>属性就是一个对象，可以设置到（绑定）到另外3个servlet API对象中的一个，包括ServletContext、HttpSession、HttpServletRequest(ServletRequest)。<br>可以简单的认为是一个映射实例对象中的名/值(名–String，值–Obeject)。<br><strong>属性不是参数</strong><br><img src="https://upload-images.jianshu.io/upload_images/7032759-222a469b844f4c77.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
-</blockquote>
-<p>####三个作用域<br><img src="https://upload-images.jianshu.io/upload_images/7032759-36dc19b80f4722e1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br><img src="https://upload-images.jianshu.io/upload_images/7032759-d0286978da25675d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br><img src="https://upload-images.jianshu.io/upload_images/7032759-fc7967d20573392a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
-<p>####属性API<br><img src="https://upload-images.jianshu.io/upload_images/7032759-ce5c8ce943495305.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
-<p>####属性安全问题<br>作用域在ServletContext的属性显然不安全，因为webapp的所有线程都可以访问处理。再想一想，HttpSession的属性是不是安全的呢？一般人的回答是线程安全的，但是这是错误的。如果再打开一个浏览窗口(即使在另一个浏览器中)，但容器仍认为这是同一个会话，这也就造成了多个线程在一个会话中，所以HttpSession中的属性不是线程安全的！<br>这就需要用线程的知识解决了。只需对ServletContext/HttpSession同步即可，千万不能对servlet进行同步，否则就会只有一个线程可以访问servlet，导致效率很低。</p>
-<blockquote>
-<p>只有请求属性和局部变量是线程安全的</p>
-</blockquote>
-<p>####请求属性与转发<br>如果希望应用的其他组件[<strong>Servlet/JSP]</strong>接管全部或部分请求，就可以使用请求属性。<br>那么如何让组件的其他部分接管这个请求呢?用<strong>RequestDispatcher</strong>.<br>举个例子:<br><img src="https://upload-images.jianshu.io/upload_images/7032759-f7d6718c7ad4e8f1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="servlet"><br><img src="https://upload-images.jianshu.io/upload_images/7032759-68d4aba44a5e064a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="示意图"></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/servlet-jsp/初识Servlet/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="younger">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="younger个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/31/servlet-jsp/初识Servlet/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-31T17:21:01+08:00">
-                2019-08-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>#####一、servlet的一生<br><img src="https://upload-images.jianshu.io/upload_images/7032759-bd94b5cd15390a1a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="servlet生命状态图"><br><img src="https://upload-images.jianshu.io/upload_images/7032759-ee439506d073d821.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="详细图"></p>
-<blockquote>
-<p>当一个请求映射到一个从未被访问过的servlet时，容器还未创建该servlet对象，所以需要创建该对象。容器首先会载入该serlert class,创建servlet对象,调用init()[仅仅一次]，完成初始化工作；随后调用service()方法处理请求；在servlet生命结束前，调用destroy()方法做垃圾清理工作。</p>
-</blockquote>
-<blockquote>
-<p>三个重要时间点<br>1、init()何时调用: servlet实例创建后，在提供服务之前，要对servlet调用init()<br>2、serrvice()何时调用:在一个客户请求到来后，容器会创建或从线程池获取一个线程，并调用servlet的service()方法。在servlet()中，判断Http方法(get or post),相应调用doGet() or doPost()<br>3、doGet()/doPost()由service()方法调用，在里面处理我们的业务逻辑</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/7032759-d8b62fa81a861051.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
-<blockquote>
-<p>通常，一个servlet class只有一个实例，也就是说对同一个servlet的多个请求共用一个servlet实例，相应的多个请求处理线程共用同一个servlet实例。<br>每一个请求到来，创建or从线程池获取一个线程，并调用servlet的service()方法处理请求。</p>
-</blockquote>
-<p>#####二、servlet继承结构API<br><img src="https://upload-images.jianshu.io/upload_images/7032759-f731f89270c050f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br><img src="https://upload-images.jianshu.io/upload_images/7032759-fad22deb93c1c7d2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br><img src="https://upload-images.jianshu.io/upload_images/7032759-607616a323c8b255.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/servlet-jsp/初始化参数/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="younger">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="younger个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/31/servlet-jsp/初始化参数/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-31T17:21:01+08:00">
-                2019-08-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>#一、ServletConfig<br>有必要事先说明，该参数作用仅在一个servlet中,所以<init-param>应在<servlet>内部</servlet></init-param></p>
-<p>####例子</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">web.xml中</span><br><span class="line">&lt;servlet&gt;</span><br><span class="line">  &lt;init-param&gt;</span><br><span class="line">      &lt;param-name&gt;初始化参数名&lt;/param-name&gt;</span><br><span class="line">      &lt;param-value&gt;值&lt;/param-value&gt;</span><br><span class="line">  &lt;/init-param&gt;</span><br><span class="line">&lt;/servlet&gt;</span><br><span class="line"></span><br><span class="line">servlet中</span><br><span class="line">getServletConfig.getInitParameter(&quot;初始化参数名&quot;);</span><br></pre></td></tr></table></figure>
-
-<p>####具体使用</p>
-<blockquote>
-<p>因为servlet继承了getServletConfig(),所以在servlet中的任何方法中都调用getServletConfig()来获取ServletConfig的引用</p>
-</blockquote>
-<h4 id="内部原理"><a href="#内部原理" class="headerlink" title="内部原理"></a>内部原理</h4><p><img src="https://upload-images.jianshu.io/upload_images/7032759-c2c8170c5a0e0e4b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
-<blockquote>
-<p>容器初始化一个servlet时，会为这个servlet创建一个唯一的ServletConfig。容器从web.xml中读出servlet初始化参数【仅读一次】，并把这些参数交给ServletConfig,然后把SErvletConfig传递给servlet的int()方法。</p>
-</blockquote>
-<p>#二、ServletContext<br>ServletContext作用在整个webapp中,所以<context-param>在<web-app>内部，在<servlet>外部</servlet></web-app></context-param></p>
-<p>####例子</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">web.xml中</span><br><span class="line">&lt;web-app&gt;</span><br><span class="line">  &lt;context-param&gt;</span><br><span class="line">    &lt;param-name&gt;初始化参数名&lt;/param-name&gt;</span><br><span class="line">    &lt;param-value&gt;值&lt;/param-value&gt;</span><br><span class="line">  &lt;/context-param&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;servlet&gt;</span><br><span class="line">    ..</span><br><span class="line">  &lt;/servlet&gt;</span><br><span class="line">&lt;/web-app&gt;</span><br><span class="line"></span><br><span class="line">servlet中</span><br><span class="line">getServletContext().getInitParameter(“初始化参数名”)</span><br></pre></td></tr></table></figure>
-
-<p>#三、总结</p>
-<blockquote>
-<p>每一个Servlet都有一个ServletConfig<br>每一个WEB应用都有一个ServletContext</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/servlet-jsp/会话/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="younger">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="younger个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/31/servlet-jsp/会话/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-31T17:21:01+08:00">
-                2019-08-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>###会话如何工作<br><img src="https://upload-images.jianshu.io/upload_images/7032759-d6d0c3198ca617bb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br><img src="https://upload-images.jianshu.io/upload_images/7032759-add7160ddf8eeed9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
-<blockquote>
-<p>HttpSession对象可以保存跨同一个client多个请求的会话状态</p>
-</blockquote>
-<p>##容器是如何辨认客户<br>提一点:由于Http协议是无状态的，所以<strong>每个请求都来自一个新的client</strong></p>
-<blockquote>
-<p><strong>客户需要一个唯一的会话ID</strong><br>对客户的第一个请求，容器会生成一个唯一的会话ID,并通过响应把它返回给客户。客户再在以后的每一次请求中发回这个会话ID。容器看到ID后，就会找到匹配的会话，并把这个会话与请求关联</p>
-</blockquote>
-<p>#####客户和容器是如何交会话ID信息<br>容器必须要把会话ID作为响应的一部分发给客户；客户也必须把会话ID作为请求的一部分发给容器。<br>1.<strong>Cookies实现</strong><br><img src="https://upload-images.jianshu.io/upload_images/7032759-6a92cf930023903c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br>2.<strong>URL重写</strong><br><img src="https://upload-images.jianshu.io/upload_images/7032759-4492a7ac0170f409.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
-<p>###<a href="https://javaee.github.io/javaee-spec/javadocs/" target="_blank" rel="noopener">HttpSession API</a><br><strong>Object getAttribute(“attributeNme”)</strong><br><strong>setAttribute(“attributeName”,object)</strong><br><strong>removeAttribute(“attributeNme”)</strong><br><img src="https://upload-images.jianshu.io/upload_images/7032759-6cf5acaf3692bdc4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/servlet-jsp/URL映射/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="younger">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="younger个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/31/servlet-jsp/URL映射/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-31T17:21:01+08:00">
-                2019-08-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>XML文件配置</strong></p>
-<blockquote>
-<p><strong><servlet></servlet></strong><br>内部名映射到全限定类名<br><strong><servlet-mapping></servlet-mapping></strong><br>内部名映射到公共url名</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;web-app ...&gt;</span><br><span class="line">   &lt;servlet&gt;</span><br><span class="line">    &lt;servlet-name&gt;Internal name 1&lt;/servlet-name&gt;</span><br><span class="line">    &lt;servlet-class&gt;foo.Servlet1&lt;/servlet-class&gt;</span><br><span class="line">  &lt;/servlet&gt;</span><br><span class="line"></span><br><span class="line">  &lt;servlet-mapping&gt;</span><br><span class="line">    &lt;servlet-name&gt;Internal name 1&lt;/servlet-name&gt;</span><br><span class="line">    &lt;url-pattern&gt;/Public1&lt;/url-pattern&gt;</span><br><span class="line">  &lt;/servlet-mapping&gt;</span><br><span class="line">&lt;/web-app&gt;</span><br></pre></td></tr></table></figure>
+<p>8、&lt;c:out&gt;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;c:out vlaue = &quot;显示的内容&quot;&gt;</span><br></pre></td></tr></table></figure>
 
 
           
@@ -1309,7 +566,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/servlet-jsp/Tomcat环境搭建/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/servlet-jsp/JSP总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="younger">
@@ -1328,7 +585,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/08/31/servlet-jsp/Tomcat环境搭建/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2019/08/31/servlet-jsp/JSP总结/" itemprop="url">Untitled</a></h1>
         
 
         <div class="post-meta">
@@ -1380,18 +637,24 @@
       
         
           
-            <p>#####java JDK<br>下载:<br><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="noopener">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a></p>
-<p>系统变量配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">eg: jdkjdk-9.0.1 安装路径:C:\Program Files\Java\jdk-9.0.1</span><br><span class="line">JAVA_HOME = C:\Program Files\Java\jdk-9.0.1</span><br><span class="line">JRE_HOME = C:\Program Files\Java\jre-9.0.1</span><br><span class="line">PATH = .;%JAVA_HOME%\bin;%JRE_HOME%\bin</span><br><span class="line">CLASSPATH = .;%JAVA_HOME%\lib;%JRE_HOME%\lib</span><br><span class="line">注:变量不存在就创建,存在就添加</span><br></pre></td></tr></table></figure>
+            <p>JSP</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Java  Server  Page   =   html  +  java脚本  + jsp动态标签</span><br></pre></td></tr></table></figure>
 
-<p>#####Tomcat免安装版<br>下载:<a href="http://tomcat.apache.org/" target="_blank" rel="noopener">http://tomcat.apache.org/</a><br><img src="http://upload-images.jianshu.io/upload_images/7032759-a52f9b56f45faccd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br><img src="http://upload-images.jianshu.io/upload_images/7032759-be4549cfcf8bad2e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br>系统变量配置：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">eg: 解压路径:C:\Program Files\Tomcat8.5</span><br><span class="line">TOMCAT_HOME=C:\Program Files\Tomcat8.5\apache-tomcat-8.5.24</span><br><span class="line">CATALINA_HOME=%TOMCAT_HOME%</span><br><span class="line">CATALINA_BASE=%TOMCAT_HOME%</span><br></pre></td></tr></table></figure>
+<p>特点</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1、有JSP规范提供,不用编写者实例化</span><br><span class="line">2、通过Web容器实现和管理</span><br><span class="line">3、所有JSP页面均可使用</span><br></pre></td></tr></table></figure>
 
-<p>重要一步:<br>修改bin目录下的startup.bat<br>在首行的位置添加<br>SET JAVA_HOME=JDK的目录<br>SET CATALINA_HOME=前面解压后Tomcat的目录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">eg：</span><br><span class="line">SET JAVA_HOME= C:\Program Files\Java\jdk-9.0.1</span><br><span class="line">SET CATALINA_HOME=C:\Program Files\Tomcat8.5\apache-tomcat-8.5.24</span><br></pre></td></tr></table></figure>
+<p>九大内置对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">分类</span><br><span class="line">1、输入输出对象:request、response、out</span><br><span class="line">2、通信控制对象:pageContext、session、applicaton</span><br><span class="line">3、Servlet对象:page、config</span><br><span class="line">4、错误处理对象:exception</span><br><span class="line">具体</span><br><span class="line">a)	page      :   Object  代表当前jsp页面对象   相当于this，几乎不用</span><br><span class="line">b)	config  :     ServletConfig    封装的是jsp被变异成servlet以后的配置信息，几乎不用  </span><br><span class="line">c)	exception     Throwable  该对象的使用需要配置  isErrorPage=”true” exception.getMessage()用来获取异常信息</span><br><span class="line">d)	response      HttpServletResponse</span><br><span class="line">e)	out           JspWriter  用来输出内容   out.prinit();</span><br><span class="line">f)	pageContext   PageContext   最小的域对象 只在当前jsp页面生效</span><br><span class="line">g)	request       HttpServletRequest   </span><br><span class="line">h)	session		  HttpSession  </span><br><span class="line">i)	application   ServletContext</span><br></pre></td></tr></table></figure>
 
-<p>最后启动:双击startup.bat<br>关闭:双击shutdown.bat</p>
-<p>验证成功:<br>启动tomcat,在浏览器中输入地址:<a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a><br>出现</p>
+<p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1、&lt;%= %&gt; 在JSP页面输入一个值</span><br><span class="line">2、&lt;%  %&gt; 可写入Java代码</span><br><span class="line">3、可以镶嵌在html中</span><br></pre></td></tr></table></figure>
+
+<p>三大指令<code>&lt;%@ ... %&gt;</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1、Page</span><br><span class="line">2、Include 静态包含</span><br><span class="line">	两个JSP页面在编译时结合，形成一个servlet</span><br><span class="line">	&lt;%@ include file=&quot;path&quot; %&gt;</span><br><span class="line">3、Taglib </span><br><span class="line">	用来导入第三方库</span><br><span class="line">	1、Prefix： 可以任意</span><br><span class="line">	2、Uri:	   标签库的路径</span><br></pre></td></tr></table></figure>
+
+<p>动作标签</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、&lt;jsp:include page=&quot;path&quot;/&gt;动态包含</span><br><span class="line">2、&lt;jsp:forward path=&quot;path&quot;/&gt;与request的转发相同</span><br><span class="line">3、&lt;jsp:param name=&quot;&quot; value=&quot;&quot;/&gt;传递参数</span><br><span class="line">	可以通过request.getParameter(&quot;&quot;);来获取该参数</span><br></pre></td></tr></table></figure>
+
 
           
         
@@ -1440,7 +703,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/servlet-jsp/sevelet编码问题/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/servlet-jsp/JSP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="younger">
@@ -1459,7 +722,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/08/31/servlet-jsp/sevelet编码问题/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2019/08/31/servlet-jsp/JSP/" itemprop="url">Untitled</a></h1>
         
 
         <div class="post-meta">
@@ -1511,16 +774,812 @@
       
         
           
-            <p>####request</p>
-<p>######一、Post请求<br>   只需在Servlet或者jsp中写入如下代码就可以把解决从表单中传入的中文乱码问题</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.setCharacterEncoding(&quot;utf-8&quot;);</span><br></pre></td></tr></table></figure>
+            <p>####JSP是什么</p>
+<p>#####看看容器是如何处理JSP<br><img src="https://upload-images.jianshu.io/upload_images/7032759-f7bcb99904d79c10.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<blockquote>
+<p>JSP的实质是一个servlet! 容器会创建、初始化这个servlet对象，为每个请求建立一个单独的线程，并调用servlet的service()方法。</p>
+</blockquote>
+<p>#####生命周期<br><img src="https://upload-images.jianshu.io/upload_images/7032759-a99ab59031e979c9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br><img src="https://upload-images.jianshu.io/upload_images/7032759-d377e5ec10b442b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br><img src="https://upload-images.jianshu.io/upload_images/7032759-c97e962b49006c5b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br><img src="https://upload-images.jianshu.io/upload_images/7032759-65bf0a763519df90.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>容器会加载这个类，实例化并且初始化，为每一个请求建立一个单独的线程 ，并调用servlet的service方法。</p>
+<p>#####那为什么会出现JSP呢？<br>JSP的出现是为了解决<strong>前后端分离</strong>问题。所以尽量不要在JSP页面进行逻辑处理，而只要让它起显示数据作用。</p>
+<p>####隐式对象<br><img src="https://upload-images.jianshu.io/upload_images/7032759-9c34abbcdafd69f1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>######浅谈脚本、指令<br>脚本：&lt;%  Java代码，有<strong>;</strong>    %&gt;<br>指令： &lt;%@      %&gt;<br>表达式: &lt;=   &gt;<br>常用指令：<br><img src="https://upload-images.jianshu.io/upload_images/7032759-dfdd6ed71fd245f3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
 
-<p>######二、Get请求<br>因为请求参数会被附加到地址栏的URL之后，所以不能用上面的处理方法<br> 一种方法就是获取请求参数之后对请求参数值重新编码，也就是先将其转换成字节数组，再将字节数组重新解码成字符串。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">eg：</span><br><span class="line">String str=request.getParameter(&quot;name&quot;);</span><br><span class="line">byte[] bytes=str.getBytes(&quot;ISO-8859-1&quot;);</span><br><span class="line">String name=new String(bytes,&quot;utf-8&quot;);</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
 
-<p>####response</p>
-<p>#####一、Get请求<br>      response.setContentType(“text/html;charset=utf-8”);</p>
-<p>#####二、Post请求<br>       response.setContentType(“text/html;charset=utf-8”);<br> 指定 HTTP 响应的编码，同时指定了浏览器显示的编码<br>字节流:不要设置编码格式</p>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/servlet-jsp/J2EE中的请求和转发/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="younger">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="younger个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/31/servlet-jsp/J2EE中的请求和转发/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-31T17:21:01+08:00">
+                2019-08-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>转发到JSP</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.getRequestDispatcher(&quot;myJSP.JSP&quot;).forward(request,response);</span><br></pre></td></tr></table></figure>
+
+<p>转发到Servlet</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.getRequestDispatcher(&quot;myServlet.do&quot;).forward(request,response);</span><br></pre></td></tr></table></figure>
+
+<p>从定向</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.sendRedirect(&quot;others&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>可以重定向到本应用的Servlet/JSP，也可以重定向到另外一个应用，但转发只能是在一个应用中。</p>
+<p>##区别</p>
+<ol>
+<li>转发client只发出一个请求；重定向发出两次请求，第二次请求是第一次响应给出的</li>
+<li>转发是server内部的事情，在servlet内部跳转，也就地址栏不会改变；重定向发生在client端，第二次请求由client发出，所以地址栏会改变</li>
+<li>转发一直是client发出的一个resquest,所以转发目的servlet/jsp中可以获取由request.setAttribute(“name”,object);的对象。而重定向是client发出了两次请求，所以是不能在第二次resques中获取到第一次request绑定属性。这也就说明，转发是可以共享数据的，而重定向是不能共享数据的</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/servlet-jsp/HttpServletRequest-and-HttpServletResponse/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="younger">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="younger个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/31/servlet-jsp/HttpServletRequest-and-HttpServletResponse/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-31T17:21:01+08:00">
+                2019-08-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>#API<br><img src="https://upload-images.jianshu.io/upload_images/7032759-f66ed23331a02945.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<blockquote>
+<p>HttpServletRequest and HttpServletResponse两个接口由容器实现，不需要码农实现，码农只需要知道两接口的方法使用。</p>
+</blockquote>
+<blockquote>
+<p>请求参数的获取<br>getParameter(“parameterName”)返回String;<br>getParameterValues(“parameterName”)返回String[]</p>
+</blockquote>
+<blockquote>
+<p>response:<br>设置响应内容类型<br>response.setContentType(“MIME type”);//必须首先设置<br>Common MIME types:<br>text/html  application/pdf  video/quicktime  application/java  image/jpeg<br>application/jar  application/octet-stream  application/x-zip<br>获取字符流<br>PrintWriter writer = response.getWriter();<br>writer.println(“some text and html”);<br>获取字节流<br>OutputStream out = response.getOutputStream();<br>out.write(aByteArray);<br>获取到流后，可以像普通I/O一样进行流操作</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/servlet-jsp/GET和POST的区别/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="younger">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="younger个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/31/servlet-jsp/GET和POST的区别/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-31T17:21:01+08:00">
+                2019-08-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>POST请求和GET请求都可以传递参数。POST请求有body，参数数据放在body中。而GET请求参数数据放在header中,地址栏可以看见参数数据。<br>来个直观的:<br><img src="https://upload-images.jianshu.io/upload_images/7032759-10c09f5ac2d826b5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br><img src="https://upload-images.jianshu.io/upload_images/7032759-415ef0c0c4f82794.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/servlet-jsp/EL表达式总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="younger">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="younger个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/31/servlet-jsp/EL表达式总结/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-31T17:21:01+08:00">
+                2019-08-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>EL表达式通常用来获取数据，不是设置数据</strong></p>
+<p>####11个内置对象<br><img src="http://upload-images.jianshu.io/upload_images/7032759-195e1c0f7f5096bb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>######注:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">pageContext:该对象的作用主要是用来获取其他对象  比如request</span><br><span class="line">$&#123;pageContext.request.contextPath&#125;------&gt;项目名</span><br><span class="line">Param: 用来获取请求参数</span><br><span class="line">ParamValues:用来获取请求参数(多个请求值的情形)</span><br><span class="line">Head:获取请求头的头值</span><br><span class="line">Headvalues：对应一个请求头有多个值的情况。</span><br><span class="line">InitParam:获取全局初始化参数 ，可以通过ServletContext对象</span><br><span class="line">Cookie:获取浏览器发送过来的cookie</span><br></pre></td></tr></table></figure>
+
+<p>####${}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">获取数据</span><br><span class="line">$&#123;attributeName&#125;  //查找顺序 pageContext request session application</span><br><span class="line">$&#123;pageScope.attributeName&#125;</span><br><span class="line">$&#123;requestScope.attributeName&#125;</span><br><span class="line">$&#123;sessionScope.attributeName&#125;</span><br><span class="line">$&#123;applicationScope.attributeName&#125;</span><br><span class="line">$&#123;cookie.name.value&#125;</span><br><span class="line">注:当attributeName为某一对象时,attributeName.member==&gt;attributeName.getMember()</span><br><span class="line">list,array</span><br><span class="line">$&#123;list[index]&#125;</span><br><span class="line">$&#123;array[index]&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/servlet-jsp/Cookie/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="younger">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="younger个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/31/servlet-jsp/Cookie/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-31T17:21:01+08:00">
+                2019-08-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>可使用cookie在客户和服务器之间交换<strong>名/值(String)</strong>。服务器创建cookie并发送给客户端，客户再在以后的请求中都发回这个cookie。</p>
+</blockquote>
+<p>API：</p>
+<ol>
+<li>HttpServletRequest:<br><strong>Cookie[] getCookies()</strong></li>
+<li>HttpServletResponse<br> <strong>void addCookie(Cookie cookie)</strong></li>
+<li>Cookie<br>   <strong>Cookie(String name,String value)</strong><br>   <strong>String getName()</strong><br>   <strong>String getValue()</strong><br>   void setValue(String newValue)<br>   <strong>void setMaxAge(int expiry)  生命周期单位秒/s</strong><blockquote>
+<p><strong>使Cookie销毁</strong><br>cookie.setMaxAge(0);</p>
+</blockquote>
+</li>
+</ol>
+<p>来个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//在响应中加入Cookie，发给客户</span><br><span class="line">Cookie cookie = new Cookie(&quot;userName&quot;,&quot;wangwu&quot;);</span><br><span class="line">cookie.setMaxAge(30*60);//生命周期30分钟</span><br><span class="line">response.addCoookie(cookie);//将cookie发送给客户</span><br><span class="line"></span><br><span class="line">从客户请求中获取cookies</span><br><span class="line">String userName = null;</span><br><span class="line">Cookie[] cookies = request.getCookies();</span><br><span class="line">for (int i = 0;i &lt; cookies.length;i++)&#123;</span><br><span class="line">    Cookie cookie = cookies[i];</span><br><span class="line">    if ((cookie.getName()).equals(&quot;userName&quot;))</span><br><span class="line">       userName = cookie.getValue();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/Mybaits/9---动态SQL--foreach/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="younger">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="younger个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/31/Mybaits/9---动态SQL--foreach/" itemprop="url">9--动态SQLr-foreach</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-31T17:09:14+08:00">
+                2019-08-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">Mybatis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><code>foreach</code><br>需要注意一点的是:<br><code>collection</code>为<code>set</code> <code>list</code> <code>array</code>时，<code>index</code>为集合的下标, <code>item</code>为元素值<br><code>collection</code>为<code>map</code>时，<code>index</code>为<code>key</code>,<code>item</code>为<code>value</code><br>dao</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Student&gt; listStudents(List&lt;Integer&gt; list);</span><br></pre></td></tr></table></figure>
+
+<p>mapper</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=&quot;listStudents&quot; resultMap=&quot;studentMapper&quot;&gt;</span><br><span class="line">        select * from `student`</span><br><span class="line">        where `id` in</span><br><span class="line">        &lt;foreach collection=&quot;list&quot; item=&quot;value&quot; index=&quot;indexOrKey&quot; </span><br><span class="line">                 open=&quot;(&quot; separator=&quot;,&quot; close=&quot;)&quot;&gt;</span><br><span class="line">            #&#123;value&#125;</span><br><span class="line">        &lt;/foreach&gt;</span><br><span class="line">    &lt;/select&gt;</span><br></pre></td></tr></table></figure>
+
+<p>test</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void test() &#123;</span><br><span class="line">    SqlSession session = factory.openSession();</span><br><span class="line">    try &#123;</span><br><span class="line">        StudentMapper studentMapper = session.getMapper(StudentMapper.class);</span><br><span class="line">        List&lt;Integer&gt; listIds = new ArrayList&lt;&gt;();</span><br><span class="line">        listIds.add(1000);</span><br><span class="line">        listIds.add(10001);</span><br><span class="line">        List&lt;Student&gt; students = studentMapper.listStudents(listIds);</span><br><span class="line">        if(!students.isEmpty())&#123;</span><br><span class="line">            for (Student student:</span><br><span class="line">                    students) &#123;</span><br><span class="line">                System.out.println(student);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            System.out.println(&quot;没有查到结果!&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; finally &#123;</span><br><span class="line">        session.commit();</span><br><span class="line">        session.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
           
         
@@ -1560,7 +1619,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
