@@ -291,7 +291,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/servlet-jsp/请求参数与请求属性的区别/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/Mybaits/9---动态SQL--foreach/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="younger">
@@ -310,7 +310,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/08/31/servlet-jsp/请求参数与请求属性的区别/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2019/08/31/Mybaits/9---动态SQL--foreach/" itemprop="url">9--动态SQLr-foreach</a></h1>
         
 
         <div class="post-meta">
@@ -322,7 +322,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-31T17:21:01+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-31T17:09:14+08:00">
                 2019-08-31
               </time>
             
@@ -332,6 +332,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">Mybatis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -362,904 +384,14 @@
       
         
           
-            <p>这个问题对于J2EE的初学者都会遇到，那么下面就从数据传递方向和用法简单聊一下，个人拙见！<br>相同点：二者都是封装在request中<br>    param: JSP–&gt;Servlet    [客户端]<br>     <strong>String getParameter(String name)</strong>，即只能返回String类型数据。 setParameter()这一说。<br>    attribute:Servlet–&gt;Servlet/JSP  [容器内]<br>    void setAttribute(String name,Obejct o);<br>    Object getAttribute(String name);<br>    先在request中set，然后才能在request中get                  </p>
+            <p><code>foreach</code><br>需要注意一点的是:<br><code>collection</code>为<code>set</code> <code>list</code> <code>array</code>时，<code>index</code>为集合的下标, <code>item</code>为元素值<br><code>collection</code>为<code>map</code>时，<code>index</code>为<code>key</code>,<code>item</code>为<code>value</code><br>dao</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Student&gt; listStudents(List&lt;Integer&gt; list);</span><br></pre></td></tr></table></figure>
 
-          
-        
-      
-    </div>
-    
-    
-    
+<p>mapper</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=&quot;listStudents&quot; resultMap=&quot;studentMapper&quot;&gt;</span><br><span class="line">        select * from `student`</span><br><span class="line">        where `id` in</span><br><span class="line">        &lt;foreach collection=&quot;list&quot; item=&quot;value&quot; index=&quot;indexOrKey&quot; </span><br><span class="line">                 open=&quot;(&quot; separator=&quot;,&quot; close=&quot;)&quot;&gt;</span><br><span class="line">            #&#123;value&#125;</span><br><span class="line">        &lt;/foreach&gt;</span><br><span class="line">    &lt;/select&gt;</span><br></pre></td></tr></table></figure>
 
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/servlet-jsp/监听器/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="younger">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="younger个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/31/servlet-jsp/监听器/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-31T17:21:01+08:00">
-                2019-08-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>首先只需了解有哪些监听器，主要监听器由什么事件触发即可</p>
-<p>#API<br><img src="https://upload-images.jianshu.io/upload_images/7032759-e2e9e1804a481d0f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br><img src="https://upload-images.jianshu.io/upload_images/7032759-e44924ebe3a2cf5b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/servlet-jsp/应用体系结构/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="younger">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="younger个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/31/servlet-jsp/应用体系结构/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-31T17:21:01+08:00">
-                2019-08-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="一、简单流程图"><a href="#一、简单流程图" class="headerlink" title="一、简单流程图"></a>一、简单流程图</h3><p><img src="https://upload-images.jianshu.io/upload_images/7032759-b2eebecd52375f11.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
-<h3 id="二、容器"><a href="#二、容器" class="headerlink" title="二、容器"></a>二、容器</h3><p>####1、什么是容器<br>Servlet没有main()方法。它们受控于另一个Java应用，这个Java应用称为容器。Tomcat就是一个容器。<br>如果web服务器应用收到一个指向某servlet的请求，此时服务器不是把这个请求直接交给servlet本身，而是交给部署该servlet的容器。再由容器调用servlet的方法，如doPost()或doGet()</p>
-<p>####2、容器的作用<br>(1)利用容器提供的方法，可以轻松让servlet与Web服务器对话，屏蔽掉网络底层，使程序员更加专注业务本身。<br>(2)容器控制着servlet的生与死。它会加载类、实例化和初始化servlet、调用servlet的方法，并使servlet对象能够被垃圾回收。<br>(3)容器会为每一个servlet请求创建一个Java线程</p>
-<p>###三、容器处理请求<br><img src="https://upload-images.jianshu.io/upload_images/7032759-2b2790d2353ee2c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br><img src="https://upload-images.jianshu.io/upload_images/7032759-f26f5031803f7e60.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br><img src="https://upload-images.jianshu.io/upload_images/7032759-33837e5c8d012212.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br><img src="https://upload-images.jianshu.io/upload_images/7032759-3d4da6a6c9ecbfd0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br>简要过程:容器收到一个servlet请求,随后将request封装为HttpServletRequest和HttpServletResponse对象。根据URL映射到一个servlet，并为请求创建或分配一个线程，HttpservletRequest对象和HttpsevletResponse对象被传递给servlet线程。然后容器调用servlet的service方法，service方法依据时请求方法get还是post，调用doGet或doPost方法。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/servlet-jsp/属性/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="younger">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="younger个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/31/servlet-jsp/属性/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-31T17:21:01+08:00">
-                2019-08-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>####什么是属性</p>
-<blockquote>
-<p>属性就是一个对象，可以设置到（绑定）到另外3个servlet API对象中的一个，包括ServletContext、HttpSession、HttpServletRequest(ServletRequest)。<br>可以简单的认为是一个映射实例对象中的名/值(名–String，值–Obeject)。<br><strong>属性不是参数</strong><br><img src="https://upload-images.jianshu.io/upload_images/7032759-222a469b844f4c77.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
-</blockquote>
-<p>####三个作用域<br><img src="https://upload-images.jianshu.io/upload_images/7032759-36dc19b80f4722e1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br><img src="https://upload-images.jianshu.io/upload_images/7032759-d0286978da25675d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br><img src="https://upload-images.jianshu.io/upload_images/7032759-fc7967d20573392a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
-<p>####属性API<br><img src="https://upload-images.jianshu.io/upload_images/7032759-ce5c8ce943495305.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
-<p>####属性安全问题<br>作用域在ServletContext的属性显然不安全，因为webapp的所有线程都可以访问处理。再想一想，HttpSession的属性是不是安全的呢？一般人的回答是线程安全的，但是这是错误的。如果再打开一个浏览窗口(即使在另一个浏览器中)，但容器仍认为这是同一个会话，这也就造成了多个线程在一个会话中，所以HttpSession中的属性不是线程安全的！<br>这就需要用线程的知识解决了。只需对ServletContext/HttpSession同步即可，千万不能对servlet进行同步，否则就会只有一个线程可以访问servlet，导致效率很低。</p>
-<blockquote>
-<p>只有请求属性和局部变量是线程安全的</p>
-</blockquote>
-<p>####请求属性与转发<br>如果希望应用的其他组件[<strong>Servlet/JSP]</strong>接管全部或部分请求，就可以使用请求属性。<br>那么如何让组件的其他部分接管这个请求呢?用<strong>RequestDispatcher</strong>.<br>举个例子:<br><img src="https://upload-images.jianshu.io/upload_images/7032759-f7d6718c7ad4e8f1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="servlet"><br><img src="https://upload-images.jianshu.io/upload_images/7032759-68d4aba44a5e064a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="示意图"></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/servlet-jsp/初识Servlet/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="younger">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="younger个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/31/servlet-jsp/初识Servlet/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-31T17:21:01+08:00">
-                2019-08-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>#####一、servlet的一生<br><img src="https://upload-images.jianshu.io/upload_images/7032759-bd94b5cd15390a1a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="servlet生命状态图"><br><img src="https://upload-images.jianshu.io/upload_images/7032759-ee439506d073d821.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="详细图"></p>
-<blockquote>
-<p>当一个请求映射到一个从未被访问过的servlet时，容器还未创建该servlet对象，所以需要创建该对象。容器首先会载入该serlert class,创建servlet对象,调用init()[仅仅一次]，完成初始化工作；随后调用service()方法处理请求；在servlet生命结束前，调用destroy()方法做垃圾清理工作。</p>
-</blockquote>
-<blockquote>
-<p>三个重要时间点<br>1、init()何时调用: servlet实例创建后，在提供服务之前，要对servlet调用init()<br>2、serrvice()何时调用:在一个客户请求到来后，容器会创建或从线程池获取一个线程，并调用servlet的service()方法。在servlet()中，判断Http方法(get or post),相应调用doGet() or doPost()<br>3、doGet()/doPost()由service()方法调用，在里面处理我们的业务逻辑</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/7032759-d8b62fa81a861051.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
-<blockquote>
-<p>通常，一个servlet class只有一个实例，也就是说对同一个servlet的多个请求共用一个servlet实例，相应的多个请求处理线程共用同一个servlet实例。<br>每一个请求到来，创建or从线程池获取一个线程，并调用servlet的service()方法处理请求。</p>
-</blockquote>
-<p>#####二、servlet继承结构API<br><img src="https://upload-images.jianshu.io/upload_images/7032759-f731f89270c050f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br><img src="https://upload-images.jianshu.io/upload_images/7032759-fad22deb93c1c7d2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br><img src="https://upload-images.jianshu.io/upload_images/7032759-607616a323c8b255.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/servlet-jsp/初始化参数/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="younger">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="younger个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/31/servlet-jsp/初始化参数/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-31T17:21:01+08:00">
-                2019-08-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>#一、ServletConfig<br>有必要事先说明，该参数作用仅在一个servlet中,所以<init-param>应在<servlet>内部</servlet></init-param></p>
-<p>####例子</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">web.xml中</span><br><span class="line">&lt;servlet&gt;</span><br><span class="line">  &lt;init-param&gt;</span><br><span class="line">      &lt;param-name&gt;初始化参数名&lt;/param-name&gt;</span><br><span class="line">      &lt;param-value&gt;值&lt;/param-value&gt;</span><br><span class="line">  &lt;/init-param&gt;</span><br><span class="line">&lt;/servlet&gt;</span><br><span class="line"></span><br><span class="line">servlet中</span><br><span class="line">getServletConfig.getInitParameter(&quot;初始化参数名&quot;);</span><br></pre></td></tr></table></figure>
-
-<p>####具体使用</p>
-<blockquote>
-<p>因为servlet继承了getServletConfig(),所以在servlet中的任何方法中都调用getServletConfig()来获取ServletConfig的引用</p>
-</blockquote>
-<h4 id="内部原理"><a href="#内部原理" class="headerlink" title="内部原理"></a>内部原理</h4><p><img src="https://upload-images.jianshu.io/upload_images/7032759-c2c8170c5a0e0e4b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
-<blockquote>
-<p>容器初始化一个servlet时，会为这个servlet创建一个唯一的ServletConfig。容器从web.xml中读出servlet初始化参数【仅读一次】，并把这些参数交给ServletConfig,然后把SErvletConfig传递给servlet的int()方法。</p>
-</blockquote>
-<p>#二、ServletContext<br>ServletContext作用在整个webapp中,所以<context-param>在<web-app>内部，在<servlet>外部</servlet></web-app></context-param></p>
-<p>####例子</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">web.xml中</span><br><span class="line">&lt;web-app&gt;</span><br><span class="line">  &lt;context-param&gt;</span><br><span class="line">    &lt;param-name&gt;初始化参数名&lt;/param-name&gt;</span><br><span class="line">    &lt;param-value&gt;值&lt;/param-value&gt;</span><br><span class="line">  &lt;/context-param&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;servlet&gt;</span><br><span class="line">    ..</span><br><span class="line">  &lt;/servlet&gt;</span><br><span class="line">&lt;/web-app&gt;</span><br><span class="line"></span><br><span class="line">servlet中</span><br><span class="line">getServletContext().getInitParameter(“初始化参数名”)</span><br></pre></td></tr></table></figure>
-
-<p>#三、总结</p>
-<blockquote>
-<p>每一个Servlet都有一个ServletConfig<br>每一个WEB应用都有一个ServletContext</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/servlet-jsp/会话/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="younger">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="younger个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/31/servlet-jsp/会话/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-31T17:21:01+08:00">
-                2019-08-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>###会话如何工作<br><img src="https://upload-images.jianshu.io/upload_images/7032759-d6d0c3198ca617bb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br><img src="https://upload-images.jianshu.io/upload_images/7032759-add7160ddf8eeed9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
-<blockquote>
-<p>HttpSession对象可以保存跨同一个client多个请求的会话状态</p>
-</blockquote>
-<p>##容器是如何辨认客户<br>提一点:由于Http协议是无状态的，所以<strong>每个请求都来自一个新的client</strong></p>
-<blockquote>
-<p><strong>客户需要一个唯一的会话ID</strong><br>对客户的第一个请求，容器会生成一个唯一的会话ID,并通过响应把它返回给客户。客户再在以后的每一次请求中发回这个会话ID。容器看到ID后，就会找到匹配的会话，并把这个会话与请求关联</p>
-</blockquote>
-<p>#####客户和容器是如何交会话ID信息<br>容器必须要把会话ID作为响应的一部分发给客户；客户也必须把会话ID作为请求的一部分发给容器。<br>1.<strong>Cookies实现</strong><br><img src="https://upload-images.jianshu.io/upload_images/7032759-6a92cf930023903c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br>2.<strong>URL重写</strong><br><img src="https://upload-images.jianshu.io/upload_images/7032759-4492a7ac0170f409.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
-<p>###<a href="https://javaee.github.io/javaee-spec/javadocs/" target="_blank" rel="noopener">HttpSession API</a><br><strong>Object getAttribute(“attributeNme”)</strong><br><strong>setAttribute(“attributeName”,object)</strong><br><strong>removeAttribute(“attributeNme”)</strong><br><img src="https://upload-images.jianshu.io/upload_images/7032759-6cf5acaf3692bdc4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/servlet-jsp/URL映射/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="younger">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="younger个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/31/servlet-jsp/URL映射/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-31T17:21:01+08:00">
-                2019-08-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>XML文件配置</strong></p>
-<blockquote>
-<p><strong><servlet></servlet></strong><br>内部名映射到全限定类名<br><strong><servlet-mapping></servlet-mapping></strong><br>内部名映射到公共url名</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;web-app ...&gt;</span><br><span class="line">   &lt;servlet&gt;</span><br><span class="line">    &lt;servlet-name&gt;Internal name 1&lt;/servlet-name&gt;</span><br><span class="line">    &lt;servlet-class&gt;foo.Servlet1&lt;/servlet-class&gt;</span><br><span class="line">  &lt;/servlet&gt;</span><br><span class="line"></span><br><span class="line">  &lt;servlet-mapping&gt;</span><br><span class="line">    &lt;servlet-name&gt;Internal name 1&lt;/servlet-name&gt;</span><br><span class="line">    &lt;url-pattern&gt;/Public1&lt;/url-pattern&gt;</span><br><span class="line">  &lt;/servlet-mapping&gt;</span><br><span class="line">&lt;/web-app&gt;</span><br></pre></td></tr></table></figure>
+<p>test</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void test() &#123;</span><br><span class="line">    SqlSession session = factory.openSession();</span><br><span class="line">    try &#123;</span><br><span class="line">        StudentMapper studentMapper = session.getMapper(StudentMapper.class);</span><br><span class="line">        List&lt;Integer&gt; listIds = new ArrayList&lt;&gt;();</span><br><span class="line">        listIds.add(1000);</span><br><span class="line">        listIds.add(10001);</span><br><span class="line">        List&lt;Student&gt; students = studentMapper.listStudents(listIds);</span><br><span class="line">        if(!students.isEmpty())&#123;</span><br><span class="line">            for (Student student:</span><br><span class="line">                    students) &#123;</span><br><span class="line">                System.out.println(student);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            System.out.println(&quot;没有查到结果!&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; finally &#123;</span><br><span class="line">        session.commit();</span><br><span class="line">        session.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
           
@@ -1309,7 +441,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/servlet-jsp/Tomcat环境搭建/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/Mybaits/8---动态SQL--set/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="younger">
@@ -1328,7 +460,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/08/31/servlet-jsp/Tomcat环境搭建/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2019/08/31/Mybaits/8---动态SQL--set/" itemprop="url">8-动态SQLr-set</a></h1>
         
 
         <div class="post-meta">
@@ -1340,7 +472,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-31T17:21:01+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-31T17:09:14+08:00">
                 2019-08-31
               </time>
             
@@ -1350,6 +482,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">Mybatis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1380,18 +534,15 @@
       
         
           
-            <p>#####java JDK<br>下载:<br><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="noopener">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a></p>
-<p>系统变量配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">eg: jdkjdk-9.0.1 安装路径:C:\Program Files\Java\jdk-9.0.1</span><br><span class="line">JAVA_HOME = C:\Program Files\Java\jdk-9.0.1</span><br><span class="line">JRE_HOME = C:\Program Files\Java\jre-9.0.1</span><br><span class="line">PATH = .;%JAVA_HOME%\bin;%JRE_HOME%\bin</span><br><span class="line">CLASSPATH = .;%JAVA_HOME%\lib;%JRE_HOME%\lib</span><br><span class="line">注:变量不存在就创建,存在就添加</span><br></pre></td></tr></table></figure>
+            <p><code>set</code> <code>if</code><br>dao</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int updateStudent(Student student);</span><br></pre></td></tr></table></figure>
 
-<p>#####Tomcat免安装版<br>下载:<a href="http://tomcat.apache.org/" target="_blank" rel="noopener">http://tomcat.apache.org/</a><br><img src="http://upload-images.jianshu.io/upload_images/7032759-a52f9b56f45faccd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br><img src="http://upload-images.jianshu.io/upload_images/7032759-be4549cfcf8bad2e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br>系统变量配置：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">eg: 解压路径:C:\Program Files\Tomcat8.5</span><br><span class="line">TOMCAT_HOME=C:\Program Files\Tomcat8.5\apache-tomcat-8.5.24</span><br><span class="line">CATALINA_HOME=%TOMCAT_HOME%</span><br><span class="line">CATALINA_BASE=%TOMCAT_HOME%</span><br></pre></td></tr></table></figure>
+<p>mapper</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;update id=&quot;updateStudent&quot; parameterType=&quot;student&quot;&gt;</span><br><span class="line">       update `student`</span><br><span class="line">       &lt;set&gt;</span><br><span class="line">           &lt;if test=&quot;name != null&quot;&gt;</span><br><span class="line">               `name` = #&#123;name&#125;,</span><br><span class="line">           &lt;/if&gt;</span><br><span class="line">           &lt;if test=&quot;age != null&quot;&gt;</span><br><span class="line">               `age` = #&#123;age&#125;,</span><br><span class="line">           &lt;/if&gt;</span><br><span class="line">           &lt;if test=&quot;gender != null&quot;&gt;</span><br><span class="line">               `gender` = #&#123;gender,typeHandler=genderTypeHandler&#125;</span><br><span class="line">           &lt;/if&gt;</span><br><span class="line">       &lt;/set&gt;</span><br><span class="line">       where `id` = #&#123;id&#125;</span><br><span class="line">   &lt;/update&gt;</span><br></pre></td></tr></table></figure>
 
-<p>重要一步:<br>修改bin目录下的startup.bat<br>在首行的位置添加<br>SET JAVA_HOME=JDK的目录<br>SET CATALINA_HOME=前面解压后Tomcat的目录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">eg：</span><br><span class="line">SET JAVA_HOME= C:\Program Files\Java\jdk-9.0.1</span><br><span class="line">SET CATALINA_HOME=C:\Program Files\Tomcat8.5\apache-tomcat-8.5.24</span><br></pre></td></tr></table></figure>
+<p>test</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@Test</span><br><span class="line">public void test() &#123;</span><br><span class="line">    SqlSession session = factory.openSession();</span><br><span class="line">    try &#123;</span><br><span class="line">        StudentMapper studentMapper = session.getMapper(StudentMapper.class);</span><br><span class="line">        int id = 10001;</span><br><span class="line">        String name = &quot;hu&quot;;</span><br><span class="line">        int age = 18;</span><br><span class="line">        GenderEnum gender = GenderEnum.getGender(1);</span><br><span class="line">        Student student = new Student(id,name,age,gender);</span><br><span class="line">        int affectedRows = studentMapper.updateStudent(student);</span><br><span class="line">        System.out.println(affectedRows);</span><br><span class="line">        System.out.println(studentMapper.selectStudentById(id));</span><br><span class="line">    &#125; finally &#123;</span><br><span class="line">        session.commit();</span><br><span class="line">        session.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>最后启动:双击startup.bat<br>关闭:双击shutdown.bat</p>
-<p>验证成功:<br>启动tomcat,在浏览器中输入地址:<a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a><br>出现</p>
 
           
         
@@ -1440,7 +591,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/servlet-jsp/sevelet编码问题/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/Mybaits/7---动态SQL--where/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="younger">
@@ -1459,7 +610,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/08/31/servlet-jsp/sevelet编码问题/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2019/08/31/Mybaits/7---动态SQL--where/" itemprop="url">7--动态SQLr-where</a></h1>
         
 
         <div class="post-meta">
@@ -1471,7 +622,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-31T17:21:01+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-31T17:09:14+08:00">
                 2019-08-31
               </time>
             
@@ -1481,6 +632,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">Mybatis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1511,16 +684,963 @@
       
         
           
-            <p>####request</p>
-<p>######一、Post请求<br>   只需在Servlet或者jsp中写入如下代码就可以把解决从表单中传入的中文乱码问题</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.setCharacterEncoding(&quot;utf-8&quot;);</span><br></pre></td></tr></table></figure>
+            <p><code>where</code> <code>if</code><br>dao<br>在含有<code>int</code>类型的查询参数，最好设置为<code>Integer</code>,以便接收<code>null</code>值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Student&gt; selectStudents(@Param(&quot;name&quot;) String name,</span><br><span class="line">                             @Param(&quot;age&quot;) Integer age,</span><br><span class="line">                             @Param(&quot;gender&quot;) GenderEnum gender);</span><br></pre></td></tr></table></figure>
 
-<p>######二、Get请求<br>因为请求参数会被附加到地址栏的URL之后，所以不能用上面的处理方法<br> 一种方法就是获取请求参数之后对请求参数值重新编码，也就是先将其转换成字节数组，再将字节数组重新解码成字符串。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">eg：</span><br><span class="line">String str=request.getParameter(&quot;name&quot;);</span><br><span class="line">byte[] bytes=str.getBytes(&quot;ISO-8859-1&quot;);</span><br><span class="line">String name=new String(bytes,&quot;utf-8&quot;);</span><br></pre></td></tr></table></figure>
+<p>mapper</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=&quot;selectStudents&quot; resultMap=&quot;studentMapper&quot;&gt;</span><br><span class="line">      select * from `student`</span><br><span class="line">      &lt;where&gt;</span><br><span class="line">          &lt;if test=&quot;name != null&quot;&gt;</span><br><span class="line">              `name` like concat(&apos;%&apos;,#&#123;name&#125;,&apos;%&apos;)</span><br><span class="line">          &lt;/if&gt;</span><br><span class="line">          &lt;if test=&quot;age != null&quot;&gt;</span><br><span class="line">              and `age` = #&#123;age&#125;</span><br><span class="line">          &lt;/if&gt;</span><br><span class="line">          &lt;if test=&quot;gender != null&quot;&gt;</span><br><span class="line">              and `gender` = #&#123;gender,typeHandler=genderTypeHandler&#125;</span><br><span class="line">          &lt;/if&gt;</span><br><span class="line">      &lt;/where&gt;</span><br><span class="line">   &lt;/select&gt;</span><br></pre></td></tr></table></figure>
 
-<p>####response</p>
-<p>#####一、Get请求<br>      response.setContentType(“text/html;charset=utf-8”);</p>
-<p>#####二、Post请求<br>       response.setContentType(“text/html;charset=utf-8”);<br> 指定 HTTP 响应的编码，同时指定了浏览器显示的编码<br>字节流:不要设置编码格式</p>
+<p>test</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">    public void test() &#123;</span><br><span class="line">        SqlSession session = factory.openSession();</span><br><span class="line">        try &#123;</span><br><span class="line">            StudentMapper studentMapper = session.getMapper(StudentMapper.class);</span><br><span class="line">//            Student student = new Student(&quot;hu&quot;,19,GenderEnum.getGender(1));</span><br><span class="line">//            int affectedRows = studentMapper.insertStudent(student);</span><br><span class="line">            String name = &quot;h&quot;;</span><br><span class="line">            int age = 20;</span><br><span class="line">            GenderEnum gender = GenderEnum.getGender(2);</span><br><span class="line">            List&lt;Student&gt; students = studentMapper.selectStudents(name, age,gender);</span><br><span class="line">//            List&lt;Student&gt; students = studentMapper.selectStudents(name, age,null);</span><br><span class="line">//            List&lt;Student&gt; students = studentMapper.selectStudents(name, null,gender);</span><br><span class="line">//            List&lt;Student&gt; students = studentMapper.selectStudents(name, null,null);</span><br><span class="line">//            List&lt;Student&gt; students = studentMapper.selectStudents(null, null,null);</span><br><span class="line">            if(!students.isEmpty())&#123;</span><br><span class="line">                Iterator&lt;Student&gt; it = students.iterator();</span><br><span class="line">                while(it.hasNext())&#123;</span><br><span class="line">                    Student student = it.next();</span><br><span class="line">                    System.out.println(student);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                System.out.println(&quot;没有查到结果&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            session.commit();</span><br><span class="line">            session.close();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/Mybaits/6---TypeHandler-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="younger">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="younger个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/31/Mybaits/6---TypeHandler-2/" itemprop="url">6--TypeHandler-2</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-31T17:09:14+08:00">
+                2019-08-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">Mybatis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>本小节对枚举类型进行转换<br>table</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">create table `student`(</span><br><span class="line">`id` int auto_increment primary key,</span><br><span class="line">`name` varchar(30) not null,</span><br><span class="line">`age` int,</span><br><span class="line">`gender` int default 0</span><br><span class="line">)auto_increment=10000;</span><br></pre></td></tr></table></figure>
+
+<p>enum</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">package model;</span><br><span class="line"></span><br><span class="line">public enum GenderEnum &#123;</span><br><span class="line">    MALE(&quot;男&quot;,0),FEMALE(&quot;女&quot;,1),UNKNOW(&quot;不知道&quot;,2);</span><br><span class="line">    private String gender;</span><br><span class="line">    private int code;</span><br><span class="line">    GenderEnum(String gender, int code)&#123;</span><br><span class="line">        this.gender = gender;</span><br><span class="line">        this.code = code;</span><br><span class="line">    &#125;</span><br><span class="line">    public static GenderEnum getGender(String genderName)&#123;</span><br><span class="line">        for (GenderEnum gender: GenderEnum.values())&#123;</span><br><span class="line">            if(gender.gender.equalsIgnoreCase(genderName))&#123;</span><br><span class="line">                return gender;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static GenderEnum getGender(int code)&#123;</span><br><span class="line">        for (GenderEnum gender: GenderEnum.values())&#123;</span><br><span class="line">            if(gender.code == code)&#123;</span><br><span class="line">                return gender;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getGender() &#123;</span><br><span class="line">        return gender;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setGender(String gender) &#123;</span><br><span class="line">        this.gender = gender;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int getCode() &#123;</span><br><span class="line">        return code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setCode(int code) &#123;</span><br><span class="line">        this.code = code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String toString() &#123;</span><br><span class="line">        return &quot;GenderEnum&#123;&quot; +</span><br><span class="line">                &quot;gender=&apos;&quot; + gender + &apos;\&apos;&apos; +</span><br><span class="line">                &quot;, code=&quot; + code +</span><br><span class="line">                &apos;&#125;&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>model</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">package model;</span><br><span class="line"></span><br><span class="line">public class Student &#123;</span><br><span class="line">    private int id;</span><br><span class="line">    private String name;</span><br><span class="line">    private int age;</span><br><span class="line"></span><br><span class="line">    private GenderEnum gender;</span><br><span class="line"></span><br><span class="line">    public Student() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    //getter setter</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>dao</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public interface StudentMapper &#123;</span><br><span class="line">    int insertStudent(Student student);</span><br><span class="line">    Student selectStudentById(int id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>mapper<br>这里的<code>typeHandler使用了别名</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;insert id=&quot;insertStudent&quot; parameterType=&quot;student&quot;&gt;</span><br><span class="line">     insert into `student`(`name`,`age`,`gender`)</span><br><span class="line">     values(#&#123;name&#125;,#&#123;age&#125;,#&#123;gender,typeHandler=genderTypeHandler&#125;)</span><br><span class="line">     &lt;selectKey resultType=&quot;int&quot; keyColumn=&quot;id&quot; keyProperty=&quot;id&quot; order=&quot;AFTER&quot;&gt;</span><br><span class="line">         select last_insert_id();</span><br><span class="line">     &lt;/selectKey&gt;</span><br><span class="line">   &lt;/insert&gt;</span><br><span class="line"></span><br><span class="line">   &lt;resultMap id=&quot;studentMapper&quot; type=&quot;student&quot;&gt;</span><br><span class="line">       &lt;id property=&quot;id&quot; column=&quot;id&quot;/&gt;</span><br><span class="line">       &lt;result property=&quot;name&quot; column=&quot;name&quot;/&gt;</span><br><span class="line">       &lt;result property=&quot;age&quot; column=&quot;age&quot;/&gt;</span><br><span class="line">       &lt;result property=&quot;gender&quot; column=&quot;gender&quot; typeHandler=&quot;genderTypeHandler&quot;/&gt;</span><br><span class="line">   &lt;/resultMap&gt;</span><br><span class="line"></span><br><span class="line">   &lt;select id=&quot;selectStudentById&quot; parameterType=&quot;int&quot; resultMap=&quot;studentMapper&quot;&gt;</span><br><span class="line">     select * from `student` where `id` = #&#123;id&#125;</span><br><span class="line">   &lt;/select&gt;</span><br></pre></td></tr></table></figure>
+
+<p>test</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/Mybaits/5---TypeHandler-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="younger">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="younger个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/31/Mybaits/5---TypeHandler-1/" itemprop="url">5--TypeHandler-1</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-31T17:09:14+08:00">
+                2019-08-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">Mybatis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>当需要将jdbc类型的数据和Java程序中类型的书数据进行转换时，可以使用TypeHandler来完成转换过程。怎么实现呢?<br><strong>Java类型==》jdbc</strong><br>将Java类型值<code>value1</code>通过某种策略转化为数据库(jdbc)类型值<code>value2</code>，然后将<code>value2</code>设置为<code>SQL参数</code> :<code>preparedStatement.setType(i,value2);</code><br><strong>Java类型《== jdbc</strong><br>从<code>resultSet</code>中取出值<code>value2</code>，然后通过某种策略将<code>value2</code>转换为Java类型值<code>value1</code></p>
+<h3 id="table"><a href="#table" class="headerlink" title="table"></a>table</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">create table `student`(</span><br><span class="line">`id` int auto_increment primary key,</span><br><span class="line">`name` varchar(30) not null,</span><br><span class="line">`age` int,</span><br><span class="line">`birthday` varchar(30)</span><br><span class="line">)auto_increment=10000;</span><br></pre></td></tr></table></figure>
+
+<h3 id="model"><a href="#model" class="headerlink" title="model"></a>model</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">package model;</span><br><span class="line"></span><br><span class="line">import java.util.Date;</span><br><span class="line"></span><br><span class="line">public class Student &#123;</span><br><span class="line">    private int id;</span><br><span class="line">    private String name;</span><br><span class="line">    private int age;</span><br><span class="line"></span><br><span class="line">    private Date birthday;//在数据库中对应的类型是varchar(n)</span><br><span class="line"></span><br><span class="line">    public Student() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">//getter和setter略</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="TypeHandler"><a href="#TypeHandler" class="headerlink" title="TypeHandler"></a>TypeHandler</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//表注转换的两种类型</span><br><span class="line">@MappedJdbcTypes(&#123;JdbcType.VARCHAR&#125;)//jdbc类型</span><br><span class="line">@MappedTypes(&#123;java.util.Date.class&#125;)//程序类型</span><br><span class="line">public class MyDateTypeHandler extends BaseTypeHandler&lt;Date&gt; &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void setNonNullParameter(PreparedStatement preparedStatement, int i, Date date, JdbcType jdbcType) throws SQLException &#123;</span><br><span class="line"></span><br><span class="line">        preparedStatement.setString(i,String.valueOf(date.getTime()));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Date getNullableResult(ResultSet resultSet, int i) throws SQLException &#123;</span><br><span class="line">        return new Date(resultSet.getLong(i));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Date getNullableResult(ResultSet resultSet, String s) throws SQLException &#123;</span><br><span class="line">        return new Date(resultSet.getLong(s));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Date getNullableResult(CallableStatement callableStatement, int i) throws SQLException &#123;</span><br><span class="line">        return new Date(callableStatement.getLong(i));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="dao"><a href="#dao" class="headerlink" title="dao"></a>dao</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">package dao;</span><br><span class="line"></span><br><span class="line">import model.Student;</span><br><span class="line"></span><br><span class="line">public interface StudentMapper &#123;</span><br><span class="line"></span><br><span class="line">    int insertStudent(Student student);</span><br><span class="line"></span><br><span class="line">    Student selectStudentById(int id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="mapper"><a href="#mapper" class="headerlink" title="mapper"></a>mapper</h3><p>在对应参数处使用typeHandler来转换<br>作为输入参数:<br><code>#{birthday,typeHandler=dao.MyDateTypeHandler}</code><br>这里的typeHandler的值<code>不成写成字符串类型</code><br>作为输出结果:<br><code>&lt;result property=&quot;birthday&quot; column=&quot;birthday&quot; 
+  typeHandler=&quot;dao.MyDateTypeHandler&quot;/&gt;</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;insert id=&quot;insertStudent&quot; parameterType=&quot;student&quot;&gt;</span><br><span class="line">       insert into `student`(`name`,`age`,`birthday`)</span><br><span class="line">       values(#&#123;name&#125;,#&#123;age&#125;,#&#123;birthday,typeHandler=dao.MyDateTypeHandler&#125;)</span><br><span class="line">       &lt;selectKey resultType=&quot;int&quot; keyProperty=&quot;id&quot; keyColumn=&quot;id&quot; order=&quot;AFTER&quot;&gt;</span><br><span class="line">           select last_insert_id()</span><br><span class="line">       &lt;/selectKey&gt;</span><br><span class="line">   &lt;/insert&gt;</span><br><span class="line"></span><br><span class="line">   &lt;resultMap id=&quot;studentMapper&quot; type=&quot;student&quot;&gt;</span><br><span class="line">       &lt;id property=&quot;id&quot; column=&quot;id&quot;/&gt;</span><br><span class="line">       &lt;result property=&quot;name&quot; column=&quot;name&quot;/&gt;</span><br><span class="line">       &lt;result property=&quot;age&quot; column=&quot;age&quot;/&gt;</span><br><span class="line">       &lt;result property=&quot;birthday&quot; column=&quot;birthday&quot; typeHandler=&quot;dao.MyDateTypeHandler&quot;/&gt;</span><br><span class="line">   &lt;/resultMap&gt;</span><br><span class="line"></span><br><span class="line">   &lt;select id=&quot;selectStudentById&quot; parameterType=&quot;int&quot; resultMap=&quot;studentMapper&quot;&gt;</span><br><span class="line">       select * from `student` where `id` = #&#123;id&#125;</span><br><span class="line">   &lt;/select&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="test"><a href="#test" class="headerlink" title="test"></a>test</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class AppTest &#123;</span><br><span class="line"></span><br><span class="line">    SqlSessionFactory factory = null;</span><br><span class="line"></span><br><span class="line">    @Before</span><br><span class="line">    public void prepare() throws IOException&#123;</span><br><span class="line">        InputStream inputStream = Resources.getResourceAsStream(&quot;mybatis.xml&quot;);</span><br><span class="line">        factory = new SqlSessionFactoryBuilder().build(inputStream);</span><br><span class="line">        inputStream.close();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Test</span><br><span class="line">    public void test()&#123;</span><br><span class="line">        SqlSession session = factory.openSession();</span><br><span class="line">        try&#123;</span><br><span class="line">            StudentMapper studentMapper = session.getMapper(StudentMapper.class);</span><br><span class="line">//            Student student = new Student(&quot;wang&quot;,20,new Date());</span><br><span class="line">//            int affectedRows = studentMapper.insertStudent(student);</span><br><span class="line">            int id=10001;</span><br><span class="line">            Student student  = studentMapper.selectStudentById(id);</span><br><span class="line"></span><br><span class="line">            System.out.println(student);</span><br><span class="line">        &#125;finally&#123;</span><br><span class="line">            session.commit();</span><br><span class="line">            session.close();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/Mybaits/4---关联查询~一对一/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="younger">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="younger个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/31/Mybaits/4---关联查询~一对一/" itemprop="url">4--一对一</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-31T17:09:14+08:00">
+                2019-08-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">Mybatis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一本书只属于一个人!<br>table</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">create table `student`(</span><br><span class="line">`id` int auto_increment primary key,</span><br><span class="line">`name` varchar(30) not null,</span><br><span class="line">`age` int</span><br><span class="line">)auto_increment=10000;</span><br><span class="line"></span><br><span class="line">create table `book`</span><br><span class="line">(`id` int auto_increment primary key,</span><br><span class="line">`bookName` varchar(20),</span><br><span class="line">`author` varchar(10),</span><br><span class="line">`studentID` int references `student`(`id`)</span><br><span class="line">)auto_increment=10000;</span><br></pre></td></tr></table></figure>
+
+<p>model</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public class Student &#123;</span><br><span class="line">    private int id;</span><br><span class="line">    private String name;</span><br><span class="line">    private int age;</span><br><span class="line"></span><br><span class="line">    public Student()&#123;&#125;</span><br><span class="line">    //getter setter略</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class Book &#123;</span><br><span class="line"></span><br><span class="line">    private int bookID;</span><br><span class="line">    private String bookName;</span><br><span class="line">    private String author;</span><br><span class="line"></span><br><span class="line">    private Student student;</span><br><span class="line"></span><br><span class="line">    public Book() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">   //getter setter略</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>dao</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface StudentMapper &#123;</span><br><span class="line">    Book findBook(int bookID);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>mapper.xml<br>方式一：嵌套</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;resultMap id=&quot;bookMapper&quot; type=&quot;book&quot;&gt;</span><br><span class="line">    &lt;id column=&quot;bookID&quot; property=&quot;bookID&quot;/&gt;</span><br><span class="line">    &lt;result column=&quot;bookName&quot; property=&quot;bookName&quot;/&gt;</span><br><span class="line">    &lt;result column=&quot;author&quot; property=&quot;author&quot;/&gt;</span><br><span class="line">    &lt;association property=&quot;student&quot; javaType=&quot;student&quot;&gt;</span><br><span class="line">        &lt;id column=&quot;id&quot; property=&quot;id&quot;/&gt;</span><br><span class="line">        &lt;result column=&quot;name&quot; property=&quot;name&quot;/&gt;</span><br><span class="line">        &lt;result column=&quot;age&quot; property=&quot;age&quot;/&gt;</span><br><span class="line">    &lt;/association&gt;</span><br><span class="line">&lt;/resultMap&gt;</span><br><span class="line"></span><br><span class="line">&lt;select id=&quot;findBook&quot; resultMap=&quot;bookMapper&quot;&gt;</span><br><span class="line">    select `student`.`id` `id`,</span><br><span class="line">`student`.`name` `name`,</span><br><span class="line">   `student`.`age` `age`,</span><br><span class="line">   `book`.`id` `bookID`,</span><br><span class="line">   `book`.`bookName` `bookName`,</span><br><span class="line">   `book`.`author` `author`</span><br><span class="line">    from `student`,`book`</span><br><span class="line">    where `student`.`id` = `book`.`studentID`</span><br><span class="line">    and `book`.`id` = #&#123;bookID&#125;;</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
+
+<p>方式二:复用resultMapper</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"> &lt;select id=&quot;findBook&quot; resultMap=&quot;bookMapper&quot;&gt;</span><br><span class="line">     select `student`.`id` `id`,</span><br><span class="line"> `student`.`name` `name`,</span><br><span class="line">    `student`.`age` `age`,</span><br><span class="line">    `book`.`id` `bookID`,</span><br><span class="line">    `book`.`bookName` `bookName`,</span><br><span class="line">    `book`.`author` `author`</span><br><span class="line">     from `student`,`book`</span><br><span class="line">     where `student`.`id` = `book`.`studentID`</span><br><span class="line">     and `book`.`id` = #&#123;bookID&#125;;</span><br><span class="line"> &lt;/select&gt;</span><br><span class="line"></span><br><span class="line">&lt;resultMap id=&quot;studentMapper&quot; type=&quot;student&quot;&gt;</span><br><span class="line">     &lt;id column=&quot;id&quot; property=&quot;id&quot;/&gt;</span><br><span class="line">     &lt;result column=&quot;name&quot; property=&quot;name&quot;/&gt;</span><br><span class="line">     &lt;result column=&quot;age&quot; property=&quot;age&quot;/&gt;</span><br><span class="line"> &lt;/resultMap&gt;</span><br><span class="line"></span><br><span class="line"> &lt;resultMap id=&quot;bookMapper&quot; type=&quot;book&quot;&gt;</span><br><span class="line">     &lt;id column=&quot;bookID&quot; property=&quot;bookID&quot;/&gt;</span><br><span class="line">     &lt;result column=&quot;bookName&quot; property=&quot;bookName&quot;/&gt;</span><br><span class="line">     &lt;result column=&quot;author&quot; property=&quot;author&quot;/&gt;</span><br><span class="line">     &lt;association property=&quot;student&quot; resultMap=&quot;studentMapper&quot;/&gt;</span><br><span class="line"> &lt;/resultMap&gt;</span><br></pre></td></tr></table></figure>
+
+<p>综合3、4关联查询两篇文章，总结一下<br>1.明确实体之间的关系，优化范式，构建表<br>2.依据业务，构建model<br>3.编写关联查询语句<br>    首先编写简单的model开始，建议使用resutlMap来映射，因为当SQL复杂时，嵌套很容易出错。然后依据一对一<code>association</code>或一对多<code>collection</code>来创建复杂实体。最后编写关联查询语句，注意返回字段的名称。<br>需要注意两点:</p>
+<ol>
+<li>resultMap中的<code>column</code>属性必须和数据库返回字段相同</li>
+<li>resultMap中的<code>property</code>属性必须和Model的成员属性相同</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/Mybaits/3---关联查询~一对多/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="younger">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="younger个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/31/Mybaits/3---关联查询~一对多/" itemprop="url">3--关联查询~一对多</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-31T17:09:14+08:00">
+                2019-08-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">Mybatis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>本小节将要介绍<code>一对一</code>、<code>一对多</code>的查询【技术上】。<br>你有可能会问，多对多怎么查，<strong>这个问题就不该问</strong>！开玩笑的，<code>哈哈</code>。<br>其实在设计表时，一般多对多的关系就已经转化为一对多了。</p>
+<p>###一对多<br>就用一个学生有多本书籍来举例子吧!<br><img src="https://upload-images.jianshu.io/upload_images/7032759-34f97c43d6d0a4d2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>table</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">create table `student`(</span><br><span class="line">`id` int auto_increment primary key,</span><br><span class="line">`name` varchar(30) not null,</span><br><span class="line">`age` int</span><br><span class="line">)auto_increment=10000;</span><br><span class="line"></span><br><span class="line">create table `book`</span><br><span class="line">(`id` int auto_increment primary key,</span><br><span class="line">`bookName` varchar(20),</span><br><span class="line">`author` varchar(10),</span><br><span class="line">`studentID` int references `student`(`id`)</span><br><span class="line">)auto_increment=10000;</span><br></pre></td></tr></table></figure>
+
+<p>model</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public class Student &#123;</span><br><span class="line">    private int id;</span><br><span class="line">    private String name;</span><br><span class="line">    private int age;</span><br><span class="line"></span><br><span class="line">    private List&lt;Book&gt; books;</span><br><span class="line"></span><br><span class="line">    public Student() &#123;//无参构造函数===&gt;创建对象</span><br><span class="line">    &#125;</span><br><span class="line">//getter和setter略</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class Book &#123;</span><br><span class="line">    private int bookID;</span><br><span class="line">    private String bookName;</span><br><span class="line">    private String author;</span><br><span class="line"></span><br><span class="line">    public Book() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//getter和setter略</span><br></pre></td></tr></table></figure>
+
+<p>dao</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface StudentMapper &#123;</span><br><span class="line">    Student findMyBooks(int id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>mapple.xml<br>方式一，直接嵌套</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=&quot;findMyBooks&quot; resultMap=&quot;studentMapper&quot;&gt;</span><br><span class="line">    select `student`.`id` `id`,</span><br><span class="line">`student`.`name` `name`,</span><br><span class="line">   `student`.`age` `age`,</span><br><span class="line">   `book`.`id` `bookID`,</span><br><span class="line">   `book`.`bookName` `bookName`,</span><br><span class="line">   `book`.`author` `author`</span><br><span class="line">    from `student`,`book`</span><br><span class="line">    where `student`.`id` = `book`.`studentID`</span><br><span class="line">    and `student`.`id` = #&#123;id&#125;</span><br><span class="line">&lt;/select&gt;</span><br><span class="line"></span><br><span class="line">&lt;resultMap id=&quot;studentMapper&quot; type=&quot;student&quot;&gt;</span><br><span class="line">    &lt;id property=&quot;id&quot; column=&quot;id&quot;/&gt;</span><br><span class="line">    &lt;result property=&quot;name&quot; column=&quot;name&quot;/&gt;</span><br><span class="line">    &lt;result property=&quot;age&quot; column=&quot;age&quot;/&gt;</span><br><span class="line">    &lt;collection property=&quot;books&quot;  ofType=&quot;book&quot;&gt;</span><br><span class="line">        &lt;id property=&quot;bookID&quot; column=&quot;bookID&quot;/&gt;</span><br><span class="line">        &lt;result property=&quot;bookName&quot; column=&quot;bookName&quot;/&gt;</span><br><span class="line">        &lt;result property=&quot;author&quot; column=&quot;author&quot;/&gt;</span><br><span class="line">    &lt;/collection&gt;</span><br><span class="line">&lt;/resultMap&gt;</span><br></pre></td></tr></table></figure>
+
+<p>方式二：resultMap复用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=&quot;findMyBooks&quot; resultMap=&quot;studentMapper&quot;&gt;</span><br><span class="line">    select `student`.`id` `id`,</span><br><span class="line">`student`.`name` `name`,</span><br><span class="line">   `student`.`age` `age`,</span><br><span class="line">   `book`.`id` `bookID`,</span><br><span class="line">   `book`.`bookName` `bookName`,</span><br><span class="line">   `book`.`author` `author`</span><br><span class="line">    from `student`,`book`</span><br><span class="line">    where `student`.`id` = `book`.`studentID`</span><br><span class="line">    and `student`.`id` = #&#123;id&#125;</span><br><span class="line">&lt;/select&gt;</span><br><span class="line"></span><br><span class="line">&lt;resultMap id=&quot;bookMapper&quot; type=&quot;book&quot;&gt;</span><br><span class="line">    &lt;id property=&quot;bookID&quot; column=&quot;bookID&quot;/&gt;</span><br><span class="line">    &lt;result property=&quot;bookName&quot; column=&quot;bookName&quot;/&gt;</span><br><span class="line">    &lt;result property=&quot;author&quot; column=&quot;author&quot;/&gt;</span><br><span class="line">&lt;/resultMap&gt;</span><br><span class="line"></span><br><span class="line">&lt;resultMap id=&quot;studentMapper&quot; type=&quot;student&quot;&gt;</span><br><span class="line">    &lt;id property=&quot;id&quot; column=&quot;id&quot;/&gt;</span><br><span class="line">    &lt;result property=&quot;name&quot; column=&quot;name&quot;/&gt;</span><br><span class="line">    &lt;result property=&quot;age&quot; column=&quot;age&quot;/&gt;</span><br><span class="line">    &lt;collection property=&quot;books&quot; resultMap=&quot;bookMapper&quot;/&gt;</span><br><span class="line">&lt;/resultMap&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="关联查询必须用无参构造函数来创建对象，如果没有无参构造函数，就会报构造函数参数错误。希望能引起你的警觉。"><a href="#关联查询必须用无参构造函数来创建对象，如果没有无参构造函数，就会报构造函数参数错误。希望能引起你的警觉。" class="headerlink" title="关联查询必须用无参构造函数来创建对象，如果没有无参构造函数，就会报构造函数参数错误。希望能引起你的警觉。"></a>关联查询必须用无参构造函数来创建对象，如果没有无参构造函数，就会报构造函数参数错误。希望能引起你的警觉。</h1>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/Mybaits/2---基本CURD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="younger">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="younger个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/31/Mybaits/2---基本CURD/" itemprop="url">1--基本CRUD</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-31T17:09:14+08:00">
+                2019-08-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">Mybatis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>dao</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">package dao;</span><br><span class="line"></span><br><span class="line">import model.Student;</span><br><span class="line"></span><br><span class="line">import java.util.List;</span><br><span class="line"></span><br><span class="line">public interface StudentMapper &#123;</span><br><span class="line"></span><br><span class="line">    List&lt;Student&gt; selectAllStudent();</span><br><span class="line"></span><br><span class="line">    int insertStudent(Student student);</span><br><span class="line"></span><br><span class="line">    int updateStudent(Student student);</span><br><span class="line"></span><br><span class="line">    int deleteById(int id);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">​`</span><br></pre></td></tr></table></figure>
+
+<p>mapple.xml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span><br><span class="line">&lt;!DOCTYPE mapper</span><br><span class="line">        PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span><br><span class="line">        &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;mapper namespace=&quot;dao.StudentMapper&quot;&gt;</span><br><span class="line">    &lt;select id=&quot;selectAllStudent&quot; resultType=&quot;student&quot;&gt;</span><br><span class="line">      select * from `student`</span><br><span class="line">    &lt;/select&gt;</span><br><span class="line"></span><br><span class="line">    &lt;insert id=&quot;insertStudent&quot; parameterType=&quot;student&quot;&gt;</span><br><span class="line">      insert into `student`(`name`,`age`)</span><br><span class="line">      values(#&#123;name&#125;,#&#123;age&#125;)</span><br><span class="line">      &lt;selectKey resultType=&quot;int&quot; keyColumn=&quot;id&quot; keyProperty=&quot;id&quot; order=&quot;AFTER&quot;&gt;</span><br><span class="line">          select last_insert_id();</span><br><span class="line">      &lt;/selectKey&gt;</span><br><span class="line">    &lt;/insert&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;update id=&quot;updateStudent&quot; parameterType=&quot;student&quot;&gt;</span><br><span class="line">        update `student` set `name` = #&#123;name&#125;,`age` = #&#123;age&#125;</span><br><span class="line">        where `id` = #&#123;id&#125;</span><br><span class="line">    &lt;/update&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;delete id=&quot;deleteById&quot; parameterType=&quot;int&quot;&gt;</span><br><span class="line">        delete from `student` where `id` = #&#123;id&#125;</span><br><span class="line">    &lt;/delete&gt;</span><br><span class="line">&lt;/mapper&gt;</span><br></pre></td></tr></table></figure>
+
+<p>测试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line">import dao.StudentMapper;</span><br><span class="line">import model.Student;</span><br><span class="line">import org.apache.ibatis.io.Resources;</span><br><span class="line">import org.apache.ibatis.session.SqlSession;</span><br><span class="line">import org.apache.ibatis.session.SqlSessionFactory;</span><br><span class="line">import org.apache.ibatis.session.SqlSessionFactoryBuilder;</span><br><span class="line">import org.junit.Before;</span><br><span class="line">import org.junit.Test;</span><br><span class="line"></span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line">import java.util.Iterator;</span><br><span class="line">import java.util.List;</span><br><span class="line"></span><br><span class="line">public class AppTest &#123;</span><br><span class="line"></span><br><span class="line">    SqlSessionFactory factory = null;</span><br><span class="line">    </span><br><span class="line">    @Before</span><br><span class="line">    public void prepare() throws IOException&#123;</span><br><span class="line">        InputStream inputStream = Resources.getResourceAsStream(&quot;mybatis.xml&quot;);</span><br><span class="line">        factory = new SqlSessionFactoryBuilder().build(inputStream);</span><br><span class="line">        inputStream.close();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @Test</span><br><span class="line">    public void test()&#123;</span><br><span class="line">    </span><br><span class="line">        SqlSession session=  factory.openSession();</span><br><span class="line">        try&#123;</span><br><span class="line">            StudentMapper studentMapper = session.getMapper(StudentMapper.class);</span><br><span class="line">    </span><br><span class="line">            List&lt;Student&gt; list = studentMapper.selectAllStudent();</span><br><span class="line">            Iterator&lt;Student&gt; iterator = list.iterator();</span><br><span class="line">            while(iterator.hasNext())&#123;</span><br><span class="line">                Student student = iterator.next();</span><br><span class="line">                System.out.println(student);</span><br><span class="line">            &#125;</span><br><span class="line">    </span><br><span class="line">        &#125;finally&#123;</span><br><span class="line">            session.commit();</span><br><span class="line">            session.close();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @Test</span><br><span class="line">    public void testInsert()&#123;</span><br><span class="line">        SqlSession sqlSession = factory.openSession();</span><br><span class="line">        try&#123;</span><br><span class="line">            StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);</span><br><span class="line">            Student student = new Student(&quot;young&quot;,20);</span><br><span class="line">            int affectedRows = studentMapper.insertStudent(student);</span><br><span class="line">            if(affectedRows==1)&#123;</span><br><span class="line">                System.out.println(&quot;插入成功!&quot;);</span><br><span class="line">                System.out.println(student);//查看从数据库返回id填充student的id属性</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                System.out.println(&quot;插入失败!&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;finally &#123;</span><br><span class="line">            sqlSession.commit();</span><br><span class="line">            sqlSession.close();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    @Test</span><br><span class="line">    public void testUpdate()&#123;</span><br><span class="line">        SqlSession sqlSession = factory.openSession();</span><br><span class="line">        try&#123;</span><br><span class="line">            StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);</span><br><span class="line">            Student student = new Student(10000,&quot;Tom&quot;,21);</span><br><span class="line">            int affectedRows = studentMapper.updateStudent(student);</span><br><span class="line">            if(affectedRows != 0)&#123;</span><br><span class="line">                System.out.println(&quot;更新成功!&quot;);</span><br><span class="line">                System.out.println(student);</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                System.out.println(&quot;更新失败&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;finally &#123;</span><br><span class="line">            sqlSession.commit();</span><br><span class="line">            sqlSession.close();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @Test</span><br><span class="line">    public void testDelete()&#123;</span><br><span class="line">        SqlSession sqlSession = factory.openSession();</span><br><span class="line">        try&#123;</span><br><span class="line">            StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);</span><br><span class="line">            int id  = 10000;</span><br><span class="line">            int affectedRows  =  studentMapper.deleteById(id);</span><br><span class="line">            if(affectedRows == 1)&#123;</span><br><span class="line">                System.out.println(&quot;删除成功!&quot;);</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                System.out.println(&quot;删除失败!&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;finally &#123;</span><br><span class="line">            sqlSession.commit();</span><br><span class="line">            sqlSession.close();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>注意</code></p>
+<ol>
+<li>插入、删除、修改要获取数据库中受影响的记录数，以便验证操作是否成功</li>
+<li>插入一条数据最好返回从数据库返回生成的ID来给model的id赋值，以便后续使用</li>
+</ol>
+<p>```</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/Mybaits/1---搭建环境/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="younger">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="younger个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/31/Mybaits/1---搭建环境/" itemprop="url">1--搭建环境</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-31T17:09:14+08:00">
+                2019-08-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">Mybatis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>####一.单独使用Mybaits<br><img src="https://upload-images.jianshu.io/upload_images/7032759-aaf2f69ac7800bf3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="项目结构图--基于maven"><br>jar包<br>测试:<code>junit</code><br>数据库驱动: <code>mysql-connector-java</code><br>Mybatis: <code>mybatis</code><br>log4j: <code>log4j-core</code> <code>log4j-api</code><br>1.创建db,properties</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">database.driver=com.mysql.jdbc.Driver</span><br><span class="line">database.url=jdbc:mysql://localhost:3306/dbName?serverTimezone=UTC </span><br><span class="line">database.username=root</span><br><span class="line">database.password=***</span><br></pre></td></tr></table></figure>
+
+<p>2.配置mybatis.xml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span><br><span class="line">&lt;!DOCTYPE configuration</span><br><span class="line">        PUBLIC &quot;-//mybatis.org//DTD Config 3.0//EN&quot;</span><br><span class="line">        &quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;&gt;</span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">    &lt;!--要注意该文件的节点顺序，否则会报错--&gt;</span><br><span class="line">    &lt;!--引入属性文件--&gt;</span><br><span class="line">    &lt;properties resource=&quot;db.properties&quot;/&gt;</span><br><span class="line">    &lt;settings&gt;</span><br><span class="line">        &lt;!--配置日志,固定写法--&gt;</span><br><span class="line">        &lt;setting name=&quot;logImpl&quot; value=&quot;LOG4J2&quot;&gt;&lt;/setting&gt;</span><br><span class="line">    &lt;/settings&gt;</span><br><span class="line">    &lt;!--给实体取别名--&gt;</span><br><span class="line">    &lt;typeAliases&gt;</span><br><span class="line">        &lt;package name=&quot;dao&quot;/&gt;</span><br><span class="line">        &lt;package name=&quot;model&quot;/&gt;</span><br><span class="line">    &lt;/typeAliases&gt;</span><br><span class="line">    &lt;!--数据源配置--&gt;</span><br><span class="line">    &lt;environments default=&quot;development&quot;&gt;</span><br><span class="line">        &lt;environment id=&quot;development&quot;&gt;</span><br><span class="line">            &lt;transactionManager type=&quot;JDBC&quot;/&gt;</span><br><span class="line">            &lt;dataSource type=&quot;POOLED&quot;&gt;</span><br><span class="line">                &lt;property name=&quot;driver&quot; value=&quot;$&#123;database.driver&#125;&quot;/&gt;</span><br><span class="line">                &lt;property name=&quot;url&quot; value=&quot;$&#123;database.url&#125;&quot;/&gt;</span><br><span class="line">                &lt;property name=&quot;username&quot; value=&quot;$&#123;database.username&#125;&quot;/&gt;</span><br><span class="line">                &lt;property name=&quot;password&quot; value=&quot;$&#123;database.password&#125;&quot;/&gt;</span><br><span class="line">            &lt;/dataSource&gt;</span><br><span class="line">        &lt;/environment&gt;</span><br><span class="line">    &lt;/environments&gt;</span><br><span class="line">    &lt;!--引入mapple文件--&gt;</span><br><span class="line">    &lt;mappers &gt;</span><br><span class="line">        &lt;mapper resource=&quot;mapple/studentMapple.xml&quot;/&gt;</span><br><span class="line">    &lt;/mappers&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+
+<p>3.日志</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;Configuration status=&quot;WARN&quot;&gt;</span><br><span class="line">    &lt;Appenders&gt;</span><br><span class="line">        &lt;Console name=&quot;console&quot; target=&quot;SYSTEM_OUT&quot;&gt;</span><br><span class="line">            &lt;PatternLayout pattern=&quot;%d&#123;HH:mm:ss&#125; [%t] %-5level %logger&#123;36&#125; - %msg%n&quot;/&gt;</span><br><span class="line">        &lt;/Console&gt;</span><br><span class="line">    &lt;/Appenders&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Loggers&gt;</span><br><span class="line">        &lt;!--过滤掉spring和mybatis的一些无用的DEBUG信息--&gt;</span><br><span class="line">        &lt;logger name=&quot;org.springframework&quot; level=&quot;INFO&quot;&gt;&lt;/logger&gt;</span><br><span class="line">        &lt;logger name=&quot;org.mybatis&quot; level=&quot;INFO&quot;&gt;&lt;/logger&gt;</span><br><span class="line">        &lt;root level=&quot;debug&quot;&gt;</span><br><span class="line">            &lt;appender-ref ref=&quot;console&quot;/&gt;</span><br><span class="line">        &lt;/root&gt;</span><br><span class="line">    &lt;/Loggers&gt;</span><br><span class="line">&lt;/Configuration&gt;</span><br></pre></td></tr></table></figure>
+
+<p>4.dao和model</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">package dao;</span><br><span class="line"></span><br><span class="line">import model.Student;</span><br><span class="line"></span><br><span class="line">import java.util.List;</span><br><span class="line"></span><br><span class="line">public interface StudentMapper &#123;</span><br><span class="line">    List&lt;Student&gt; selectAllStudent();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">package model;</span><br><span class="line"></span><br><span class="line">public class Student &#123;</span><br><span class="line">    private int id;</span><br><span class="line">    private String name;</span><br><span class="line">    private int age;</span><br><span class="line"></span><br><span class="line">    public Student() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Student(String name, int age) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">        this.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int getId() &#123;</span><br><span class="line">        return id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setId(int id) &#123;</span><br><span class="line">        this.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setName(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int getAge() &#123;</span><br><span class="line">        return age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setAge(int age) &#123;</span><br><span class="line">        this.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String toString() &#123;</span><br><span class="line">        return &quot;Student&#123;&quot; +</span><br><span class="line">                &quot;id=&quot; + id +</span><br><span class="line">                &quot;, name=&apos;&quot; + name + &apos;\&apos;&apos; +</span><br><span class="line">                &quot;, age=&quot; + age +</span><br><span class="line">                &apos;&#125;&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>5.mapple</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span><br><span class="line">&lt;!DOCTYPE mapper</span><br><span class="line">        PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span><br><span class="line">        &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;mapper namespace=&quot;dao.StudentMapper&quot;&gt;</span><br><span class="line">    &lt;select id=&quot;selectAllStudent&quot; resultType=&quot;student&quot;&gt;</span><br><span class="line">      select * from `student`</span><br><span class="line">    &lt;/select&gt;</span><br><span class="line">&lt;/mapper&gt;</span><br></pre></td></tr></table></figure>
+
+<p>6.测试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">import dao.StudentMapper;</span><br><span class="line">import model.Student;</span><br><span class="line">import org.apache.ibatis.io.Resources;</span><br><span class="line">import org.apache.ibatis.session.SqlSession;</span><br><span class="line">import org.apache.ibatis.session.SqlSessionFactory;</span><br><span class="line">import org.apache.ibatis.session.SqlSessionFactoryBuilder;</span><br><span class="line">import org.junit.Before;</span><br><span class="line">import org.junit.Test;</span><br><span class="line"></span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line">import java.util.Iterator;</span><br><span class="line">import java.util.List;</span><br><span class="line"></span><br><span class="line">public class AppTest &#123;</span><br><span class="line"></span><br><span class="line">    SqlSessionFactory factory = null;</span><br><span class="line"></span><br><span class="line">    @Before</span><br><span class="line">    public void prepare() throws IOException&#123;</span><br><span class="line">        InputStream inputStream = Resources.getResourceAsStream(&quot;mybatis.xml&quot;);</span><br><span class="line">        factory = new SqlSessionFactoryBuilder().build(inputStream);</span><br><span class="line">        inputStream.close();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Test</span><br><span class="line">    public void test()&#123;</span><br><span class="line"></span><br><span class="line">        SqlSession session=  factory.openSession();</span><br><span class="line">        try&#123;</span><br><span class="line">            StudentMapper studentMapper = session.getMapper(StudentMapper.class);</span><br><span class="line"></span><br><span class="line">            List&lt;Student&gt; list = studentMapper.selectAllStudent();</span><br><span class="line">            Iterator&lt;Student&gt; iterator = list.iterator();</span><br><span class="line">            while(iterator.hasNext())&#123;</span><br><span class="line">                Student student = iterator.next();</span><br><span class="line">                System.out.println(student);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;finally&#123;</span><br><span class="line">            session.commit();</span><br><span class="line">            session.close();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
           
         
@@ -1559,10 +1679,6 @@
   </section>
 
   
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
 
 
           </div>
@@ -1606,7 +1722,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
