@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[redis数据类型]]></title>
+    <url>%2F2019%2F10%2F19%2Fredis%2Fredis%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%2F</url>
+    <content type="text"><![CDATA[Redis提供五种基本数据类型，分别为string,list,set,hash,zset。注意一点是，这里的数据类型指的是value的数据类型,而key都是字符串类型 结构类型 结构存储的值 能力 string 字符串、整数、浮点数 字符串进行操作；整数和浮点数自增、自减 list 链表，每个节点包含一个字符串 两端推入和推出元素；修剪；查找移除元素 set 无序，唯一 集合计算 hash 包含键值对的无需散列表 添加、获取、移除元素 zset 字符串成员（member）与浮点数分值（score）之间的有序映射，元素的排列顺序由分值的大小决定 添加、获取、移除元素]]></content>
+      <categories>
+        <category>redis基础</category>
+      </categories>
+      <tags>
+        <tag>redis</tag>
+        <tag>非关系型数据库</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[时间格式化]]></title>
-    <url>%2F2019%2F10%2F14%2Fweb%2F</url>
+    <url>%2F2019%2F10%2F14%2Fweb%2Fweb%2F</url>
     <content type="text"><![CDATA[在web开发时，令人很烦的就是的时间格式，前端传到后端，后端传到数据库，然后又取出来传递到前端，时间每次都要转换，想当麻烦。有了@DateTimeFormat和@JsonFormat,省时又省力。 环境 数据库有一个字段是datetime类型 请求实体类ReqVo有个String类型yyyy-MM-dd HH:mm:ss字符串 一个Entity类有一个属性是LocalDateTime类型的变量 @DateTimeFormat当前端通过Json串传进来时间格式字符串str，需要转换为LocalDateTime类型,只需在ReqVo的属性上添加@DateTimeFormat注解。str必须符合pattern的格式，方能转化为LocalDateTime ReqVo.java 1234import org.springframework.format.annotation.DateTimeFormat; //由spring自身提供@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") //24小时制private LocalDateTime birthday; @JsonFormat当LocalDateTime类型变量通过Json串向前端传递时,需要格式为字符串，就在实体类加上注解@JsonFormat Entity.java 1234import com.fasterxml.jackson.annotation.JsonFormat;//springboot自带Json转换器@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")private LocalDateTime birthday; 后台与数据库之间在使用Mybatis作为ORM工具时，格式自动转换，不用人工干预]]></content>
       <categories>
         <category>web</category>

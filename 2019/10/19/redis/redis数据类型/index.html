@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="redis,非关系型数据库,">
 
 
 
@@ -79,13 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="younger个人博客">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta name="description" content="Redis提供五种基本数据类型，分别为string,list,set,hash,zset。注意一点是，这里的数据类型指的是value的数据类型,而key都是字符串类型    结构类型 结构存储的值 能力    string 字符串、整数、浮点数 字符串进行操作；整数和浮点数自增、自减   list 链表，每个节点包含一个字符串 两端推入和推出元素；修剪；查找移除元素   set 无序，唯一 集合计">
+<meta name="keywords" content="redis,非关系型数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis数据类型">
+<meta property="og:url" content="http://yoursite.com/2019/10/19/redis/redis数据类型/index.html">
 <meta property="og:site_name" content="younger个人博客">
+<meta property="og:description" content="Redis提供五种基本数据类型，分别为string,list,set,hash,zset。注意一点是，这里的数据类型指的是value的数据类型,而key都是字符串类型    结构类型 结构存储的值 能力    string 字符串、整数、浮点数 字符串进行操作；整数和浮点数自增、自减   list 链表，每个节点包含一个字符串 两端推入和推出元素；修剪；查找移除元素   set 无序，唯一 集合计">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-10-19T11:33:01.799Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="younger个人博客">
+<meta name="twitter:title" content="redis数据类型">
+<meta name="twitter:description" content="Redis提供五种基本数据类型，分别为string,list,set,hash,zset。注意一点是，这里的数据类型指的是value的数据类型,而key都是字符串类型    结构类型 结构存储的值 能力    string 字符串、整数、浮点数 字符串进行操作；整数和浮点数自增、自减   list 链表，每个节点包含一个字符串 两端推入和推出元素；修剪；查找移除元素   set 无序，唯一 集合计">
 
 
 
@@ -115,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/">
+  <link rel="canonical" href="http://yoursite.com/2019/10/19/redis/redis数据类型/">
 
 
 
 
 
-  <title>Archive | younger个人博客</title>
+  <title>redis数据类型 | younger个人博客</title>
   
 
 
@@ -140,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -276,391 +281,205 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/19/redis/redis数据类型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="younger">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="younger个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">redis数据类型</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-19T19:05:29+08:00">
+                2019-10-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        Um..! 13 posts in total. Keep on posting.
-      </span>
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/redis基础/" itemprop="url" rel="index">
+                    <span itemprop="name">redis基础</span>
+                  </a>
+                </span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
 
-        
+          
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/10/19/redis/redis数据类型/" itemprop="url">
-              
-                <span itemprop="name">redis数据类型</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-10-19T19:05:29+08:00" content="2019-10-19">
-          10-19
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+          
 
+        </div>
+      </header>
+    
 
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/10/14/web/web/" itemprop="url">
-              
-                <span itemprop="name">时间格式化</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-10-14T22:07:31+08:00" content="2019-10-14">
-          10-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/10/05/Test/" itemprop="url">
-              
-                <span itemprop="name">Test</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-10-05T17:23:14+08:00" content="2019-10-05">
-          10-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <p>Redis提供五种基本数据类型，分别为<code>string</code>,<code>list</code>,<code>set</code>,<code>hash</code>,<code>zset</code>。注意一点是，这里的数据类型指的是value的数据类型,而key都是字符串类型</p>
+<table>
+<thead>
+<tr>
+<th>结构类型</th>
+<th>结构存储的值</th>
+<th>能力</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>string</td>
+<td>字符串、整数、浮点数</td>
+<td>字符串进行操作；整数和浮点数自增、自减</td>
+</tr>
+<tr>
+<td>list</td>
+<td>链表，每个节点包含一个字符串</td>
+<td>两端推入和推出元素；修剪；查找移除元素</td>
+</tr>
+<tr>
+<td>set</td>
+<td>无序，唯一</td>
+<td>集合计算</td>
+</tr>
+<tr>
+<td>hash</td>
+<td>包含键值对的无需散列表</td>
+<td>添加、获取、移除元素</td>
+</tr>
+<tr>
+<td>zset</td>
+<td>字符串成员（member）与浮点数分值（score）之间的有序映射，元素的排列顺序由分值的大小决定</td>
+<td>添加、获取、移除元素</td>
+</tr>
+</tbody></table>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/10/05/jdk/ArrayList/" itemprop="url">
-              
-                <span itemprop="name">ArrayList.md</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-10-05T16:27:31+08:00" content="2019-10-05">
-          10-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/08/31/Mybaits/9---动态SQL--foreach/" itemprop="url">
-              
-                <span itemprop="name">9--动态SQLr-foreach</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-31T17:09:14+08:00" content="2019-08-31">
-          08-31
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/08/31/Mybaits/8---动态SQL--set/" itemprop="url">
-              
-                <span itemprop="name">8-动态SQLr-set</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-31T17:09:14+08:00" content="2019-08-31">
-          08-31
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/08/31/Mybaits/7---动态SQL--where/" itemprop="url">
-              
-                <span itemprop="name">7--动态SQLr-where</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-31T17:09:14+08:00" content="2019-08-31">
-          08-31
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/08/31/Mybaits/6---TypeHandler-2/" itemprop="url">
-              
-                <span itemprop="name">6--TypeHandler-2</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-31T17:09:14+08:00" content="2019-08-31">
-          08-31
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/08/31/Mybaits/5---TypeHandler-1/" itemprop="url">
-              
-                <span itemprop="name">5--TypeHandler-1</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-31T17:09:14+08:00" content="2019-08-31">
-          08-31
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/08/31/Mybaits/4---关联查询~一对一/" itemprop="url">
-              
-                <span itemprop="name">4--一对一</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-31T17:09:14+08:00" content="2019-08-31">
-          08-31
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/redis/" rel="tag"># redis</a>
+          
+            <a href="/tags/非关系型数据库/" rel="tag"># 非关系型数据库</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/14/web/web/" rel="next" title="时间格式化">
+                <i class="fa fa-chevron-left"></i> 时间格式化
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -668,6 +487,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -890,6 +713,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
