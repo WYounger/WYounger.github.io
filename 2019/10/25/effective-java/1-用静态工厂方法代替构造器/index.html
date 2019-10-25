@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="创建一个的实例，通常做法是提供一个公有的构造器。还有一种是提供一个静态工厂方法，他是一个返回类的实例的静态方法。 下面列出使用静态工厂方法的优点  有名称 不必在每次调用他们的时候都创建一个新的对象 可以返回类型的任何子类型的对象 所返回的对象的类可以随着每次调用而发生变化，这取决于该方法的参数值 方法返回的对象所属的类，在编写包含该静态工厂方法的类时可以不存在">
+<meta name="description" content="创建一个的实例，通常做法是提供一个公有的构造器。还有一种是提供一个静态工厂方法，他是一个返回类的实例的静态方法。 下面列出使用静态工厂方法的优点  有名称 不必在每次调用他们的时候都创建一个新的对象 可以返回类型的任何子类型的对象 所返回的对象的类可以随着每次调用而发生变化，这取决于该方法的参数值 方法返回的对象所属的类，在编写包含该静态工厂方法的类时可以不存在  参考文献 &amp;lt;&amp;lt;Eff">
 <meta name="keywords" content="basic-java,effective-java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="1.用静态工厂方法代替构造器">
 <meta property="og:url" content="http://yoursite.com/2019/10/25/effective-java/1-用静态工厂方法代替构造器/index.html">
 <meta property="og:site_name" content="younger个人博客">
-<meta property="og:description" content="创建一个的实例，通常做法是提供一个公有的构造器。还有一种是提供一个静态工厂方法，他是一个返回类的实例的静态方法。 下面列出使用静态工厂方法的优点  有名称 不必在每次调用他们的时候都创建一个新的对象 可以返回类型的任何子类型的对象 所返回的对象的类可以随着每次调用而发生变化，这取决于该方法的参数值 方法返回的对象所属的类，在编写包含该静态工厂方法的类时可以不存在">
+<meta property="og:description" content="创建一个的实例，通常做法是提供一个公有的构造器。还有一种是提供一个静态工厂方法，他是一个返回类的实例的静态方法。 下面列出使用静态工厂方法的优点  有名称 不必在每次调用他们的时候都创建一个新的对象 可以返回类型的任何子类型的对象 所返回的对象的类可以随着每次调用而发生变化，这取决于该方法的参数值 方法返回的对象所属的类，在编写包含该静态工厂方法的类时可以不存在  参考文献 &amp;lt;&amp;lt;Eff">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-25T14:06:58.815Z">
+<meta property="og:updated_time" content="2019-10-25T14:11:06.184Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="1.用静态工厂方法代替构造器">
-<meta name="twitter:description" content="创建一个的实例，通常做法是提供一个公有的构造器。还有一种是提供一个静态工厂方法，他是一个返回类的实例的静态方法。 下面列出使用静态工厂方法的优点  有名称 不必在每次调用他们的时候都创建一个新的对象 可以返回类型的任何子类型的对象 所返回的对象的类可以随着每次调用而发生变化，这取决于该方法的参数值 方法返回的对象所属的类，在编写包含该静态工厂方法的类时可以不存在">
+<meta name="twitter:description" content="创建一个的实例，通常做法是提供一个公有的构造器。还有一种是提供一个静态工厂方法，他是一个返回类的实例的静态方法。 下面列出使用静态工厂方法的优点  有名称 不必在每次调用他们的时候都创建一个新的对象 可以返回类型的任何子类型的对象 所返回的对象的类可以随着每次调用而发生变化，这取决于该方法的参数值 方法返回的对象所属的类，在编写包含该静态工厂方法的类时可以不存在  参考文献 &amp;lt;&amp;lt;Eff">
 
 
 
@@ -393,6 +393,9 @@
 <li>所返回的对象的类可以随着每次调用而发生变化，这取决于该方法的参数值</li>
 <li>方法返回的对象所属的类，在编写包含该静态工厂方法的类时可以不存在</li>
 </ol>
+<h5 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h5><ul>
+<li>&lt;&lt;Effective Java 中文版(第三版)&gt;&gt;</li>
+</ul>
 
       
     </div>
@@ -485,8 +488,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -547,6 +559,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#参考文献"><span class="nav-number">1.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
