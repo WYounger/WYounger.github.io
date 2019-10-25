@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[1.用静态工厂方法代替构造器]]></title>
+    <url>%2F2019%2F10%2F25%2Feffective-java%2F1-%E7%94%A8%E9%9D%99%E6%80%81%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E4%BB%A3%E6%9B%BF%E6%9E%84%E9%80%A0%E5%99%A8%2F</url>
+    <content type="text"><![CDATA[创建一个的实例，通常做法是提供一个公有的构造器。还有一种是提供一个静态工厂方法，他是一个返回类的实例的静态方法。 下面列出使用静态工厂方法的优点 有名称 不必在每次调用他们的时候都创建一个新的对象 可以返回类型的任何子类型的对象 所返回的对象的类可以随着每次调用而发生变化，这取决于该方法的参数值 方法返回的对象所属的类，在编写包含该静态工厂方法的类时可以不存在]]></content>
+      <categories>
+        <category>basic-java</category>
+      </categories>
+      <tags>
+        <tag>basic-java</tag>
+        <tag>effective-java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[redis数据类型]]></title>
     <url>%2F2019%2F10%2F19%2Fredis%2Fredis%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%2F</url>
     <content type="text"><![CDATA[Redis提供五种基本数据类型，分别为string,list,set,hash,zset。注意一点是，这里的数据类型指的是value的数据类型,而key都是字符串类型 结构类型 结构存储的值 能力 string 字符串、整数、浮点数 字符串进行操作；整数和浮点数自增、自减 list 链表，每个节点包含一个字符串 两端推入和推出元素；修剪；查找移除元素 set 无序，唯一 集合计算 hash 包含键值对的无需散列表 添加、获取、移除元素 zset 字符串成员（member）与浮点数分值（score）之间的有序映射，元素的排列顺序由分值的大小决定 添加、获取、移除元素 string1key:value 常用命令: set get del list1234567listKey: item1 item2 item3 ... itemn//有序，可重复 常用命令: rpush lrange lindex lpop set1234567setKey: item2 item1 itemn ... item3//无序，不可重复 常用命令： sadd sismember srem hash123456hashKey: subKey1:value1 subKey2:value2 ... sunKeyn:valuen//subKey无序，不重复 常用命令： hset hget hdel zset123456zsetKey: member1:score1 member2:score2 ... membern:scoren//score为浮点数，每个成员按照score排序， 常用命令: zadd zrange zrem zrangebyscore]]></content>
