@@ -291,7 +291,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/25/effective-java/1-用静态工厂方法代替构造器/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/25/effective-java/1-创建和销毁对象/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="younger">
@@ -310,7 +310,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/10/25/effective-java/1-用静态工厂方法代替构造器/" itemprop="url">1.用静态工厂方法代替构造器</a></h1>
+                <a class="post-title-link" href="/2019/10/25/effective-java/1-创建和销毁对象/" itemprop="url">1.创建和销毁对象</a></h1>
         
 
         <div class="post-meta">
@@ -384,18 +384,20 @@
       
         
           
-            <p>创建一个的实例，通常做法是提供一个公有的构造器。还有一种是提供一个静态工厂方法，他是一个返回类的实例的静态方法。</p>
+            <h4 id="1-用静态工厂方法代替构造器"><a href="#1-用静态工厂方法代替构造器" class="headerlink" title="1.用静态工厂方法代替构造器"></a>1.用静态工厂方法代替构造器</h4><p>创建一个的实例，通常做法是提供一个公有的构造器。还有一种是提供一个静态工厂方法，他是一个返回类的实例的静态方法。</p>
 <p>下面列出使用静态工厂方法的优点</p>
 <ol>
-<li>有名称</li>
-<li>不必在每次调用他们的时候都创建一个新的对象</li>
-<li>可以返回类型的任何子类型的对象</li>
-<li>所返回的对象的类可以随着每次调用而发生变化，这取决于该方法的参数值</li>
-<li>方法返回的对象所属的类，在编写包含该静态工厂方法的类时可以不存在</li>
+<li><p>有名称</p>
+</li>
+<li><p>不必在每次调用他们的时候都创建一个新的对象</p>
+</li>
+<li><p>可以返回类型的任何子类型的对象</p>
+</li>
+<li><p>所返回的对象的类可以随着每次调用而发生变化，这取决于该方法的参数值</p>
+</li>
+<li><p>方法返回的对象所属的类，在编写包含该静态工厂方法的类时可以不存在</p>
+</li>
 </ol>
-<h5 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h5><ul>
-<li>&lt;&lt;Effective Java 中文版(第三版)&gt;&gt;</li>
-</ul>
 
           
         

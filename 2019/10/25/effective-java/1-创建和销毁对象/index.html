@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="basic-java,effective-java,">
 
 
 
@@ -79,13 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="younger个人博客">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta name="description" content="1.用静态工厂方法代替构造器创建一个的实例，通常做法是提供一个公有的构造器。还有一种是提供一个静态工厂方法，他是一个返回类的实例的静态方法。 下面列出使用静态工厂方法的优点  有名称  不必在每次调用他们的时候都创建一个新的对象  可以返回类型的任何子类型的对象  所返回的对象的类可以随着每次调用而发生变化，这取决于该方法的参数值  方法返回的对象所属的类，在编写包含该静态工厂方法的类时可以不存在">
+<meta name="keywords" content="basic-java,effective-java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1.创建和销毁对象">
+<meta property="og:url" content="http://yoursite.com/2019/10/25/effective-java/1-创建和销毁对象/index.html">
 <meta property="og:site_name" content="younger个人博客">
+<meta property="og:description" content="1.用静态工厂方法代替构造器创建一个的实例，通常做法是提供一个公有的构造器。还有一种是提供一个静态工厂方法，他是一个返回类的实例的静态方法。 下面列出使用静态工厂方法的优点  有名称  不必在每次调用他们的时候都创建一个新的对象  可以返回类型的任何子类型的对象  所返回的对象的类可以随着每次调用而发生变化，这取决于该方法的参数值  方法返回的对象所属的类，在编写包含该静态工厂方法的类时可以不存在">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-10-26T13:48:26.770Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="younger个人博客">
+<meta name="twitter:title" content="1.创建和销毁对象">
+<meta name="twitter:description" content="1.用静态工厂方法代替构造器创建一个的实例，通常做法是提供一个公有的构造器。还有一种是提供一个静态工厂方法，他是一个返回类的实例的静态方法。 下面列出使用静态工厂方法的优点  有名称  不必在每次调用他们的时候都创建一个新的对象  可以返回类型的任何子类型的对象  所返回的对象的类可以随着每次调用而发生变化，这取决于该方法的参数值  方法返回的对象所属的类，在编写包含该静态工厂方法的类时可以不存在">
 
 
 
@@ -115,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/">
+  <link rel="canonical" href="http://yoursite.com/2019/10/25/effective-java/1-创建和销毁对象/">
 
 
 
 
 
-  <title>Archive | younger个人博客</title>
+  <title>1.创建和销毁对象 | younger个人博客</title>
   
 
 
@@ -140,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -276,391 +281,184 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/25/effective-java/1-创建和销毁对象/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="younger">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="younger个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">1.创建和销毁对象</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-25T21:56:08+08:00">
+                2019-10-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        Um..! 14 posts in total. Keep on posting.
-      </span>
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/basic-java/" itemprop="url" rel="index">
+                    <span itemprop="name">basic-java</span>
+                  </a>
+                </span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
 
-        
+          
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/10/25/effective-java/1-创建和销毁对象/" itemprop="url">
-              
-                <span itemprop="name">1.创建和销毁对象</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-10-25T21:56:08+08:00" content="2019-10-25">
-          10-25
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+          
 
+        </div>
+      </header>
+    
 
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/10/19/redis/redis数据类型/" itemprop="url">
-              
-                <span itemprop="name">redis数据类型</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-10-19T19:05:29+08:00" content="2019-10-19">
-          10-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/10/14/web/web/" itemprop="url">
-              
-                <span itemprop="name">时间格式化</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-10-14T22:07:31+08:00" content="2019-10-14">
-          10-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <h4 id="1-用静态工厂方法代替构造器"><a href="#1-用静态工厂方法代替构造器" class="headerlink" title="1.用静态工厂方法代替构造器"></a>1.用静态工厂方法代替构造器</h4><p>创建一个的实例，通常做法是提供一个公有的构造器。还有一种是提供一个静态工厂方法，他是一个返回类的实例的静态方法。</p>
+<p>下面列出使用静态工厂方法的优点</p>
+<ol>
+<li><p>有名称</p>
+</li>
+<li><p>不必在每次调用他们的时候都创建一个新的对象</p>
+</li>
+<li><p>可以返回类型的任何子类型的对象</p>
+</li>
+<li><p>所返回的对象的类可以随着每次调用而发生变化，这取决于该方法的参数值</p>
+</li>
+<li><p>方法返回的对象所属的类，在编写包含该静态工厂方法的类时可以不存在</p>
+</li>
+</ol>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/10/05/Test/" itemprop="url">
-              
-                <span itemprop="name">Test</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-10-05T17:23:14+08:00" content="2019-10-05">
-          10-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/10/05/jdk/ArrayList/" itemprop="url">
-              
-                <span itemprop="name">ArrayList.md</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-10-05T16:27:31+08:00" content="2019-10-05">
-          10-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/08/31/Mybaits/9---动态SQL--foreach/" itemprop="url">
-              
-                <span itemprop="name">9--动态SQLr-foreach</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-31T17:09:14+08:00" content="2019-08-31">
-          08-31
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/08/31/Mybaits/8---动态SQL--set/" itemprop="url">
-              
-                <span itemprop="name">8-动态SQLr-set</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-31T17:09:14+08:00" content="2019-08-31">
-          08-31
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/08/31/Mybaits/7---动态SQL--where/" itemprop="url">
-              
-                <span itemprop="name">7--动态SQLr-where</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-31T17:09:14+08:00" content="2019-08-31">
-          08-31
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/08/31/Mybaits/6---TypeHandler-2/" itemprop="url">
-              
-                <span itemprop="name">6--TypeHandler-2</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-31T17:09:14+08:00" content="2019-08-31">
-          08-31
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/08/31/Mybaits/5---TypeHandler-1/" itemprop="url">
-              
-                <span itemprop="name">5--TypeHandler-1</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-31T17:09:14+08:00" content="2019-08-31">
-          08-31
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/basic-java/" rel="tag"># basic-java</a>
+          
+            <a href="/tags/effective-java/" rel="tag"># effective-java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/19/redis/redis数据类型/" rel="next" title="redis数据类型">
+                <i class="fa fa-chevron-left"></i> redis数据类型
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -668,6 +466,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -688,8 +490,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -750,6 +561,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-用静态工厂方法代替构造器"><span class="nav-number">1.</span> <span class="nav-text">1.用静态工厂方法代替构造器</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -890,6 +717,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
