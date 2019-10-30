@@ -384,22 +384,22 @@
       
         
           
-            <h3 id="10-覆盖equals时请遵守通用约定"><a href="#10-覆盖equals时请遵守通用约定" class="headerlink" title="10.覆盖equals时请遵守通用约定"></a>10.覆盖equals时请遵守通用约定</h3><p>当一个类要具有“逻辑相等”，且父类没有覆盖equals方法，就需要覆盖equals.</p>
+            <h3 id="10-覆盖equals时请遵守通用约定"><a href="#10-覆盖equals时请遵守通用约定" class="headerlink" title="10.覆盖equals时请遵守通用约定"></a>10.覆盖<code>equals</code>时请遵守通用约定</h3><p>当一个类要具有“逻辑相等”，且父类没有覆盖<code>equals</code>方法，就需要覆盖<code>equals</code>.</p>
 <p>等价需要遵循以下性质:</p>
 <ul>
 <li>自反性</li>
 <li>对称性</li>
 <li>传递性</li>
-<li>一致性(当比较的信息没改变时，多次调用equals方法，结果相同)</li>
+<li>一致性(当比较的信息没改变时，多次调用<code>equals</code>方法，结果相同)</li>
 </ul>
 <p>实际覆盖步骤</p>
 <ol>
-<li>使用==操作符检查”参数是否为这个对象的引用”</li>
-<li>使用instanceof操作符检查”参数是否为正确的类型”</li>
+<li>使用<code>==</code>操作符检查”参数是否为这个对象的引用”</li>
+<li>使用<code>instanceof</code>操作符检查”参数是否为正确的类型”</li>
 <li>把参数转换为正确的类型</li>
-<li>对于该类中每个“关键域”，检查参数中的域是否与该对象中对应的域向匹配</li>
+<li>对于该类中每个“关键域”，检查参数中的域是否与该对象中对应的域相匹配</li>
 </ol>
-<p>实例，JDK中String的equals方法</p>
+<p>实例，JDK中<code>String</code>的<code>equals</code>方法</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object anObject)</span> </span>&#123;<span class="comment">//注意参数类型是Object类型，否则不是覆盖</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span> == anObject) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (anObject <span class="keyword">instanceof</span> String) &#123;</span><br><span class="line">            String aString = (String)anObject;</span><br><span class="line">            <span class="keyword">if</span> (coder() == aString.coder()) &#123;</span><br><span class="line">                <span class="keyword">return</span> isLatin1() ? StringLatin1.equals(value, aString.value)</span><br><span class="line">                                  : StringUTF16.equals(value, aString.value);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul>
@@ -559,7 +559,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        A a = <span class="keyword">new</span> A.Builder(<span class="string">"requiredParam1"</span>,<span class="string">"requiredParam2"</span>).optionalParam3(<span class="string">"optionalParam3"</span>).build();</span><br><span class="line">        System.out.println(a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String requiredParam1;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String requiredParam2;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String optionalParam3;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String optionalParam4;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String optionalParam5;</span><br><span class="line"></span><br><span class="line">  	<span class="comment">//静态内部类来充当构建器</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Builder</span></span>&#123;</span><br><span class="line">      	<span class="comment">//成员变量和构建的目标对象基本保持一致，对可选值进行初始化</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">final</span> String requiredParam1;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">final</span> String requiredParam2;</span><br><span class="line">        <span class="keyword">private</span> String optionalParam3 = <span class="string">"default"</span>;</span><br><span class="line">        <span class="keyword">private</span> String optionalParam4 = <span class="string">"default"</span>;</span><br><span class="line">        <span class="keyword">private</span> String optionalParam5 = <span class="string">"default"</span>;</span><br><span class="line"></span><br><span class="line">      	<span class="comment">//构建器的构造函数传入必填参数</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Builder</span><span class="params">(String requiredParam1,String requiredParam2)</span></span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.requiredParam1 = requiredParam1;</span><br><span class="line">            <span class="keyword">this</span>.requiredParam2 = requiredParam2;</span><br><span class="line">        &#125;</span><br><span class="line">      	<span class="comment">//使用链式API来设置可选值</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Builder <span class="title">optionalParam3</span><span class="params">(String optionalParam3)</span></span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.optionalParam3 = optionalParam3;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> Builder <span class="title">optionalParam4</span><span class="params">(String optionalParam4)</span></span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.optionalParam4 = optionalParam4;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> Builder <span class="title">optionalParam5</span><span class="params">(String optionalParam5)</span></span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.optionalParam5 = optionalParam5;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      	<span class="comment">//使用无参构造函数来构建目标对象</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> A <span class="title">build</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="comment">//调用目标对象的私有构造函数来创建对象，并返回</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> A(<span class="keyword">this</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//私有构造函数中传入构建器对象来初始化目标对象</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">A</span><span class="params">(Builder builder)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.requiredParam1 = builder.requiredParam1;</span><br><span class="line">        <span class="keyword">this</span>.requiredParam2 = builder.requiredParam2;</span><br><span class="line">        <span class="keyword">this</span>.optionalParam3 = builder.optionalParam3;</span><br><span class="line">        <span class="keyword">this</span>.optionalParam4 = builder.optionalParam4;</span><br><span class="line">        <span class="keyword">this</span>.optionalParam5 = builder.optionalParam5;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"A&#123;"</span> +</span><br><span class="line">                <span class="string">"requiredParam1='"</span> + requiredParam1 + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", requiredParam2='"</span> + requiredParam2 + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", optionalParam3='"</span> + optionalParam3 + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", optionalParam4='"</span> + optionalParam4 + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", optionalParam5='"</span> + optionalParam5 + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>这里的Builder可以看成是目标对象参数的收集器和创建者，首先是收集必要的参数，然后收集可选参数，最后创建目标对象。</p>
-<h3 id="3-用私有构造器强化Singleton属性"><a href="#3-用私有构造器强化Singleton属性" class="headerlink" title="3.用私有构造器强化Singleton属性"></a>3.用私有构造器强化Singleton属性</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SingletonInstance</span></span>&#123;</span><br><span class="line">    <span class="comment">//公有，静态，final实例变量</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> SingletonInstance INSTANCE = <span class="keyword">new</span> SingletonInstance();</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingletonInstance</span><span class="params">()</span></span>&#123;<span class="comment">/**/&#125;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-用私有构造器强化Singleton属性"><a href="#3-用私有构造器强化Singleton属性" class="headerlink" title="3.用私有构造器强化Singleton属性"></a>3.用私有构造器强化<code>Singleton</code>属性</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SingletonInstance</span></span>&#123;</span><br><span class="line">    <span class="comment">//公有，静态，final实例变量</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> SingletonInstance INSTANCE = <span class="keyword">new</span> SingletonInstance();</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingletonInstance</span><span class="params">()</span></span>&#123;<span class="comment">/**/&#125;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br></pre></td></tr></table></figure>
 
 <p>或者</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SingletonInstance</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> SingletonInstance INSTANCE = <span class="keyword">new</span> SingletonInstance();</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingletonInstance</span><span class="params">()</span></span>&#123;<span class="comment">/**/&#125;</span></span><br><span class="line"><span class="comment">    public SingletonInstance getInstance()&#123;</span></span><br><span class="line"><span class="comment">        return INSTANCE;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br></pre></td></tr></table></figure>
@@ -574,7 +574,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">pop</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(size == <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> EmptyStackException();</span><br><span class="line">  &#125;</span><br><span class="line">  Object result = elements[--size];</span><br><span class="line">  elements[size] = <span class="keyword">null</span>;<span class="comment">//消除过期引用</span></span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="8-避免使用中介方法和清除方法"><a href="#8-避免使用中介方法和清除方法" class="headerlink" title="8.避免使用中介方法和清除方法"></a>8.避免使用中介方法和清除方法</h3><p>垃圾回收最好还是让GC自己处理，不要手动。</p>
-<h3 id="9-try-with-resources优先于try-final"><a href="#9-try-with-resources优先于try-final" class="headerlink" title="9.try-with-resources优先于try-final"></a>9.try-with-resources优先于try-final</h3><p>Java7引入了try-with-resources语法，可以自动关闭资源，但有一个前提是该资源实现或扩展了AutoCloseable接口。下面是FileInputStream实现AutoCloseabe接口的代码，</p>
+<h3 id="9-try-with-resources优先于try-finally"><a href="#9-try-with-resources优先于try-finally" class="headerlink" title="9.try-with-resources优先于try-finally"></a>9.<code>try-with-resources</code>优先于<code>try-finally</code></h3><p>Java7引入了try-with-resources语法，可以自动关闭资源，但有一个前提是该资源实现或扩展了AutoCloseable接口。下面是FileInputStream实现AutoCloseabe接口的代码，</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">close</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (closed) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">synchronized</span> (closeLock) &#123;</span><br><span class="line">            <span class="keyword">if</span> (closed) &#123;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            closed = <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        FileChannel fc = channel;</span><br><span class="line">        <span class="keyword">if</span> (fc != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">// possible race with getChannel(), benign since</span></span><br><span class="line">            <span class="comment">// FileChannel.close is final and idempotent</span></span><br><span class="line">            fc.close();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        fd.closeAll(<span class="keyword">new</span> Closeable() &#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">close</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">               close0();</span><br><span class="line">           &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 <p>在 try语句块后，会自动调用该close方法。还有一点的是，Closeable接口继承了AutoCloseable接口，所以实现了Closeable也就实现了AutoCloseable接口</p>
@@ -932,153 +932,6 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.annotation.JsonFormat;<span class="comment">//springboot自带Json转换器</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@JsonFormat</span>(pattern = <span class="string">"yyyy-MM-dd HH:mm:ss"</span>)</span><br><span class="line"><span class="keyword">private</span> LocalDateTime birthday;</span><br></pre></td></tr></table></figure>
 
 <h5 id="后台与数据库之间"><a href="#后台与数据库之间" class="headerlink" title="后台与数据库之间"></a>后台与数据库之间</h5><p>在使用<code>Mybatis</code>作为ORM工具时，格式自动转换，不用人工干预</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/05/Test/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="younger">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="younger个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/05/Test/" itemprop="url">Test</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-05T17:23:14+08:00">
-                2019-10-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/测试/" itemprop="url" rel="index">
-                    <span itemprop="name">测试</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>测试使用</p>
-<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><p>测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试</p>
-<h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><p>测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试</p>
-<h3 id="三级标配"><a href="#三级标配" class="headerlink" title="三级标配"></a>三级标配</h3><p>测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试</p>
-<h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><p>测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试</p>
-<h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><p>测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试</p>
 
           
         
@@ -1846,6 +1699,162 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/Mybaits/5---TypeHandler-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="younger">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="younger个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/31/Mybaits/5---TypeHandler-1/" itemprop="url">5--TypeHandler-1</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-31T17:09:14+08:00">
+                2019-08-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">Mybatis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>当需要将jdbc类型的数据和Java程序中类型的书数据进行转换时，可以使用TypeHandler来完成转换过程。怎么实现呢?<br><strong>Java类型==》jdbc</strong><br>将Java类型值<code>value1</code>通过某种策略转化为数据库(jdbc)类型值<code>value2</code>，然后将<code>value2</code>设置为<code>SQL参数</code> :<code>preparedStatement.setType(i,value2);</code><br><strong>Java类型《== jdbc</strong><br>从<code>resultSet</code>中取出值<code>value2</code>，然后通过某种策略将<code>value2</code>转换为Java类型值<code>value1</code></p>
+<h3 id="table"><a href="#table" class="headerlink" title="table"></a>table</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">create table `student`(</span><br><span class="line">`id` int auto_increment primary key,</span><br><span class="line">`name` varchar(30) not null,</span><br><span class="line">`age` int,</span><br><span class="line">`birthday` varchar(30)</span><br><span class="line">)auto_increment=10000;</span><br></pre></td></tr></table></figure>
+
+<h3 id="model"><a href="#model" class="headerlink" title="model"></a>model</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">package model;</span><br><span class="line"></span><br><span class="line">import java.util.Date;</span><br><span class="line"></span><br><span class="line">public class Student &#123;</span><br><span class="line">    private int id;</span><br><span class="line">    private String name;</span><br><span class="line">    private int age;</span><br><span class="line"></span><br><span class="line">    private Date birthday;//在数据库中对应的类型是varchar(n)</span><br><span class="line"></span><br><span class="line">    public Student() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">//getter和setter略</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="TypeHandler"><a href="#TypeHandler" class="headerlink" title="TypeHandler"></a>TypeHandler</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//表注转换的两种类型</span><br><span class="line">@MappedJdbcTypes(&#123;JdbcType.VARCHAR&#125;)//jdbc类型</span><br><span class="line">@MappedTypes(&#123;java.util.Date.class&#125;)//程序类型</span><br><span class="line">public class MyDateTypeHandler extends BaseTypeHandler&lt;Date&gt; &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void setNonNullParameter(PreparedStatement preparedStatement, int i, Date date, JdbcType jdbcType) throws SQLException &#123;</span><br><span class="line"></span><br><span class="line">        preparedStatement.setString(i,String.valueOf(date.getTime()));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Date getNullableResult(ResultSet resultSet, int i) throws SQLException &#123;</span><br><span class="line">        return new Date(resultSet.getLong(i));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Date getNullableResult(ResultSet resultSet, String s) throws SQLException &#123;</span><br><span class="line">        return new Date(resultSet.getLong(s));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Date getNullableResult(CallableStatement callableStatement, int i) throws SQLException &#123;</span><br><span class="line">        return new Date(callableStatement.getLong(i));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="dao"><a href="#dao" class="headerlink" title="dao"></a>dao</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">package dao;</span><br><span class="line"></span><br><span class="line">import model.Student;</span><br><span class="line"></span><br><span class="line">public interface StudentMapper &#123;</span><br><span class="line"></span><br><span class="line">    int insertStudent(Student student);</span><br><span class="line"></span><br><span class="line">    Student selectStudentById(int id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="mapper"><a href="#mapper" class="headerlink" title="mapper"></a>mapper</h3><p>在对应参数处使用typeHandler来转换<br>作为输入参数:<br><code>#{birthday,typeHandler=dao.MyDateTypeHandler}</code><br>这里的typeHandler的值<code>不成写成字符串类型</code><br>作为输出结果:<br><code>&lt;result property=&quot;birthday&quot; column=&quot;birthday&quot; 
+  typeHandler=&quot;dao.MyDateTypeHandler&quot;/&gt;</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;insert id=&quot;insertStudent&quot; parameterType=&quot;student&quot;&gt;</span><br><span class="line">       insert into `student`(`name`,`age`,`birthday`)</span><br><span class="line">       values(#&#123;name&#125;,#&#123;age&#125;,#&#123;birthday,typeHandler=dao.MyDateTypeHandler&#125;)</span><br><span class="line">       &lt;selectKey resultType=&quot;int&quot; keyProperty=&quot;id&quot; keyColumn=&quot;id&quot; order=&quot;AFTER&quot;&gt;</span><br><span class="line">           select last_insert_id()</span><br><span class="line">       &lt;/selectKey&gt;</span><br><span class="line">   &lt;/insert&gt;</span><br><span class="line"></span><br><span class="line">   &lt;resultMap id=&quot;studentMapper&quot; type=&quot;student&quot;&gt;</span><br><span class="line">       &lt;id property=&quot;id&quot; column=&quot;id&quot;/&gt;</span><br><span class="line">       &lt;result property=&quot;name&quot; column=&quot;name&quot;/&gt;</span><br><span class="line">       &lt;result property=&quot;age&quot; column=&quot;age&quot;/&gt;</span><br><span class="line">       &lt;result property=&quot;birthday&quot; column=&quot;birthday&quot; typeHandler=&quot;dao.MyDateTypeHandler&quot;/&gt;</span><br><span class="line">   &lt;/resultMap&gt;</span><br><span class="line"></span><br><span class="line">   &lt;select id=&quot;selectStudentById&quot; parameterType=&quot;int&quot; resultMap=&quot;studentMapper&quot;&gt;</span><br><span class="line">       select * from `student` where `id` = #&#123;id&#125;</span><br><span class="line">   &lt;/select&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="test"><a href="#test" class="headerlink" title="test"></a>test</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class AppTest &#123;</span><br><span class="line"></span><br><span class="line">    SqlSessionFactory factory = null;</span><br><span class="line"></span><br><span class="line">    @Before</span><br><span class="line">    public void prepare() throws IOException&#123;</span><br><span class="line">        InputStream inputStream = Resources.getResourceAsStream(&quot;mybatis.xml&quot;);</span><br><span class="line">        factory = new SqlSessionFactoryBuilder().build(inputStream);</span><br><span class="line">        inputStream.close();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Test</span><br><span class="line">    public void test()&#123;</span><br><span class="line">        SqlSession session = factory.openSession();</span><br><span class="line">        try&#123;</span><br><span class="line">            StudentMapper studentMapper = session.getMapper(StudentMapper.class);</span><br><span class="line">//            Student student = new Student(&quot;wang&quot;,20,new Date());</span><br><span class="line">//            int affectedRows = studentMapper.insertStudent(student);</span><br><span class="line">            int id=10001;</span><br><span class="line">            Student student  = studentMapper.selectStudentById(id);</span><br><span class="line"></span><br><span class="line">            System.out.println(student);</span><br><span class="line">        &#125;finally&#123;</span><br><span class="line">            session.commit();</span><br><span class="line">            session.close();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -1897,7 +1906,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1908,7 +1917,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -1919,7 +1928,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
