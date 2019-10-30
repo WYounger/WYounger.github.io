@@ -291,6 +291,165 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/30/effective-java/2.对于所有对象都通用的方法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="younger">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="younger个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/30/effective-java/2.对于所有对象都通用的方法/" itemprop="url">2.对于所有对象通用的方法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-30T22:57:19+08:00">
+                2019-10-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/basic-java/" itemprop="url" rel="index">
+                    <span itemprop="name">basic-java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="10-覆盖equals时请遵守通用约定"><a href="#10-覆盖equals时请遵守通用约定" class="headerlink" title="10.覆盖equals时请遵守通用约定"></a>10.覆盖equals时请遵守通用约定</h3><p>当一个类要具有“逻辑相等”，且父类没有覆盖equals方法，就需要覆盖equals.</p>
+<p>等价需要遵循以下性质:</p>
+<ul>
+<li>自反性</li>
+<li>对称性</li>
+<li>传递性</li>
+<li>一致性(当比较的信息没改变时，多次调用equals方法，结果相同)</li>
+</ul>
+<p>实际覆盖步骤</p>
+<ol>
+<li>使用==操作符检查”参数是否为这个对象的引用”</li>
+<li>使用instanceof操作符检查”参数是否为正确的类型”</li>
+<li>把参数转换为正确的类型</li>
+<li>对于该类中每个“关键域”，检查参数中的域是否与该对象中对应的域向匹配</li>
+</ol>
+<p>实例，JDK中String的equals方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object anObject)</span> </span>&#123;<span class="comment">//注意参数类型是Object类型，否则不是覆盖</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span> == anObject) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (anObject <span class="keyword">instanceof</span> String) &#123;</span><br><span class="line">            String aString = (String)anObject;</span><br><span class="line">            <span class="keyword">if</span> (coder() == aString.coder()) &#123;</span><br><span class="line">                <span class="keyword">return</span> isLatin1() ? StringLatin1.equals(value, aString.value)</span><br><span class="line">                                  : StringUTF16.equals(value, aString.value);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/25/effective-java/1-创建和销毁对象/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1684,162 +1843,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/Mybaits/5---TypeHandler-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="younger">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="younger个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/31/Mybaits/5---TypeHandler-1/" itemprop="url">5--TypeHandler-1</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-31T17:09:14+08:00">
-                2019-08-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Mybatis/" itemprop="url" rel="index">
-                    <span itemprop="name">Mybatis</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>当需要将jdbc类型的数据和Java程序中类型的书数据进行转换时，可以使用TypeHandler来完成转换过程。怎么实现呢?<br><strong>Java类型==》jdbc</strong><br>将Java类型值<code>value1</code>通过某种策略转化为数据库(jdbc)类型值<code>value2</code>，然后将<code>value2</code>设置为<code>SQL参数</code> :<code>preparedStatement.setType(i,value2);</code><br><strong>Java类型《== jdbc</strong><br>从<code>resultSet</code>中取出值<code>value2</code>，然后通过某种策略将<code>value2</code>转换为Java类型值<code>value1</code></p>
-<h3 id="table"><a href="#table" class="headerlink" title="table"></a>table</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">create table `student`(</span><br><span class="line">`id` int auto_increment primary key,</span><br><span class="line">`name` varchar(30) not null,</span><br><span class="line">`age` int,</span><br><span class="line">`birthday` varchar(30)</span><br><span class="line">)auto_increment=10000;</span><br></pre></td></tr></table></figure>
-
-<h3 id="model"><a href="#model" class="headerlink" title="model"></a>model</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">package model;</span><br><span class="line"></span><br><span class="line">import java.util.Date;</span><br><span class="line"></span><br><span class="line">public class Student &#123;</span><br><span class="line">    private int id;</span><br><span class="line">    private String name;</span><br><span class="line">    private int age;</span><br><span class="line"></span><br><span class="line">    private Date birthday;//在数据库中对应的类型是varchar(n)</span><br><span class="line"></span><br><span class="line">    public Student() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">//getter和setter略</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="TypeHandler"><a href="#TypeHandler" class="headerlink" title="TypeHandler"></a>TypeHandler</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//表注转换的两种类型</span><br><span class="line">@MappedJdbcTypes(&#123;JdbcType.VARCHAR&#125;)//jdbc类型</span><br><span class="line">@MappedTypes(&#123;java.util.Date.class&#125;)//程序类型</span><br><span class="line">public class MyDateTypeHandler extends BaseTypeHandler&lt;Date&gt; &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void setNonNullParameter(PreparedStatement preparedStatement, int i, Date date, JdbcType jdbcType) throws SQLException &#123;</span><br><span class="line"></span><br><span class="line">        preparedStatement.setString(i,String.valueOf(date.getTime()));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Date getNullableResult(ResultSet resultSet, int i) throws SQLException &#123;</span><br><span class="line">        return new Date(resultSet.getLong(i));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Date getNullableResult(ResultSet resultSet, String s) throws SQLException &#123;</span><br><span class="line">        return new Date(resultSet.getLong(s));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Date getNullableResult(CallableStatement callableStatement, int i) throws SQLException &#123;</span><br><span class="line">        return new Date(callableStatement.getLong(i));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="dao"><a href="#dao" class="headerlink" title="dao"></a>dao</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">package dao;</span><br><span class="line"></span><br><span class="line">import model.Student;</span><br><span class="line"></span><br><span class="line">public interface StudentMapper &#123;</span><br><span class="line"></span><br><span class="line">    int insertStudent(Student student);</span><br><span class="line"></span><br><span class="line">    Student selectStudentById(int id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="mapper"><a href="#mapper" class="headerlink" title="mapper"></a>mapper</h3><p>在对应参数处使用typeHandler来转换<br>作为输入参数:<br><code>#{birthday,typeHandler=dao.MyDateTypeHandler}</code><br>这里的typeHandler的值<code>不成写成字符串类型</code><br>作为输出结果:<br><code>&lt;result property=&quot;birthday&quot; column=&quot;birthday&quot; 
-  typeHandler=&quot;dao.MyDateTypeHandler&quot;/&gt;</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;insert id=&quot;insertStudent&quot; parameterType=&quot;student&quot;&gt;</span><br><span class="line">       insert into `student`(`name`,`age`,`birthday`)</span><br><span class="line">       values(#&#123;name&#125;,#&#123;age&#125;,#&#123;birthday,typeHandler=dao.MyDateTypeHandler&#125;)</span><br><span class="line">       &lt;selectKey resultType=&quot;int&quot; keyProperty=&quot;id&quot; keyColumn=&quot;id&quot; order=&quot;AFTER&quot;&gt;</span><br><span class="line">           select last_insert_id()</span><br><span class="line">       &lt;/selectKey&gt;</span><br><span class="line">   &lt;/insert&gt;</span><br><span class="line"></span><br><span class="line">   &lt;resultMap id=&quot;studentMapper&quot; type=&quot;student&quot;&gt;</span><br><span class="line">       &lt;id property=&quot;id&quot; column=&quot;id&quot;/&gt;</span><br><span class="line">       &lt;result property=&quot;name&quot; column=&quot;name&quot;/&gt;</span><br><span class="line">       &lt;result property=&quot;age&quot; column=&quot;age&quot;/&gt;</span><br><span class="line">       &lt;result property=&quot;birthday&quot; column=&quot;birthday&quot; typeHandler=&quot;dao.MyDateTypeHandler&quot;/&gt;</span><br><span class="line">   &lt;/resultMap&gt;</span><br><span class="line"></span><br><span class="line">   &lt;select id=&quot;selectStudentById&quot; parameterType=&quot;int&quot; resultMap=&quot;studentMapper&quot;&gt;</span><br><span class="line">       select * from `student` where `id` = #&#123;id&#125;</span><br><span class="line">   &lt;/select&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="test"><a href="#test" class="headerlink" title="test"></a>test</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class AppTest &#123;</span><br><span class="line"></span><br><span class="line">    SqlSessionFactory factory = null;</span><br><span class="line"></span><br><span class="line">    @Before</span><br><span class="line">    public void prepare() throws IOException&#123;</span><br><span class="line">        InputStream inputStream = Resources.getResourceAsStream(&quot;mybatis.xml&quot;);</span><br><span class="line">        factory = new SqlSessionFactoryBuilder().build(inputStream);</span><br><span class="line">        inputStream.close();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Test</span><br><span class="line">    public void test()&#123;</span><br><span class="line">        SqlSession session = factory.openSession();</span><br><span class="line">        try&#123;</span><br><span class="line">            StudentMapper studentMapper = session.getMapper(StudentMapper.class);</span><br><span class="line">//            Student student = new Student(&quot;wang&quot;,20,new Date());</span><br><span class="line">//            int affectedRows = studentMapper.insertStudent(student);</span><br><span class="line">            int id=10001;</span><br><span class="line">            Student student  = studentMapper.selectStudentById(id);</span><br><span class="line"></span><br><span class="line">            System.out.println(student);</span><br><span class="line">        &#125;finally&#123;</span><br><span class="line">            session.commit();</span><br><span class="line">            session.close();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1891,7 +1894,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
