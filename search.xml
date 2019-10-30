@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[2.对于所有对象通用的方法]]></title>
     <url>%2F2019%2F10%2F30%2Feffective-java%2F2.%E5%AF%B9%E4%BA%8E%E6%89%80%E6%9C%89%E5%AF%B9%E8%B1%A1%E9%83%BD%E9%80%9A%E7%94%A8%E7%9A%84%E6%96%B9%E6%B3%95%2F</url>
-    <content type="text"><![CDATA[10.覆盖equals时请遵守通用约定当一个类要具有“逻辑相等”，且父类没有覆盖equals方法，就需要覆盖equals. 等价需要遵循以下性质: 自反性 对称性 传递性 一致性(当比较的信息没改变时，多次调用equals方法，结果相同) 实际覆盖步骤 使用==操作符检查”参数是否为这个对象的引用” 使用instanceof操作符检查”参数是否为正确的类型” 把参数转换为正确的类型 对于该类中每个“关键域”，检查参数中的域是否与该对象中对应的域向匹配 实例，JDK中String的equals方法 12345678910111213public boolean equals(Object anObject) &#123;//注意参数类型是Object类型，否则不是覆盖 if (this == anObject) &#123; return true; &#125; if (anObject instanceof String) &#123; String aString = (String)anObject; if (coder() == aString.coder()) &#123; return isLatin1() ? StringLatin1.equals(value, aString.value) : StringUTF16.equals(value, aString.value); &#125; &#125; return false; &#125;]]></content>
+    <content type="text"><![CDATA[10.覆盖equals时请遵守通用约定当一个类要具有“逻辑相等”，且父类没有覆盖equals方法，就需要覆盖equals. 等价需要遵循以下性质: 自反性 对称性 传递性 一致性(当比较的信息没改变时，多次调用equals方法，结果相同) 实际覆盖步骤 使用==操作符检查”参数是否为这个对象的引用” 使用instanceof操作符检查”参数是否为正确的类型” 把参数转换为正确的类型 对于该类中每个“关键域”，检查参数中的域是否与该对象中对应的域向匹配 实例，JDK中String的equals方法 12345678910111213public boolean equals(Object anObject) &#123;//注意参数类型是Object类型，否则不是覆盖 if (this == anObject) &#123; return true; &#125; if (anObject instanceof String) &#123; String aString = (String)anObject; if (coder() == aString.coder()) &#123; return isLatin1() ? StringLatin1.equals(value, aString.value) : StringUTF16.equals(value, aString.value); &#125; &#125; return false; &#125; 参考文献 Effective Java中文版（第3版）]]></content>
       <categories>
         <category>basic-java</category>
       </categories>
