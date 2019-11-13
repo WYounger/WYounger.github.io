@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="basic-java,effective-java,">
 
 
 
@@ -79,13 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="younger个人博客">
-<meta property="og:url" content="http://yoursite.com/tags/basic-java/index.html">
+<meta name="description" content="26请不要使用原生态类型泛型是在1.5引入的，使用它可以有两点优势:  向集合插入不正确的类型的时，可以在编译时就抛出错误，而不是在运行时才抛出异常，即有类型检查。 从集合检索元素时，编译器帮我们做隐式转换，而不需要我们显示强转，既有隐式转换。  标题中的提到的原生态类型是不带任何实际类型的泛型名称，例如List&amp;lt;E&amp;gt;的原生态类型是List。原生态类型缺乏类型安全性，而继续使用仅仅是为">
+<meta name="keywords" content="basic-java,effective-java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="4.泛型">
+<meta property="og:url" content="http://yoursite.com/2019/11/07/effective-java/4.泛型/index.html">
 <meta property="og:site_name" content="younger个人博客">
+<meta property="og:description" content="26请不要使用原生态类型泛型是在1.5引入的，使用它可以有两点优势:  向集合插入不正确的类型的时，可以在编译时就抛出错误，而不是在运行时才抛出异常，即有类型检查。 从集合检索元素时，编译器帮我们做隐式转换，而不需要我们显示强转，既有隐式转换。  标题中的提到的原生态类型是不带任何实际类型的泛型名称，例如List&amp;lt;E&amp;gt;的原生态类型是List。原生态类型缺乏类型安全性，而继续使用仅仅是为">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-11-13T12:40:16.835Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="younger个人博客">
+<meta name="twitter:title" content="4.泛型">
+<meta name="twitter:description" content="26请不要使用原生态类型泛型是在1.5引入的，使用它可以有两点优势:  向集合插入不正确的类型的时，可以在编译时就抛出错误，而不是在运行时才抛出异常，即有类型检查。 从集合检索元素时，编译器帮我们做隐式转换，而不需要我们显示强转，既有隐式转换。  标题中的提到的原生态类型是不带任何实际类型的泛型名称，例如List&amp;lt;E&amp;gt;的原生态类型是List。原生态类型缺乏类型安全性，而继续使用仅仅是为">
 
 
 
@@ -115,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/basic-java/">
+  <link rel="canonical" href="http://yoursite.com/2019/11/07/effective-java/4.泛型/">
 
 
 
 
 
-  <title>Tag: basic-java | younger个人博客</title>
+  <title>4.泛型 | younger个人博客</title>
   
 
 
@@ -140,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -276,130 +281,188 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block tag">
-
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>basic-java<small>Tag</small>
-        </h1>
-      </div>
-
-      
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/07/effective-java/4.泛型/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="younger">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="younger个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/11/07/effective-java/4.泛型/" itemprop="url">
-              
-                <span itemprop="name">4.泛型</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">4.泛型</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-11-07T20:53:01+08:00" content="2019-11-07">
-          11-07
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-07T20:53:01+08:00">
+                2019-11-07
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/basic-java/" itemprop="url" rel="index">
+                    <span itemprop="name">basic-java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/11/07/effective-java/3.接口和类/" itemprop="url">
-              
-                <span itemprop="name">3.接口和类</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-11-07T20:51:06+08:00" content="2019-11-07">
-          11-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
 
       
-        
+        <h3 id="26请不要使用原生态类型"><a href="#26请不要使用原生态类型" class="headerlink" title="26请不要使用原生态类型"></a>26请不要使用原生态类型</h3><p>泛型是在1.5引入的，使用它可以有两点优势:</p>
+<ol>
+<li>向集合插入不正确的类型的时，可以在<code>编译时</code>就抛出错误，而不是在运行时才抛出异常，即有<code>类型检查</code>。</li>
+<li>从集合检索元素时，编译器帮我们做隐式转换，而不需要我们显示强转，既有<code>隐式转换</code>。</li>
+</ol>
+<p>标题中的提到的原生态类型是不带任何实际类型的泛型名称，例如<code>List&lt;E&gt;</code>的原生态类型是<code>List</code>。原生态类型缺乏类型安全性，而继续使用仅仅是为了兼容性。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义一个原生类型的列表，允许插入任何类型的数据</span></span><br><span class="line">List list = <span class="keyword">new</span> ArrayList();</span><br><span class="line"><span class="comment">//误插入String和Integer两种不同类型的数据</span></span><br><span class="line">list.add(<span class="string">"123"</span>);</span><br><span class="line">list.add(<span class="number">123</span>);</span><br><span class="line"><span class="comment">//编译通过，运行时取出强转报错</span></span><br><span class="line">Integer i = (Integer) list.get(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义泛型列表</span></span><br><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;(<span class="number">10</span>);</span><br><span class="line">list.add(<span class="string">"123"</span>);</span><br><span class="line"><span class="comment">//编译类型检查，直接报错</span></span><br><span class="line">list.add(<span class="number">123</span>)；</span><br><span class="line"><span class="comment">//隐式转换</span></span><br><span class="line">String str = list.get(<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+<p>而原生类型其实也有几处适用的地方:</p>
+<ol>
+<li><p>必须在<code>类文字</code>中使用原生类型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List.class String[].class <span class="keyword">int</span>.class都是合法的，而List&lt;String.class&gt;和List&lt;?&gt;.class则不合法</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在使用<code>instanceof</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">(Collection&lt;E&gt; collection)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(collection <span class="keyword">instanceof</span> Set)&#123;<span class="comment">//此处使用原生类型</span></span><br><span class="line">            Set&lt;?&gt; set = (Set&lt;?&gt;) collection;<span class="comment">//可以强转</span></span><br><span class="line">            Iterator&lt;?&gt; it = set.iterator();</span><br><span class="line">            <span class="keyword">while</span> (it.hasNext())&#123;</span><br><span class="line">                System.out.println(it.next());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/10/30/effective-java/2.对于所有对象都通用的方法/" itemprop="url">
-              
-                <span itemprop="name">2.对于所有对象通用的方法</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-10-30T22:57:19+08:00" content="2019-10-30">
-          10-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/10/25/effective-java/1-创建和销毁对象/" itemprop="url">
-              
-                <span itemprop="name">1.创建和销毁对象</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-10-25T21:56:08+08:00" content="2019-10-25">
-          10-25
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+</li>
+</ol>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/basic-java/" rel="tag"># basic-java</a>
+          
+            <a href="/tags/effective-java/" rel="tag"># effective-java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/07/effective-java/3.接口和类/" rel="next" title="3.接口和类">
+                <i class="fa fa-chevron-left"></i> 3.接口和类
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -407,6 +470,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -427,8 +494,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -489,6 +565,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#26请不要使用原生态类型"><span class="nav-number">1.</span> <span class="nav-text">26请不要使用原生态类型</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -629,6 +721,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
