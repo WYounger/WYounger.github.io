@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="26请不要使用原生态类型泛型是在1.5引入的，使用它可以有两点优势:  向集合插入不正确的类型的时，可以在编译时就抛出错误，而不是在运行时才抛出异常，即有类型检查。 从集合检索元素时，编译器帮我们做隐式转换，而不需要我们显示强转，既有隐式转换。  标题中的提到的原生态类型是不带任何实际类型的泛型名称，例如List&amp;lt;E&amp;gt;的原生态类型是List。原生态类型缺乏类型安全性，而继续使用仅仅是为">
+<meta name="description" content="26.请不要使用原生态类型泛型是在1.5引入的，使用它可以有两点优势:  向集合插入不正确的类型的时，可以在编译时就抛出错误，而不是在运行时才抛出异常，即有类型检查。 从集合检索元素时，编译器帮我们做隐式转换，而不需要我们显示强转，既有隐式转换。  标题中的提到的原生态类型是不带任何实际类型的泛型名称，例如List&amp;lt;E&amp;gt;的原生态类型是List。原生态类型缺乏类型安全性，而继续使用仅仅是">
 <meta name="keywords" content="basic-java,effective-java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="4.泛型">
 <meta property="og:url" content="http://yoursite.com/2019/11/07/effective-java/4.泛型/index.html">
 <meta property="og:site_name" content="younger个人博客">
-<meta property="og:description" content="26请不要使用原生态类型泛型是在1.5引入的，使用它可以有两点优势:  向集合插入不正确的类型的时，可以在编译时就抛出错误，而不是在运行时才抛出异常，即有类型检查。 从集合检索元素时，编译器帮我们做隐式转换，而不需要我们显示强转，既有隐式转换。  标题中的提到的原生态类型是不带任何实际类型的泛型名称，例如List&amp;lt;E&amp;gt;的原生态类型是List。原生态类型缺乏类型安全性，而继续使用仅仅是为">
+<meta property="og:description" content="26.请不要使用原生态类型泛型是在1.5引入的，使用它可以有两点优势:  向集合插入不正确的类型的时，可以在编译时就抛出错误，而不是在运行时才抛出异常，即有类型检查。 从集合检索元素时，编译器帮我们做隐式转换，而不需要我们显示强转，既有隐式转换。  标题中的提到的原生态类型是不带任何实际类型的泛型名称，例如List&amp;lt;E&amp;gt;的原生态类型是List。原生态类型缺乏类型安全性，而继续使用仅仅是">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-13T12:44:32.835Z">
+<meta property="og:updated_time" content="2019-11-14T13:53:54.262Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="4.泛型">
-<meta name="twitter:description" content="26请不要使用原生态类型泛型是在1.5引入的，使用它可以有两点优势:  向集合插入不正确的类型的时，可以在编译时就抛出错误，而不是在运行时才抛出异常，即有类型检查。 从集合检索元素时，编译器帮我们做隐式转换，而不需要我们显示强转，既有隐式转换。  标题中的提到的原生态类型是不带任何实际类型的泛型名称，例如List&amp;lt;E&amp;gt;的原生态类型是List。原生态类型缺乏类型安全性，而继续使用仅仅是为">
+<meta name="twitter:description" content="26.请不要使用原生态类型泛型是在1.5引入的，使用它可以有两点优势:  向集合插入不正确的类型的时，可以在编译时就抛出错误，而不是在运行时才抛出异常，即有类型检查。 从集合检索元素时，编译器帮我们做隐式转换，而不需要我们显示强转，既有隐式转换。  标题中的提到的原生态类型是不带任何实际类型的泛型名称，例如List&amp;lt;E&amp;gt;的原生态类型是List。原生态类型缺乏类型安全性，而继续使用仅仅是">
 
 
 
@@ -384,7 +384,7 @@
       
 
       
-        <h3 id="26请不要使用原生态类型"><a href="#26请不要使用原生态类型" class="headerlink" title="26请不要使用原生态类型"></a>26请不要使用原生态类型</h3><p>泛型是在1.5引入的，使用它可以有两点优势:</p>
+        <h3 id="26-请不要使用原生态类型"><a href="#26-请不要使用原生态类型" class="headerlink" title="26.请不要使用原生态类型"></a>26.请不要使用原生态类型</h3><p>泛型是在1.5引入的，使用它可以有两点优势:</p>
 <ol>
 <li>向集合插入不正确的类型的时，可以在<code>编译时</code>就抛出错误，而不是在运行时才抛出异常，即有<code>类型检查</code>。</li>
 <li>从集合检索元素时，编译器帮我们做隐式转换，而不需要我们显示强转，既有<code>隐式转换</code>。</li>
@@ -402,6 +402,15 @@
 
 </li>
 </ol>
+<h3 id="27-消除非受检的警告"><a href="#27-消除非受检的警告" class="headerlink" title="27.消除非受检的警告"></a>27.消除非受检的警告</h3><p>在使用泛型的代码中，很容易出现警告，不要忽略他们。每一条警告都可能在运行时抛出<code>ClassCaseException</code>异常，要尽最大努力消除他们。如果无法消除，但能确定引起警告的代码是类型的安全的，就可以在尽可能小的范围内使用<code>@SuppersssWarnings(&quot;unchecked&quot;)</code>注解禁止该警告。</p>
+<h3 id="28-列表由于数组"><a href="#28-列表由于数组" class="headerlink" title="28.列表由于数组"></a>28.列表由于数组</h3><p>数组具有协变性，而集合没有</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Father[] 依旧是 Son1[] 的父类</span></span><br><span class="line">Father[] sons = <span class="keyword">new</span> Son1[<span class="number">1</span>];</span><br><span class="line"><span class="comment">//'运行时'抛出异常ArrayStoreException</span></span><br><span class="line">sons[<span class="number">0</span>] = <span class="keyword">new</span> Son2();</span><br><span class="line"></span><br><span class="line"><span class="comment">//List&lt;Father&gt; 不是 ArrayList&lt;Son1&gt;的父类</span></span><br><span class="line">List&lt;Father&gt; list = <span class="keyword">new</span> ArrayList&lt;Son1&gt;();</span><br></pre></td></tr></table></figure>
+
+<p>以上很容易看出，由于数组的协变性，很容易随意存入元素，然后再运行时抛出异常。</p>
+<p>再举个例子</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&lt;<span class="title">E</span>&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> E[] arr;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">A</span><span class="params">(Collection&lt;E&gt; collection)</span></span>&#123;</span><br><span class="line">        <span class="comment">//这里有unchecked cast 警告</span></span><br><span class="line">        arr = (E[]) collection.toArray();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&lt;<span class="title">E</span>&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> List&lt;E&gt; list;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">A</span><span class="params">(Collection&lt;E&gt; collection)</span></span>&#123;</span><br><span class="line">        <span class="comment">//无任何警告</span></span><br><span class="line">        list = <span class="keyword">new</span> ArrayList&lt;&gt;(collection);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>只想说明一点，数组和泛型不能很好的混合使用。如果在混合使用时，出现异常，应该立马尝试将数组换成列表。</p>
 <h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul>
 <li>[Effective Java中文版（第3版）]</li>
 </ul>
@@ -578,7 +587,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#26请不要使用原生态类型"><span class="nav-number">1.</span> <span class="nav-text">26请不要使用原生态类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文献"><span class="nav-number">2.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#26-请不要使用原生态类型"><span class="nav-number">1.</span> <span class="nav-text">26.请不要使用原生态类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#27-消除非受检的警告"><span class="nav-number">2.</span> <span class="nav-text">27.消除非受检的警告</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#28-列表由于数组"><span class="nav-number">3.</span> <span class="nav-text">28.列表由于数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文献"><span class="nav-number">4.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
             
 
           </div>
