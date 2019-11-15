@@ -969,7 +969,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/19/redis/redis数据类型/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/19/redis/1.redis数据类型/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="younger">
@@ -988,7 +988,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/10/19/redis/redis数据类型/" itemprop="url">redis数据类型</a></h1>
+                <a class="post-title-link" href="/2019/10/19/redis/1.redis数据类型/" itemprop="url">redis数据类型</a></h1>
         
 
         <div class="post-meta">
@@ -1062,7 +1062,8 @@
       
         
           
-            <p>Redis提供五种基本数据类型，分别为<code>string</code>,<code>list</code>,<code>set</code>,<code>hash</code>,<code>zset</code>。注意一点是，这里的数据类型指的是value的数据类型,而key都是字符串类型</p>
+            <p>Redis是一个速度非常块的非关系型数据库，可以存储key和5种不同数据类型的value之间的映射，还支持持久化、主从复制(增加读性能)、分片(扩展写性能)。</p>
+<p>Redis提供五种基本数据类型，分别为<code>string</code>,<code>list</code>,<code>set</code>,<code>hash</code>,<code>zset</code>。注意一点是，这里的数据类型指的是value的数据类型,而key都是字符串类型</p>
 <table>
 <thead>
 <tr>
@@ -1112,6 +1113,11 @@
 <h5 id="zset"><a href="#zset" class="headerlink" title="zset"></a>zset</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">zsetKey:</span><br><span class="line">		member1:score1</span><br><span class="line"> 		member2:score2</span><br><span class="line">		...</span><br><span class="line">		membern:scoren</span><br><span class="line">//score为浮点数，每个成员按照score排序，</span><br></pre></td></tr></table></figure>
 
 <p>常用命令: zadd  zrange zrem zrangebyscore</p>
+<p>实例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>参考资料:</p>
+<p><a href="https://book.douban.com/subject/26612779/" target="_blank" rel="noopener">Redis 实战</a></p>
 
           
         

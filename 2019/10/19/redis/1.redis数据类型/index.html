@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="redis,非关系型数据库,">
 
 
 
@@ -79,13 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="younger个人博客">
-<meta property="og:url" content="http://yoursite.com/archives/2019/10/index.html">
+<meta name="description" content="Redis是一个速度非常块的非关系型数据库，可以存储key和5种不同数据类型的value之间的映射，还支持持久化、主从复制(增加读性能)、分片(扩展写性能)。 Redis提供五种基本数据类型，分别为string,list,set,hash,zset。注意一点是，这里的数据类型指的是value的数据类型,而key都是字符串类型    结构类型 结构存储的值 能力    string 字符串、整数、浮">
+<meta name="keywords" content="redis,非关系型数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis数据类型">
+<meta property="og:url" content="http://yoursite.com/2019/10/19/redis/1.redis数据类型/index.html">
 <meta property="og:site_name" content="younger个人博客">
+<meta property="og:description" content="Redis是一个速度非常块的非关系型数据库，可以存储key和5种不同数据类型的value之间的映射，还支持持久化、主从复制(增加读性能)、分片(扩展写性能)。 Redis提供五种基本数据类型，分别为string,list,set,hash,zset。注意一点是，这里的数据类型指的是value的数据类型,而key都是字符串类型    结构类型 结构存储的值 能力    string 字符串、整数、浮">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-11-15T11:41:42.090Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="younger个人博客">
+<meta name="twitter:title" content="redis数据类型">
+<meta name="twitter:description" content="Redis是一个速度非常块的非关系型数据库，可以存储key和5种不同数据类型的value之间的映射，还支持持久化、主从复制(增加读性能)、分片(扩展写性能)。 Redis提供五种基本数据类型，分别为string,list,set,hash,zset。注意一点是，这里的数据类型指的是value的数据类型,而key都是字符串类型    结构类型 结构存储的值 能力    string 字符串、整数、浮">
 
 
 
@@ -115,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2019/10/">
+  <link rel="canonical" href="http://yoursite.com/2019/10/19/redis/1.redis数据类型/">
 
 
 
 
 
-  <title>Archive | younger个人博客</title>
+  <title>redis数据类型 | younger个人博客</title>
   
 
 
@@ -140,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -276,212 +281,230 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/19/redis/1.redis数据类型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="younger">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="younger个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">redis数据类型</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-19T19:05:29+08:00">
+                2019-10-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        Um..! 16 posts in total. Keep on posting.
-      </span>
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/redis基础/" itemprop="url" rel="index">
+                    <span itemprop="name">redis基础</span>
+                  </a>
+                </span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
 
-        
+          
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/10/30/effective-java/2.对于所有对象都通用的方法/" itemprop="url">
-              
-                <span itemprop="name">2.对于所有对象通用的方法</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-10-30T22:57:19+08:00" content="2019-10-30">
-          10-30
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+          
 
+        </div>
+      </header>
+    
 
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/10/25/effective-java/1-创建和销毁对象/" itemprop="url">
-              
-                <span itemprop="name">1.创建和销毁对象</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-10-25T21:56:08+08:00" content="2019-10-25">
-          10-25
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
+      
+        <p>Redis是一个速度非常块的非关系型数据库，可以存储key和5种不同数据类型的value之间的映射，还支持持久化、主从复制(增加读性能)、分片(扩展写性能)。</p>
+<p>Redis提供五种基本数据类型，分别为<code>string</code>,<code>list</code>,<code>set</code>,<code>hash</code>,<code>zset</code>。注意一点是，这里的数据类型指的是value的数据类型,而key都是字符串类型</p>
+<table>
+<thead>
+<tr>
+<th>结构类型</th>
+<th>结构存储的值</th>
+<th>能力</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>string</td>
+<td>字符串、整数、浮点数</td>
+<td>字符串进行操作；整数和浮点数自增、自减</td>
+</tr>
+<tr>
+<td>list</td>
+<td>链表，每个节点包含一个字符串</td>
+<td>两端推入和推出元素；修剪；查找移除元素</td>
+</tr>
+<tr>
+<td>set</td>
+<td>无序，唯一</td>
+<td>集合计算</td>
+</tr>
+<tr>
+<td>hash</td>
+<td>包含键值对的无需散列表</td>
+<td>添加、获取、移除元素</td>
+</tr>
+<tr>
+<td>zset</td>
+<td>字符串成员（member）与浮点数分值（score）之间的有序映射，元素的排列顺序由分值的大小决定</td>
+<td>添加、获取、移除元素</td>
+</tr>
+</tbody></table>
+<h5 id="string"><a href="#string" class="headerlink" title="string"></a>string</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">key:value</span><br></pre></td></tr></table></figure>
 
-        
-        
+<p>常用命令: set get del</p>
+<h5 id="list"><a href="#list" class="headerlink" title="list"></a>list</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">listKey:</span><br><span class="line">    item1</span><br><span class="line">		item2</span><br><span class="line">		item3</span><br><span class="line">    ...</span><br><span class="line">		itemn</span><br><span class="line">//有序，可重复</span><br></pre></td></tr></table></figure>
 
-        
+<p>常用命令: rpush lrange lindex lpop </p>
+<h5 id="set"><a href="#set" class="headerlink" title="set"></a>set</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">setKey:</span><br><span class="line">		item2</span><br><span class="line">		item1</span><br><span class="line">		itemn</span><br><span class="line">		...</span><br><span class="line">		item3</span><br><span class="line">//无序，不可重复</span><br></pre></td></tr></table></figure>
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+<p>常用命令： sadd  sismember srem</p>
+<h5 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">hashKey:</span><br><span class="line">  subKey1:value1</span><br><span class="line">	subKey2:value2</span><br><span class="line">	...</span><br><span class="line">	sunKeyn:valuen</span><br><span class="line">//subKey无序，不重复</span><br></pre></td></tr></table></figure>
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/10/19/redis/1.redis数据类型/" itemprop="url">
-              
-                <span itemprop="name">redis数据类型</span>
-              
-            </a>
-        
-      </h2>
+<p>常用命令： hset hget hdel</p>
+<h5 id="zset"><a href="#zset" class="headerlink" title="zset"></a>zset</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">zsetKey:</span><br><span class="line">		member1:score1</span><br><span class="line"> 		member2:score2</span><br><span class="line">		...</span><br><span class="line">		membern:scoren</span><br><span class="line">//score为浮点数，每个成员按照score排序，</span><br></pre></td></tr></table></figure>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-10-19T19:05:29+08:00" content="2019-10-19">
-          10-19
-        </time>
-      </div>
+<p>常用命令: zadd  zrange zrem zrangebyscore</p>
+<p>实例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-    </header>
-  </article>
-
-
+<p>参考资料:</p>
+<p><a href="https://book.douban.com/subject/26612779/" target="_blank" rel="noopener">Redis 实战</a></p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/10/14/web/web/" itemprop="url">
-              
-                <span itemprop="name">时间格式化</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-10-14T22:07:31+08:00" content="2019-10-14">
-          10-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/10/05/jdk/ArrayList/" itemprop="url">
-              
-                <span itemprop="name">ArrayList.md</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-10-05T16:27:31+08:00" content="2019-10-05">
-          10-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/redis/" rel="tag"># redis</a>
+          
+            <a href="/tags/非关系型数据库/" rel="tag"># 非关系型数据库</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/14/web/web/" rel="next" title="时间格式化">
+                <i class="fa fa-chevron-left"></i> 时间格式化
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/25/effective-java/1-创建和销毁对象/" rel="prev" title="1.创建和销毁对象">
+                1.创建和销毁对象 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -489,6 +512,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -509,8 +536,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -571,6 +607,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#string"><span class="nav-number">1.</span> <span class="nav-text">string</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#list"><span class="nav-number">2.</span> <span class="nav-text">list</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#set"><span class="nav-number">3.</span> <span class="nav-text">set</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#hash"><span class="nav-number">4.</span> <span class="nav-text">hash</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#zset"><span class="nav-number">5.</span> <span class="nav-text">zset</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -711,6 +763,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
