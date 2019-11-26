@@ -291,6 +291,170 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/26/redis/2.redis持久化选项/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="younger">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="younger个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/11/26/redis/2.redis持久化选项/" itemprop="url">redis持久化选项</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-26T19:35:29+08:00">
+                2019-11-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/redis基础/" itemprop="url" rel="index">
+                    <span itemprop="name">redis基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Redis提供了两种不同的持久化方法将数据存储到硬盘里。一种方法是<code>快照</code>，另一种是<code>AOF</code></p>
+<p><code>快照</code>: 将某一时刻的所有数据都写入到硬盘中。</p>
+<p><code>AOF</code>: 只追加文件(append-only-file)，会在执行<code>写命令</code>时，将被执行的<code>写命令</code>复制到硬盘中。</p>
+<p>这两种方法可以同时使用，也可以只使用一种方法。当redis服务停止后，当再次重启时，redis会从快照文件或AOF文件读取数据来恢复数据。</p>
+<h4 id="1-快照持久化"><a href="#1-快照持久化" class="headerlink" title="1.快照持久化"></a>1.快照持久化</h4><p>创建快照的几种方法:</p>
+<ol>
+<li>客户端可以向redis服务发送<code>BGSAVE</code>命令。redis会<code>fork</code>一个子进程来将快照写入硬盘，而父进程会继续处理命令请求</li>
+<li>客户端还可以向redis服务发送<code>SAVE</code>命令。redis会在创建完快照之前是不会处理其他命令请求</li>
+<li><code>redis.conf</code>设置save选项。例如，<code>save 10 100</code>,从最近一次创建快照后，10秒内有100次写入，则会自动触发<code>BGSAVE</code>命令。同时可以有多个save选项，当任一条件满足，都会触发<code>BGSAVE</code>命令</li>
+<li>当redis接收到shutdown命令时，执行SAVE，阻塞所有客户端，当SAVE命令执行完后，关闭服务器</li>
+<li>当主从复制时，从服务器向主服务器发送一个SYNC命令，可能会激发主服务执行BGSAVE命令</li>
+</ol>
+<p>当系统奔溃后，将丢失最近一次生成快照之后更改所有的数据。</p>
+<h4 id="2-AOF持久化"><a href="#2-AOF持久化" class="headerlink" title="2.AOF持久化"></a>2.AOF持久化</h4><p>简单来说就是，将被执行的写命令追加到AOF文件末尾，记录数据变化。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">appendonly yes <span class="comment">#开启AOF持久化</span></span><br><span class="line"><span class="comment"># appendfsync always #将每个写命令同步到硬盘，这种方法会严重降低redis速度</span></span><br><span class="line">appendfsync everysec  <span class="comment">#每秒钟执行一次命令同步</span></span><br><span class="line"><span class="comment"># appendfsync no  #让操作系统来决定合适进行同步，不推荐</span></span><br></pre></td></tr></table></figure>
+
+<p><code>always</code>可以将数据丢失降低到最小，但会对硬盘大量写入，降低redis性能。为了兼顾数据安全性和写入性能，可以考虑使用<code>ererysec</code>,这样最多只会丢失一秒钟内产生的数据。</p>
+<p>随着redis不断处理命令请求，同步写命令会使AOF文件会越来越大，那么就要用到<code>重写/压缩AOF文件</code></p>
+<p>可以使用<code>BGREWRITEAOF</code>命令来redis服务重写AOF文件。原理和<code>BGSAVE</code>一样，父进程会<code>fork</code>一个子进程来执行AOF重写。也可以使用<code>redis.conf</code>来配置，当条件满足时，自动执行<code>BGREWRITEAOF</code>命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">auto-aof-rewrite-percentage 100 </span><br><span class="line">auto-aof-rewrite-min-size 64mb</span><br><span class="line"><span class="comment"># 当AOF文件大小比上一次重写之后的大100%并且现在AOF文件大小大于64MB会自动触发BGREWRITE命令</span></span><br></pre></td></tr></table></figure>
+
+<p>参考资料:</p>
+<p><a href="https://book.douban.com/subject/26612779/" target="_blank" rel="noopener">Redis 实战</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/07/effective-java/4.泛型/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -948,150 +1112,6 @@
 <h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul>
 <li><a href="https://book.douban.com/subject/30412517/" target="_blank" rel="noopener">Effective Java中文版（第3版）</a></li>
 </ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/19/redis/2.redis持久化选项/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="younger">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="younger个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/19/redis/2.redis持久化选项/" itemprop="url">redis持久化选项</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-19T19:05:29+08:00">
-                2019-10-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/redis基础/" itemprop="url" rel="index">
-                    <span itemprop="name">redis基础</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Redis提供了两种不同的持久化方法将数据存储到硬盘里。一种方法是<code>快照</code>，另一种是<code>AOF</code></p>
-<p><code>快照</code>: 将某一时刻的所有数据都写入到硬盘中。</p>
-<p><code>AOF</code>: 只追加文件(append-only-file)，会在执行<code>写命令</code>时，将被执行的<code>写命令</code>复制到硬盘中。</p>
 
           
         
