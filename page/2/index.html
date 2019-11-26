@@ -291,6 +291,156 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/Mybaits/7---动态SQL--where/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="younger">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="younger个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/31/Mybaits/7---动态SQL--where/" itemprop="url">7--动态SQLr-where</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-31T17:09:14+08:00">
+                2019-08-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">Mybatis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><code>where</code> <code>if</code><br>dao<br>在含有<code>int</code>类型的查询参数，最好设置为<code>Integer</code>,以便接收<code>null</code>值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Student&gt; selectStudents(@Param(&quot;name&quot;) String name,</span><br><span class="line">                             @Param(&quot;age&quot;) Integer age,</span><br><span class="line">                             @Param(&quot;gender&quot;) GenderEnum gender);</span><br></pre></td></tr></table></figure>
+
+<p>mapper</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=&quot;selectStudents&quot; resultMap=&quot;studentMapper&quot;&gt;</span><br><span class="line">      select * from `student`</span><br><span class="line">      &lt;where&gt;</span><br><span class="line">          &lt;if test=&quot;name != null&quot;&gt;</span><br><span class="line">              `name` like concat(&apos;%&apos;,#&#123;name&#125;,&apos;%&apos;)</span><br><span class="line">          &lt;/if&gt;</span><br><span class="line">          &lt;if test=&quot;age != null&quot;&gt;</span><br><span class="line">              and `age` = #&#123;age&#125;</span><br><span class="line">          &lt;/if&gt;</span><br><span class="line">          &lt;if test=&quot;gender != null&quot;&gt;</span><br><span class="line">              and `gender` = #&#123;gender,typeHandler=genderTypeHandler&#125;</span><br><span class="line">          &lt;/if&gt;</span><br><span class="line">      &lt;/where&gt;</span><br><span class="line">   &lt;/select&gt;</span><br></pre></td></tr></table></figure>
+
+<p>test</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">    public void test() &#123;</span><br><span class="line">        SqlSession session = factory.openSession();</span><br><span class="line">        try &#123;</span><br><span class="line">            StudentMapper studentMapper = session.getMapper(StudentMapper.class);</span><br><span class="line">//            Student student = new Student(&quot;hu&quot;,19,GenderEnum.getGender(1));</span><br><span class="line">//            int affectedRows = studentMapper.insertStudent(student);</span><br><span class="line">            String name = &quot;h&quot;;</span><br><span class="line">            int age = 20;</span><br><span class="line">            GenderEnum gender = GenderEnum.getGender(2);</span><br><span class="line">            List&lt;Student&gt; students = studentMapper.selectStudents(name, age,gender);</span><br><span class="line">//            List&lt;Student&gt; students = studentMapper.selectStudents(name, age,null);</span><br><span class="line">//            List&lt;Student&gt; students = studentMapper.selectStudents(name, null,gender);</span><br><span class="line">//            List&lt;Student&gt; students = studentMapper.selectStudents(name, null,null);</span><br><span class="line">//            List&lt;Student&gt; students = studentMapper.selectStudents(null, null,null);</span><br><span class="line">            if(!students.isEmpty())&#123;</span><br><span class="line">                Iterator&lt;Student&gt; it = students.iterator();</span><br><span class="line">                while(it.hasNext())&#123;</span><br><span class="line">                    Student student = it.next();</span><br><span class="line">                    System.out.println(student);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                System.out.println(&quot;没有查到结果&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            session.commit();</span><br><span class="line">            session.close();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/Mybaits/6---TypeHandler-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1277,7 +1427,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

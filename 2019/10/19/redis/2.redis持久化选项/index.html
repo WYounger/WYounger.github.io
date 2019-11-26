@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="redis,非关系型数据库,">
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="dao 123456789101112131415161718package dao;import model.Student;import java.util.List;public interface StudentMapper &amp;#123;    List&amp;lt;Student&amp;gt; selectAllStudent();    int insertStudent(Student stud">
+<meta name="description" content="Redis提供了两种不同的持久化方法将数据存储到硬盘里。一种方法是快照，另一种是AOF 快照: 将某一时刻的所有数据都写入到硬盘中。 AOF: 只追加文件(append-only-file)，会在执行写命令时，将被执行的写命令复制到硬盘中。">
+<meta name="keywords" content="redis,非关系型数据库">
 <meta property="og:type" content="article">
-<meta property="og:title" content="1--基本CRUD">
-<meta property="og:url" content="http://yoursite.com/2019/08/31/Mybaits/2---基本CURD/index.html">
+<meta property="og:title" content="redis持久化选项">
+<meta property="og:url" content="http://yoursite.com/2019/10/19/redis/2.redis持久化选项/index.html">
 <meta property="og:site_name" content="younger个人博客">
-<meta property="og:description" content="dao 123456789101112131415161718package dao;import model.Student;import java.util.List;public interface StudentMapper &amp;#123;    List&amp;lt;Student&amp;gt; selectAllStudent();    int insertStudent(Student stud">
+<meta property="og:description" content="Redis提供了两种不同的持久化方法将数据存储到硬盘里。一种方法是快照，另一种是AOF 快照: 将某一时刻的所有数据都写入到硬盘中。 AOF: 只追加文件(append-only-file)，会在执行写命令时，将被执行的写命令复制到硬盘中。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-08-31T09:10:39.671Z">
+<meta property="og:updated_time" content="2019-11-26T11:57:48.080Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="1--基本CRUD">
-<meta name="twitter:description" content="dao 123456789101112131415161718package dao;import model.Student;import java.util.List;public interface StudentMapper &amp;#123;    List&amp;lt;Student&amp;gt; selectAllStudent();    int insertStudent(Student stud">
+<meta name="twitter:title" content="redis持久化选项">
+<meta name="twitter:description" content="Redis提供了两种不同的持久化方法将数据存储到硬盘里。一种方法是快照，另一种是AOF 快照: 将某一时刻的所有数据都写入到硬盘中。 AOF: 只追加文件(append-only-file)，会在执行写命令时，将被执行的写命令复制到硬盘中。">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/08/31/Mybaits/2---基本CURD/">
+  <link rel="canonical" href="http://yoursite.com/2019/10/19/redis/2.redis持久化选项/">
 
 
 
 
 
-  <title>1--基本CRUD | younger个人博客</title>
+  <title>redis持久化选项 | younger个人博客</title>
   
 
 
@@ -294,7 +295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/Mybaits/2---基本CURD/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/19/redis/2.redis持久化选项/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="younger">
@@ -311,7 +312,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">1--基本CRUD</h1>
+          <h1 class="post-title" itemprop="name headline">redis持久化选项</h1>
         
 
         <div class="post-meta">
@@ -323,8 +324,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-31T17:09:14+08:00">
-                2019-08-31
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-19T19:05:29+08:00">
+                2019-10-19
               </time>
             
 
@@ -346,8 +347,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Mybatis/" itemprop="url" rel="index">
-                    <span itemprop="name">Mybatis</span>
+                  <a href="/categories/redis基础/" itemprop="url" rel="index">
+                    <span itemprop="name">redis基础</span>
                   </a>
                 </span>
 
@@ -383,21 +384,9 @@
       
 
       
-        <p>dao</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">package dao;</span><br><span class="line"></span><br><span class="line">import model.Student;</span><br><span class="line"></span><br><span class="line">import java.util.List;</span><br><span class="line"></span><br><span class="line">public interface StudentMapper &#123;</span><br><span class="line"></span><br><span class="line">    List&lt;Student&gt; selectAllStudent();</span><br><span class="line"></span><br><span class="line">    int insertStudent(Student student);</span><br><span class="line"></span><br><span class="line">    int updateStudent(Student student);</span><br><span class="line"></span><br><span class="line">    int deleteById(int id);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">​`</span><br></pre></td></tr></table></figure>
-
-<p>mapple.xml</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span><br><span class="line">&lt;!DOCTYPE mapper</span><br><span class="line">        PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span><br><span class="line">        &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;mapper namespace=&quot;dao.StudentMapper&quot;&gt;</span><br><span class="line">    &lt;select id=&quot;selectAllStudent&quot; resultType=&quot;student&quot;&gt;</span><br><span class="line">      select * from `student`</span><br><span class="line">    &lt;/select&gt;</span><br><span class="line"></span><br><span class="line">    &lt;insert id=&quot;insertStudent&quot; parameterType=&quot;student&quot;&gt;</span><br><span class="line">      insert into `student`(`name`,`age`)</span><br><span class="line">      values(#&#123;name&#125;,#&#123;age&#125;)</span><br><span class="line">      &lt;selectKey resultType=&quot;int&quot; keyColumn=&quot;id&quot; keyProperty=&quot;id&quot; order=&quot;AFTER&quot;&gt;</span><br><span class="line">          select last_insert_id();</span><br><span class="line">      &lt;/selectKey&gt;</span><br><span class="line">    &lt;/insert&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;update id=&quot;updateStudent&quot; parameterType=&quot;student&quot;&gt;</span><br><span class="line">        update `student` set `name` = #&#123;name&#125;,`age` = #&#123;age&#125;</span><br><span class="line">        where `id` = #&#123;id&#125;</span><br><span class="line">    &lt;/update&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;delete id=&quot;deleteById&quot; parameterType=&quot;int&quot;&gt;</span><br><span class="line">        delete from `student` where `id` = #&#123;id&#125;</span><br><span class="line">    &lt;/delete&gt;</span><br><span class="line">&lt;/mapper&gt;</span><br></pre></td></tr></table></figure>
-
-<p>测试</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line">import dao.StudentMapper;</span><br><span class="line">import model.Student;</span><br><span class="line">import org.apache.ibatis.io.Resources;</span><br><span class="line">import org.apache.ibatis.session.SqlSession;</span><br><span class="line">import org.apache.ibatis.session.SqlSessionFactory;</span><br><span class="line">import org.apache.ibatis.session.SqlSessionFactoryBuilder;</span><br><span class="line">import org.junit.Before;</span><br><span class="line">import org.junit.Test;</span><br><span class="line"></span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line">import java.util.Iterator;</span><br><span class="line">import java.util.List;</span><br><span class="line"></span><br><span class="line">public class AppTest &#123;</span><br><span class="line"></span><br><span class="line">    SqlSessionFactory factory = null;</span><br><span class="line">    </span><br><span class="line">    @Before</span><br><span class="line">    public void prepare() throws IOException&#123;</span><br><span class="line">        InputStream inputStream = Resources.getResourceAsStream(&quot;mybatis.xml&quot;);</span><br><span class="line">        factory = new SqlSessionFactoryBuilder().build(inputStream);</span><br><span class="line">        inputStream.close();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @Test</span><br><span class="line">    public void test()&#123;</span><br><span class="line">    </span><br><span class="line">        SqlSession session=  factory.openSession();</span><br><span class="line">        try&#123;</span><br><span class="line">            StudentMapper studentMapper = session.getMapper(StudentMapper.class);</span><br><span class="line">    </span><br><span class="line">            List&lt;Student&gt; list = studentMapper.selectAllStudent();</span><br><span class="line">            Iterator&lt;Student&gt; iterator = list.iterator();</span><br><span class="line">            while(iterator.hasNext())&#123;</span><br><span class="line">                Student student = iterator.next();</span><br><span class="line">                System.out.println(student);</span><br><span class="line">            &#125;</span><br><span class="line">    </span><br><span class="line">        &#125;finally&#123;</span><br><span class="line">            session.commit();</span><br><span class="line">            session.close();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @Test</span><br><span class="line">    public void testInsert()&#123;</span><br><span class="line">        SqlSession sqlSession = factory.openSession();</span><br><span class="line">        try&#123;</span><br><span class="line">            StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);</span><br><span class="line">            Student student = new Student(&quot;young&quot;,20);</span><br><span class="line">            int affectedRows = studentMapper.insertStudent(student);</span><br><span class="line">            if(affectedRows==1)&#123;</span><br><span class="line">                System.out.println(&quot;插入成功!&quot;);</span><br><span class="line">                System.out.println(student);//查看从数据库返回id填充student的id属性</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                System.out.println(&quot;插入失败!&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;finally &#123;</span><br><span class="line">            sqlSession.commit();</span><br><span class="line">            sqlSession.close();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    @Test</span><br><span class="line">    public void testUpdate()&#123;</span><br><span class="line">        SqlSession sqlSession = factory.openSession();</span><br><span class="line">        try&#123;</span><br><span class="line">            StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);</span><br><span class="line">            Student student = new Student(10000,&quot;Tom&quot;,21);</span><br><span class="line">            int affectedRows = studentMapper.updateStudent(student);</span><br><span class="line">            if(affectedRows != 0)&#123;</span><br><span class="line">                System.out.println(&quot;更新成功!&quot;);</span><br><span class="line">                System.out.println(student);</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                System.out.println(&quot;更新失败&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;finally &#123;</span><br><span class="line">            sqlSession.commit();</span><br><span class="line">            sqlSession.close();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @Test</span><br><span class="line">    public void testDelete()&#123;</span><br><span class="line">        SqlSession sqlSession = factory.openSession();</span><br><span class="line">        try&#123;</span><br><span class="line">            StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);</span><br><span class="line">            int id  = 10000;</span><br><span class="line">            int affectedRows  =  studentMapper.deleteById(id);</span><br><span class="line">            if(affectedRows == 1)&#123;</span><br><span class="line">                System.out.println(&quot;删除成功!&quot;);</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                System.out.println(&quot;删除失败!&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;finally &#123;</span><br><span class="line">            sqlSession.commit();</span><br><span class="line">            sqlSession.close();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>注意</code></p>
-<ol>
-<li>插入、删除、修改要获取数据库中受影响的记录数，以便验证操作是否成功</li>
-<li>插入一条数据最好返回从数据库返回生成的ID来给model的id赋值，以便后续使用</li>
-</ol>
-<p>```</p>
+        <p>Redis提供了两种不同的持久化方法将数据存储到硬盘里。一种方法是<code>快照</code>，另一种是<code>AOF</code></p>
+<p><code>快照</code>: 将某一时刻的所有数据都写入到硬盘中。</p>
+<p><code>AOF</code>: 只追加文件(append-only-file)，会在执行<code>写命令</code>时，将被执行的<code>写命令</code>复制到硬盘中。</p>
 
       
     </div>
@@ -413,6 +402,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/redis/" rel="tag"># redis</a>
+          
+            <a href="/tags/非关系型数据库/" rel="tag"># 非关系型数据库</a>
+          
+        </div>
+      
 
       
       
@@ -422,8 +419,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/31/Mybaits/1---搭建环境/" rel="next" title="1--搭建环境">
-                <i class="fa fa-chevron-left"></i> 1--搭建环境
+              <a href="/2019/10/19/redis/1.redis数据类型/" rel="next" title="redis数据类型">
+                <i class="fa fa-chevron-left"></i> redis数据类型
               </a>
             
           </div>
@@ -432,8 +429,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/08/31/Mybaits/3---关联查询~一对多/" rel="prev" title="3--关联查询~一对多">
-                3--关联查询~一对多 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/10/25/effective-java/1-创建和销毁对象/" rel="prev" title="1.创建和销毁对象">
+                1.创建和销毁对象 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
