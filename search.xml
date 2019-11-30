@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title></title>
+    <url>%2F2019%2F11%2F30%2Fredis%2F4.redis%E4%BA%8B%E5%8A%A1%2F</url>
+    <content type="text"><![CDATA[redis事务简介123multi #开启事务do somethingexec #执行事务 传统RDBMS,例如MySQL，以begin指令来开始事务，并执行接下来的指令，然后可以commit或rollback对数据库的修改。而redis使用multi标识事务开始，接下来的命令都会入队(命令尚未被执行)，当执行到exec，redis会在不受其他干扰下，取出并执行队列中的命令。 watch命令redis使用乐观锁来解决数据不一致问题。具体使用如下, 123456789watch keydo some prepared thingif (!condition) unwatch keymultido somethingif (!condition) discardexec 执行watch key之后一直到exec执行之前，如果key有任何修改，那么在执行exec时，事务执行会失败。 unwatch和discard两者都使用在redis事物中，区别在于使用的时机不同: unwatch: 在执行watch之后和multi之前，取消watch discard: 在执行multi之后和exec之前，取消watch，并清空已经入队的命令]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[redis主从复制]]></title>
+    <url>%2F2019%2F11%2F30%2Fredis%2F3.redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%2F</url>
+    <content type="text"><![CDATA[一主多从，主服务器负责处理写请求，从服务负责处理读请求。主服务器是可读、可写的，从服务是只读的。当主服务器数据更新后，实时同步到从服务器。 从节点基本配置如下 123456789101112# +------------------+ +---------------+# | Master | ---&gt; | Replica |# | (receive writes) | | (exact copy) |# +------------------+ +---------------+# 主服务器ip和portreplicaof &lt;masterip&gt; &lt;masterport&gt;# 主服务器密码masterauth &lt;master-password&gt;# 当从服务器与主服务器失去连接，从服务器是否继续接收客户端请求replica-serve-stale-data yes# 从服务器是否只可读replica-read-only yes 也可以通过命令方法实现 12slaveof host ip #是该服务变为host ip的从服务器slaveof no one # 解除主从关系 通过命令info replication查看节点情况 具体复制步骤 步骤 主服务器操作 从服务器操作 1 等待命令进入 连接主服务器，发送sync命令 2 开始执行BGSAVE，并使用缓冲区记录BGSAVE之后执行的所有命令 从服务依据配置是否继续使用原有数据(如果有)处理请求 3 BGSAVE执行完毕，向从服务器发送快照文件，并在发送期间，继续使用缓冲区记录被执行的写命令 丢弃原来所有数据，开始载入主服务发送过来的快照文件 4 快照文件发送完毕，开始向从服务器发送存储在缓冲区中的写命令 完成对快照文件的解析操作，像往常一样接收命令请求 5 缓冲区存储的写命令发送完毕；从现在开始，每执行一个写命令，就向从服务器发送相同写命令 执行主服务器发来的所有存储在缓冲区的写命令；并从现在开始接收并执行主服务器发送过来的写命令]]></content>
+      <categories>
+        <category>redis基础</category>
+      </categories>
+      <tags>
+        <tag>redis</tag>
+        <tag>非关系型数据库</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[redis持久化选项]]></title>
     <url>%2F2019%2F11%2F26%2Fredis%2F2.redis%E6%8C%81%E4%B9%85%E5%8C%96%E9%80%89%E9%A1%B9%2F</url>
     <content type="text"><![CDATA[Redis提供了两种不同的持久化方法将数据存储到硬盘里。一种方法是快照，另一种是AOF 快照: 将某一时刻的所有数据都写入到硬盘中。 AOF: 只追加文件(append-only-file)，会在执行写命令时，将被执行的写命令复制到硬盘中。 这两种方法可以同时使用，也可以只使用一种方法。当redis服务停止后，当再次重启时，redis会从快照文件或AOF文件读取数据来恢复数据。 1.快照持久化创建快照的几种方法: 客户端可以向redis服务发送BGSAVE命令。redis会fork一个子进程来将快照写入硬盘，而父进程会继续处理命令请求 客户端还可以向redis服务发送SAVE命令。redis会在创建完快照之前是不会处理其他命令请求 redis.conf设置save选项。例如，save 10 100,从最近一次创建快照后，10秒内有100次写入，则会自动触发BGSAVE命令。同时可以有多个save选项，当任一条件满足，都会触发BGSAVE命令 当redis接收到shutdown命令时，执行SAVE，阻塞所有客户端，当SAVE命令执行完后，关闭服务器 当主从复制时，从服务器向主服务器发送一个SYNC命令，可能会激发主服务执行BGSAVE命令 当系统奔溃后，将丢失最近一次生成快照之后更改所有的数据。 2.AOF持久化简单来说就是，将被执行的写命令追加到AOF文件末尾，记录数据变化。 1234appendonly yes #开启AOF持久化# appendfsync always #将每个写命令同步到硬盘，这种方法会严重降低redis速度appendfsync everysec #每秒钟执行一次命令同步# appendfsync no #让操作系统来决定合适进行同步，不推荐 always可以将数据丢失降低到最小，但会对硬盘大量写入，降低redis性能。为了兼顾数据安全性和写入性能，可以考虑使用ererysec,这样最多只会丢失一秒钟内产生的数据。 随着redis不断处理命令请求，同步写命令会使AOF文件会越来越大，那么就要用到重写/压缩AOF文件 可以使用BGREWRITEAOF命令来redis服务重写AOF文件。原理和BGSAVE一样，父进程会fork一个子进程来执行AOF重写。也可以使用redis.conf来配置，当条件满足时，自动执行BGREWRITEAOF命令 123auto-aof-rewrite-percentage 100 auto-aof-rewrite-min-size 64mb# 当AOF文件大小比上一次重写之后的大100%并且现在AOF文件大小大于64MB会自动触发BGREWRITE命令 参考资料: Redis 实战]]></content>

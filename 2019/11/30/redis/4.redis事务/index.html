@@ -79,13 +79,17 @@
 
 
 
-<meta property="og:type" content="website">
+<meta name="description" content="redis事务简介123multi #开启事务do somethingexec #执行事务  传统RDBMS,例如MySQL，以begin指令来开始事务，并执行接下来的指令，然后可以commit或rollback对数据库的修改。而redis使用multi标识事务开始，接下来的命令都会入队(命令尚未被执行)，当执行到exec，redis会在不受其他干扰下，取出并执行队列中的命令。 watch命令">
+<meta property="og:type" content="article">
 <meta property="og:title" content="younger个人博客">
-<meta property="og:url" content="http://yoursite.com/tags/redis/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/11/30/redis/4.redis事务/index.html">
 <meta property="og:site_name" content="younger个人博客">
+<meta property="og:description" content="redis事务简介123multi #开启事务do somethingexec #执行事务  传统RDBMS,例如MySQL，以begin指令来开始事务，并执行接下来的指令，然后可以commit或rollback对数据库的修改。而redis使用multi标识事务开始，接下来的命令都会入队(命令尚未被执行)，当执行到exec，redis会在不受其他干扰下，取出并执行队列中的命令。 watch命令">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-11-30T05:13:05.464Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="younger个人博客">
+<meta name="twitter:description" content="redis事务简介123multi #开启事务do somethingexec #执行事务  传统RDBMS,例如MySQL，以begin指令来开始事务，并执行接下来的指令，然后可以commit或rollback对数据库的修改。而redis使用multi标识事务开始，接下来的命令都会入队(命令尚未被执行)，当执行到exec，redis会在不受其他干扰下，取出并执行队列中的命令。 watch命令">
 
 
 
@@ -115,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/redis/">
+  <link rel="canonical" href="http://yoursite.com/2019/11/30/redis/4.redis事务/">
 
 
 
 
 
-  <title>Tag: redis | younger个人博客</title>
+  <title> | younger个人博客</title>
   
 
 
@@ -140,7 +144,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -276,104 +280,152 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block tag">
-
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>redis<small>Tag</small>
-        </h1>
-      </div>
-
-      
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/30/redis/4.redis事务/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="younger">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="younger个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/11/30/redis/3.redis主从复制/" itemprop="url">
-              
-                <span itemprop="name">redis主从复制</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-11-30T10:51:01+08:00" content="2019-11-30">
-          11-30
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-30T12:43:48+08:00">
+                2019-11-30
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/11/26/redis/2.redis持久化选项/" itemprop="url">
-              
-                <span itemprop="name">redis持久化选项</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-11-26T19:35:29+08:00" content="2019-11-26">
-          11-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
 
       
-        
+        <hr>
+<hr>
+<h4 id="redis事务简介"><a href="#redis事务简介" class="headerlink" title="redis事务简介"></a>redis事务简介</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">multi #开启事务</span><br><span class="line">do something</span><br><span class="line">exec #执行事务</span><br></pre></td></tr></table></figure>
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+<p>传统RDBMS,例如MySQL，以begin指令来开始事务，并执行接下来的指令，然后可以commit或rollback对数据库的修改。而redis使用multi标识事务开始，接下来的命令都会入队(命令尚未被执行)，当执行到exec，redis会在不受其他干扰下，取出并执行队列中的命令。</p>
+<h4 id="watch命令"><a href="#watch命令" class="headerlink" title="watch命令"></a>watch命令</h4><p>redis使用乐观锁来解决数据不一致问题。具体使用如下,</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">watch key</span><br><span class="line">do some prepared thing</span><br><span class="line">if (!condition)</span><br><span class="line">    unwatch key</span><br><span class="line">multi</span><br><span class="line">do something</span><br><span class="line">if (!condition)</span><br><span class="line">    discard</span><br><span class="line">exec</span><br></pre></td></tr></table></figure>
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/10/19/redis/1.redis数据类型/" itemprop="url">
-              
-                <span itemprop="name">redis数据类型</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-10-19T19:05:29+08:00" content="2019-10-19">
-          10-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+<p>执行watch key之后一直到exec执行之前，如果key有任何修改，那么在执行exec时，事务执行会失败。</p>
+<h4 id="unwatch和discard"><a href="#unwatch和discard" class="headerlink" title="unwatch和discard"></a>unwatch和discard</h4><p>两者都使用在redis事物中，区别在于使用的时机不同:</p>
+<p>unwatch: 在执行watch之后和multi之前，取消watch</p>
+<p>discard: 在执行multi之后和exec之前，取消watch，并清空已经入队的命令</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/30/redis/3.redis主从复制/" rel="next" title="redis主从复制">
+                <i class="fa fa-chevron-left"></i> redis主从复制
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -381,6 +433,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -401,8 +457,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -463,6 +528,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#redis事务简介"><span class="nav-number">1.</span> <span class="nav-text">redis事务简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#watch命令"><span class="nav-number">2.</span> <span class="nav-text">watch命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#unwatch和discard"><span class="nav-number">3.</span> <span class="nav-text">unwatch和discard</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -603,6 +684,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
