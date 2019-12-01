@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title></title>
-    <url>%2F2019%2F11%2F30%2Fredis%2F4.redis%E4%BA%8B%E5%8A%A1%2F</url>
+    <title><![CDATA[redis事务]]></title>
+    <url>%2F2019%2F12%2F01%2Fredis%2F4.redis%E4%BA%8B%E5%8A%A1%2F</url>
     <content type="text"><![CDATA[redis事务简介123multi #开启事务do somethingexec #执行事务 传统RDBMS,例如MySQL，以begin指令来开始事务，并执行接下来的指令，然后可以commit或rollback对数据库的修改。而redis使用multi标识事务开始，接下来的命令都会入队(命令尚未被执行)，当执行到exec，redis会在不受其他干扰下，取出并执行队列中的命令。 watch命令redis使用乐观锁来解决数据不一致问题。具体使用如下, 123456789watch keydo some prepared thingif (!condition) unwatch keymultido somethingif (!condition) discardexec 执行watch key之后一直到exec执行之前，如果key有任何修改，那么在执行exec时，事务执行会失败。 unwatch和discard两者都使用在redis事物中，区别在于使用的时机不同: unwatch: 在执行watch之后和multi之前，取消watch discard: 在执行multi之后和exec之前，取消watch，并清空已经入队的命令]]></content>
+      <categories>
+        <category>redis基础</category>
+      </categories>
+      <tags>
+        <tag>redis</tag>
+        <tag>非关系型数据库</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[redis实际运用]]></title>
+    <url>%2F2019%2F12%2F01%2Fredis%2Fredis%E4%BD%BF%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[下面redis的运用，主要把它当成缓存使用 1.记录用户登陆信息由于http是无状态的，为了保存和校验用户身份信息，传统做法是，是将大部分信息保存在session中，当有大量会话接入，会消耗服务器很多资源。你也许会说，session只保存用户id，其他身份相关数据当要用到时，才从关系型数据库取出，但是这会增大数据库的负载，并且速度也不是很快。所以，将这些数据存入redis中是一个不错的选择。 因此，有以下常用实例, 记录和验证用户登陆信息 记录用户的购物车 2.缓存业务数据 使用中间件，缓存页面 缓存数据库中的数据]]></content>
+      <categories>
+        <category>redis基础</category>
+      </categories>
+      <tags>
+        <tag>redis</tag>
+        <tag>非关系型数据库</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[redis主从复制]]></title>
