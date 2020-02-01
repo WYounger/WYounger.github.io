@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="redis,非关系型数据库,">
+  <meta name="keywords" content="spirngboot 基础,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="redis事务简介123multi #开启事务do somethingexec #执行事务  传统RDBMS,例如MySQL，以begin指令来开始事务，并执行接下来的指令，然后可以commit或rollback对数据库的修改。而redis使用multi标识事务开始，接下来的命令都会入队(命令尚未被执行)，当执行到exec，redis会在不受其他干扰下，取出并执行队列中的命令。 watch命令re">
-<meta name="keywords" content="redis,非关系型数据库">
+<meta name="description" content="1.第一个例子12345678//springboot 启动类@SpringBootApplicationpublic class SpringBootStartApplication &amp;#123;    public static void main(String[] args) &amp;#123;        SpringApplication.run(SpringBootStartApplica">
+<meta name="keywords" content="spirngboot 基础">
 <meta property="og:type" content="article">
-<meta property="og:title" content="redis事务">
-<meta property="og:url" content="http://yoursite.com/2019/12/01/redis/4.redis事务/index.html">
+<meta property="og:title" content="spirngboot 基础">
+<meta property="og:url" content="http://yoursite.com/2019/10/12/SpringBoot/1.SpringBoot基础/index.html">
 <meta property="og:site_name" content="younger个人博客">
-<meta property="og:description" content="redis事务简介123multi #开启事务do somethingexec #执行事务  传统RDBMS,例如MySQL，以begin指令来开始事务，并执行接下来的指令，然后可以commit或rollback对数据库的修改。而redis使用multi标识事务开始，接下来的命令都会入队(命令尚未被执行)，当执行到exec，redis会在不受其他干扰下，取出并执行队列中的命令。 watch命令re">
+<meta property="og:description" content="1.第一个例子12345678//springboot 启动类@SpringBootApplicationpublic class SpringBootStartApplication &amp;#123;    public static void main(String[] args) &amp;#123;        SpringApplication.run(SpringBootStartApplica">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-01T10:53:16.590Z">
+<meta property="og:updated_time" content="2020-02-01T08:26:56.460Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="redis事务">
-<meta name="twitter:description" content="redis事务简介123multi #开启事务do somethingexec #执行事务  传统RDBMS,例如MySQL，以begin指令来开始事务，并执行接下来的指令，然后可以commit或rollback对数据库的修改。而redis使用multi标识事务开始，接下来的命令都会入队(命令尚未被执行)，当执行到exec，redis会在不受其他干扰下，取出并执行队列中的命令。 watch命令re">
+<meta name="twitter:title" content="spirngboot 基础">
+<meta name="twitter:description" content="1.第一个例子12345678//springboot 启动类@SpringBootApplicationpublic class SpringBootStartApplication &amp;#123;    public static void main(String[] args) &amp;#123;        SpringApplication.run(SpringBootStartApplica">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/12/01/redis/4.redis事务/">
+  <link rel="canonical" href="http://yoursite.com/2019/10/12/SpringBoot/1.SpringBoot基础/">
 
 
 
 
 
-  <title>redis事务 | younger个人博客</title>
+  <title>spirngboot 基础 | younger个人博客</title>
   
 
 
@@ -295,7 +295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/01/redis/4.redis事务/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/12/SpringBoot/1.SpringBoot基础/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="younger">
@@ -312,7 +312,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">redis事务</h1>
+          <h1 class="post-title" itemprop="name headline">spirngboot 基础</h1>
         
 
         <div class="post-meta">
@@ -324,8 +324,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-01T18:53:34+08:00">
-                2019-12-01
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-12T22:10:12+08:00">
+                2019-10-12
               </time>
             
 
@@ -347,8 +347,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/redis基础/" itemprop="url" rel="index">
-                    <span itemprop="name">redis基础</span>
+                  <a href="/categories/springboot-基础/" itemprop="url" rel="index">
+                    <span itemprop="name">springboot 基础</span>
                   </a>
                 </span>
 
@@ -384,16 +384,61 @@
       
 
       
-        <h4 id="redis事务简介"><a href="#redis事务简介" class="headerlink" title="redis事务简介"></a>redis事务简介</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">multi #开启事务</span><br><span class="line">do something</span><br><span class="line">exec #执行事务</span><br></pre></td></tr></table></figure>
+        <h5 id="1-第一个例子"><a href="#1-第一个例子" class="headerlink" title="1.第一个例子"></a>1.第一个例子</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//springboot 启动类</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringBootStartApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(SpringBootStartApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>传统RDBMS,例如MySQL，以begin指令来开始事务，并执行接下来的指令，然后可以commit或rollback对数据库的修改。而redis使用multi标识事务开始，接下来的命令都会入队(命令尚未被执行)，当执行到exec，redis会在不受其他干扰下，取出并执行队列中的命令。</p>
-<h4 id="watch命令"><a href="#watch命令" class="headerlink" title="watch命令"></a>watch命令</h4><p>redis使用乐观锁来解决数据不一致问题。具体使用如下,</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">watch key</span><br><span class="line">do some prepared thing</span><br><span class="line">if (!condition)</span><br><span class="line">    unwatch key</span><br><span class="line">multi</span><br><span class="line">do something</span><br><span class="line">if (!condition)</span><br><span class="line">    discard</span><br><span class="line">exec</span><br></pre></td></tr></table></figure>
+<p><code>@SpringBootApplication</code> 含义</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//SpringBootApplication注解</span></span><br><span class="line"><span class="meta">@SpringBootConfiguration</span></span><br><span class="line"><span class="meta">@EnableAutoConfiguration</span></span><br><span class="line"><span class="meta">@ComponentScan</span> <span class="comment">//spring注解,开启包扫描</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> SpringBootApplication &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//SpringBootConfiguration注解：标注该类为配置类</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> SpringBootConfiguration &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//EnableAutoConfiguration注解：标注自动加载默认配置</span></span><br><span class="line"><span class="meta">@AutoConfigurationPackage</span></span><br><span class="line"><span class="meta">@Import</span>(&#123;AutoConfigurationImportSelector.class&#125;)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> EnableAutoConfiguration &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>执行watch key之后一直到exec执行之前，如果key有任何修改，那么在执行exec时，事务执行会失败。</p>
-<h4 id="unwatch和discard"><a href="#unwatch和discard" class="headerlink" title="unwatch和discard"></a>unwatch和discard</h4><p>两者都使用在redis事物中，区别在于使用的时机不同:</p>
-<p>unwatch: 在执行watch之后和multi之前，取消watch</p>
-<p>discard: 在执行multi之后和exec之前，取消watch，并清空已经入队的命令</p>
+<h5 id="2-HelloController"><a href="#2-HelloController" class="headerlink" title="2.HelloController"></a>2.HelloController</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value=<span class="string">"/hello"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">hello</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"hello !"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>RestController注解</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> RestController &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果<code>Controller Method</code>返回的数据是<code>基本数据类型</code>和<code>String</code>，则前台获取到的数据仍为<code>基本数据类型</code>和<code>String</code>类型。如果返回<code>对象</code>或<code>Map</code>则为<code>Json</code>格式数据</p>
+<h5 id="3-配置文件"><a href="#3-配置文件" class="headerlink" title="3.配置文件"></a>3.配置文件</h5><p>项目使用的全局配置文件</p>
+<p>​    application.properties</p>
+<p>​    application.yml</p>
+<p>用来修改SpirngBoot默认配置</p>
+<p>yml数据格式</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#key-value和对象</span></span><br><span class="line"><span class="attr">student:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">young</span> <span class="comment">#注意空格</span></span><br><span class="line"><span class="attr">  age:</span> <span class="number">20</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#list和set</span></span><br><span class="line"><span class="attr">fruits:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">apple</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">orange</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">banana</span></span><br></pre></td></tr></table></figure>
+
+<p>在Java代码中获取yml文件数据</p>
+<hr>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//给Bean整体赋值</span></span><br><span class="line"><span class="meta">@Component</span> <span class="comment">//必须由容器管理</span></span><br><span class="line"><span class="meta">@ConfigurationProperties</span>(prefix = <span class="string">"student"</span>)</span><br><span class="line"><span class="comment">//默认从全局配置文件中获取数据</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//单个赋值</span></span><br><span class="line"><span class="meta">@Component</span> <span class="comment">//必须由容器管理</span></span><br><span class="line"><span class="comment">//默认从全局配置文件中获取数据</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;student.name&#125;"</span>)</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;student.age&#125;"</span>)</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">@ConfigurationProperties 适合复合数据类型数据</span></span><br><span class="line"><span class="comment">@Value 适合简单数据类型</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//从指定properties中获取数据</span></span><br><span class="line"><span class="meta">@Component</span> <span class="comment">//必须由容器管理</span></span><br><span class="line"><span class="meta">@PropertySource</span>(value = &#123;<span class="string">"classpath:student.properties"</span>&#125;)</span><br><span class="line"><span class="meta">@ConfigurationProperties</span>(prefix = <span class="string">"student"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span> <span class="comment">//必须由容器管理</span></span><br><span class="line"><span class="meta">@PropertySource</span>(value = &#123;<span class="string">"classpath:student.properties"</span>&#125;)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;student.name&#125;"</span>)</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;student.age&#125;"</span>)</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>加载Spring配置文件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="comment">//导入配置文件</span></span><br><span class="line"><span class="meta">@ImportResource</span>(locations = &#123;<span class="string">"classpath:test.xml"</span>&#125;)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringBootStartApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(SpringBootStartApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-profile"><a href="#4-profile" class="headerlink" title="4.profile"></a>4.profile</h5><ol>
+<li>多profile</li>
+</ol>
+<p>​       定义不同环境下的配置文件</p>
+<p>​       文件格式  <code>applicaiton-{profile} .properties/yml</code></p>
+<p>​       例如： application-dev.properties/yml</p>
+<p>​                    application-test.properties/yml</p>
+<p>​       在application.properties中进行激活</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#格式</span><br><span class="line">spring.profiles.active=profile</span><br><span class="line">#例子，激活测试环境下的配置文件</span><br><span class="line">spring.profiles.active=test</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>yml多文档模块</p>
+  <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line"><span class="attr">  port:</span> <span class="number">8080</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>#激活dev模块<br>spring:<br>  profiles:<br>    active: dev</p>
+<hr>
+<p>#定义test模块<br>spring:<br>     profiles: test</p>
+<p>server:<br>  port: 8081</p>
+<hr>
+<p>#定义dev模块<br>spring:<br>  profiles: dev</p>
+<p>server:<br>  port: 8082</p>
+<h5 id="5-配置文件的加载顺序"><a href="#5-配置文件的加载顺序" class="headerlink" title="5.配置文件的加载顺序"></a>5.配置文件的加载顺序</h5><p>application.properties/yml<br>/config/…<br>/…<br>classpath:/config<br>classpath:/…</p>
+<p>由上至下，优先级依次降低，高优先级会覆盖低优先级的配置，低优先级的配置会互补高优先级的配置</p>
+<h5 id="6-日志"><a href="#6-日志" class="headerlink" title="6.日志"></a>6.日志</h5><p>SpringBoot默认日志级别为<code>info</code>，使用<code>slf4j</code>+<code>logback</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Logger logger = LoggerFactory.getLogger(Class);</span><br><span class="line">logger.trace(message);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">logging:</span></span><br><span class="line"><span class="attr">  level:</span> <span class="string">debug</span> <span class="comment">#定义全局日志级别</span></span><br><span class="line"><span class="attr">    ClasssFullyQualifiedName:</span> <span class="string">info</span> <span class="comment">#定义局部某个类的级别</span></span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -411,9 +456,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/redis/" rel="tag"># redis</a>
-          
-            <a href="/tags/非关系型数据库/" rel="tag"># 非关系型数据库</a>
+            <a href="/tags/spirngboot-基础/" rel="tag"># spirngboot 基础</a>
           
         </div>
       
@@ -426,8 +469,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/12/01/redis/redis使用/" rel="next" title="redis实际运用">
-                <i class="fa fa-chevron-left"></i> redis实际运用
+              <a href="/2019/10/05/jdk/ArrayList/" rel="next" title="ArrayList.md">
+                <i class="fa fa-chevron-left"></i> ArrayList.md
               </a>
             
           </div>
@@ -436,8 +479,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/02/01/java8/1-lambda表达式/" rel="prev" title="1.lambda表达式">
-                1.lambda表达式 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/10/12/SpringBoot/2.SpringBoot整合Druid+Mybatis/" rel="prev" title="spirngboot整合Mybatis">
+                spirngboot整合Mybatis <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -571,7 +614,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#redis事务简介"><span class="nav-number">1.</span> <span class="nav-text">redis事务简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#watch命令"><span class="nav-number">2.</span> <span class="nav-text">watch命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#unwatch和discard"><span class="nav-number">3.</span> <span class="nav-text">unwatch和discard</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-第一个例子"><span class="nav-number">1.</span> <span class="nav-text">1.第一个例子</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-HelloController"><span class="nav-number">2.</span> <span class="nav-text">2.HelloController</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-配置文件"><span class="nav-number">3.</span> <span class="nav-text">3.配置文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-profile"><span class="nav-number">4.</span> <span class="nav-text">4.profile</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-配置文件的加载顺序"><span class="nav-number">5.</span> <span class="nav-text">5.配置文件的加载顺序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-日志"><span class="nav-number">6.</span> <span class="nav-text">6.日志</span></a></li></ol></div>
             
 
           </div>
