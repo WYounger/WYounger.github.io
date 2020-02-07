@@ -121,6 +121,11 @@
       </tags>
   </entry>
   <entry>
+    <title></title>
+    <url>%2F2019%2F11%2F29%2Feffective-java%2F5.%E6%96%B9%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[49.检查参数的有效性大多数方法和构造器对于传递进来的参数都会有某些限制，应该在文档中清楚描述出来，并在方法体的开头检查这些参数，及时处理不符合的参数，防止错误蔓延。 50.必要时进行保护性拷贝 当一个外部对象传入本类内部数据结构中，应该考虑当外部对象的状态发生变化时，是否会对内部数据数据结构产生影响 当返回给客户端一个对象时，当该对象在外部发生状态改变，是否影响本类内部数据结构 51.谨慎设计方法签名 谨慎选择方法名 避免过长的参数 对于参数类型，优先使用接口而不是类 对于boolean, 要优先使用两个元素的枚举类型 52.慎用重载]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[redis持久化选项]]></title>
     <url>%2F2019%2F11%2F26%2Fredis%2F2.redis%E6%8C%81%E4%B9%85%E5%8C%96%E9%80%89%E9%A1%B9%2F</url>
     <content type="text"><![CDATA[Redis提供了两种不同的持久化方法将数据存储到硬盘里。一种方法是快照，另一种是AOF 快照: 将某一时刻的所有数据都写入到硬盘中。 AOF: 只追加文件(append-only-file)，会在执行写命令时，将被执行的写命令复制到硬盘中。 这两种方法可以同时使用，也可以只使用一种方法。当redis服务停止后，当再次重启时，redis会从快照文件或AOF文件读取数据来恢复数据。 1.快照持久化创建快照的几种方法: 客户端可以向redis服务发送BGSAVE命令。redis会fork一个子进程来将快照写入硬盘，而父进程会继续处理命令请求 客户端还可以向redis服务发送SAVE命令。redis会在创建完快照之前是不会处理其他命令请求 redis.conf设置save选项。例如，save 10 100,从最近一次创建快照后，10秒内有100次写入，则会自动触发BGSAVE命令。同时可以有多个save选项，当任一条件满足，都会触发BGSAVE命令 当redis接收到shutdown命令时，执行SAVE，阻塞所有客户端，当SAVE命令执行完后，关闭服务器 当主从复制时，从服务器向主服务器发送一个SYNC命令，可能会激发主服务执行BGSAVE命令 当系统奔溃后，将丢失最近一次生成快照之后更改所有的数据。 2.AOF持久化简单来说就是，将被执行的写命令追加到AOF文件末尾，记录数据变化。 1234appendonly yes #开启AOF持久化# appendfsync always #将每个写命令同步到硬盘，这种方法会严重降低redis速度appendfsync everysec #每秒钟执行一次命令同步# appendfsync no #让操作系统来决定合适进行同步，不推荐 always可以将数据丢失降低到最小，但会对硬盘大量写入，降低redis性能。为了兼顾数据安全性和写入性能，可以考虑使用ererysec,这样最多只会丢失一秒钟内产生的数据。 随着redis不断处理命令请求，同步写命令会使AOF文件会越来越大，那么就要用到重写/压缩AOF文件 可以使用BGREWRITEAOF命令来redis服务重写AOF文件。原理和BGSAVE一样，父进程会fork一个子进程来执行AOF重写。也可以使用redis.conf来配置，当条件满足时，自动执行BGREWRITEAOF命令 123auto-aof-rewrite-percentage 100 auto-aof-rewrite-min-size 64mb# 当AOF文件大小比上一次重写之后的大100%并且现在AOF文件大小大于64MB会自动触发BGREWRITE命令 参考资料: Redis 实战]]></content>
