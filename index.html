@@ -291,6 +291,156 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/16/java8/8-时间类/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="younger">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="younger个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/16/java8/8-时间类/" itemprop="url">8-时间类API</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-16T11:22:01+08:00">
+                2020-02-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java8/" itemprop="url" rel="index">
+                    <span itemprop="name">java8</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h5 id="LocalDate"><a href="#LocalDate" class="headerlink" title="LocalDate"></a>LocalDate</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">         * LocalDate localDate = LocalDate.now();</span></span><br><span class="line"><span class="comment">         * LocalDate localDate2 = LocalDate.of(2015, 12, 31);</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">LocalDate date = LocalDate.now();</span><br><span class="line">date.toString();<span class="comment">//2020-02-16</span></span><br><span class="line">LocalDate date1 = LocalDate.of(<span class="number">2020</span>, <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">date1.toString();<span class="comment">//2020-01-01</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">         * getYear()</span></span><br><span class="line"><span class="comment">         * getMonth()</span></span><br><span class="line"><span class="comment">         * getDayOfMonth()</span></span><br><span class="line"><span class="comment">         * getDayOfWeek()</span></span><br><span class="line"><span class="comment">         * getDayOfYear()</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">date.getYear(); <span class="comment">//2020</span></span><br><span class="line">date.getMonth(); <span class="comment">//FEBRUARY</span></span><br><span class="line">date.getDayOfMonth();<span class="comment">//16</span></span><br><span class="line">date.getDayOfWeek();<span class="comment">//SUNDAY</span></span><br><span class="line">date.getDayOfYear();<span class="comment">//47</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">         * plusDays()</span></span><br><span class="line"><span class="comment">         * plusWeeks()</span></span><br><span class="line"><span class="comment">         * plusMonths()</span></span><br><span class="line"><span class="comment">         * plusYears()</span></span><br><span class="line"><span class="comment">         * minusDays()</span></span><br><span class="line"><span class="comment">         * minusWeeks()</span></span><br><span class="line"><span class="comment">         * minusMonths()</span></span><br><span class="line"><span class="comment">         * minusYears()</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line"></span><br><span class="line">LocalDate localDate = date.plusYears(<span class="number">2</span>);</span><br><span class="line"><span class="comment">//date的值不变</span></span><br><span class="line">localDate.toString(); <span class="comment">//2022-02-16</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="LocalTime"><a href="#LocalTime" class="headerlink" title="LocalTime"></a>LocalTime</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">         *  LocalTime localTime = LocalTime.now();</span></span><br><span class="line"><span class="comment">         *  LocalTime localTime2 = LocalTime.of(21, 30, 59, 11001);</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">LocalTime time = LocalTime.now();</span><br><span class="line">time.toString();<span class="comment">//10:08:30.006339900</span></span><br><span class="line"></span><br><span class="line">LocalTime time1 = LocalTime.of(<span class="number">10</span>,<span class="number">15</span>,<span class="number">50</span>,<span class="number">20</span>);</span><br><span class="line">time1.toString();<span class="comment">//10:15:50.000000020</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">         * getHour()</span></span><br><span class="line"><span class="comment">         * getMinute()</span></span><br><span class="line"><span class="comment">         * getSecond()</span></span><br><span class="line"><span class="comment">         * getNano()</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">time1.getHour();<span class="comment">//10</span></span><br><span class="line">time1.getMinute();<span class="comment">//15</span></span><br><span class="line">time1.getSecond();<span class="comment">//50</span></span><br><span class="line">time1.getNano();<span class="comment">//20</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">         * plusHours()</span></span><br><span class="line"><span class="comment">         * plusMinutes()</span></span><br><span class="line"><span class="comment">         * plusSeconds()</span></span><br><span class="line"><span class="comment">         * plusNanos()</span></span><br><span class="line"><span class="comment">         * minusHours()</span></span><br><span class="line"><span class="comment">         * minusMinutes()</span></span><br><span class="line"><span class="comment">         * minusSeconds()</span></span><br><span class="line"><span class="comment">         * minusNanos()</span></span><br><span class="line"><span class="comment">         * compareTo()</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">LocalTime localTime = time1.plusHours(<span class="number">2</span>);</span><br><span class="line"><span class="comment">//原始值不变</span></span><br><span class="line">localTime.toString();<span class="comment">// 12:15:50.000000020</span></span><br><span class="line"></span><br><span class="line">time.compareTo(time1);<span class="comment">//1:time &gt; time1 -1:time &lt; time1</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="LocalDateTime"><a href="#LocalDateTime" class="headerlink" title="LocalDateTime"></a>LocalDateTime</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">LocalDateTime dateTime = LocalDateTime.now();</span><br><span class="line">dateTime.toString();<span class="comment">//2020-02-16T10:31:18.944879100</span></span><br><span class="line">LocalDateTime dateTime1 = LocalDateTime.of(<span class="number">2020</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">dateTime1.toString();<span class="comment">//2020-01-01T01:01:01.000000001</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">         * getYear()</span></span><br><span class="line"><span class="comment">         * getMonth()</span></span><br><span class="line"><span class="comment">         * getDayOfMonth()</span></span><br><span class="line"><span class="comment">         * getDayOfWeek()</span></span><br><span class="line"><span class="comment">         * getDayOfYear()</span></span><br><span class="line"><span class="comment">         * getHour()</span></span><br><span class="line"><span class="comment">         * getMinute()</span></span><br><span class="line"><span class="comment">         * getSecond()</span></span><br><span class="line"><span class="comment">         * getNano()</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">         * plusYears()</span></span><br><span class="line"><span class="comment">         * plusMonths()</span></span><br><span class="line"><span class="comment">         * plusDays()</span></span><br><span class="line"><span class="comment">         * plusHours()</span></span><br><span class="line"><span class="comment">         * plusMinutes()</span></span><br><span class="line"><span class="comment">         * plusSeconds()</span></span><br><span class="line"><span class="comment">         * plusNanos()</span></span><br><span class="line"><span class="comment">         * minusYears()</span></span><br><span class="line"><span class="comment">         * minusMonths()</span></span><br><span class="line"><span class="comment">         * minusDays()</span></span><br><span class="line"><span class="comment">         * minusHours()</span></span><br><span class="line"><span class="comment">         * minusMinutes()</span></span><br><span class="line"><span class="comment">         * minusSeconds()</span></span><br><span class="line"><span class="comment">         * minusNanos()</span></span><br><span class="line"><span class="comment">         * isBefore()</span></span><br><span class="line"><span class="comment">         * isAfter()</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">LocalDateTime dateTime2 = dateTime1.plusYears(<span class="number">2</span>);</span><br><span class="line">dateTime2.toString();<span class="comment">//2022-01-01T01:01:01.000000001</span></span><br><span class="line"></span><br><span class="line">dateTime.isBefore(dateTime1);<span class="comment">//false</span></span><br><span class="line">dateTime2.isAfter(dateTime1); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="DateTimeFormatter"><a href="#DateTimeFormatter" class="headerlink" title="DateTimeFormatter"></a>DateTimeFormatter</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//LocalDateTime -&gt; String</span></span><br><span class="line">DateTimeFormatter formatter = DateTimeFormatter.ofPattern(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</span><br><span class="line">LocalDateTime dateTime = LocalDateTime.now();</span><br><span class="line">dateTime.format(formatter); <span class="comment">//String: 2020-02-16 10:53:39</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// String -&gt; LocalDateTime</span></span><br><span class="line"><span class="comment">//标准格式</span></span><br><span class="line">LocalDateTime parse = LocalDateTime.parse(<span class="string">"2020-01-01T01:01:01"</span>);</span><br><span class="line">parse.toString();<span class="comment">//2020-01-01T01:01:01</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//当string不符合标准字符串格式，需要传递该string的格式</span></span><br><span class="line">LocalDateTime parse1 = LocalDateTime.parse(<span class="string">"2020-01-01 01:01:01"</span>,formatter);</span><br><span class="line">parse1.toString();<span class="comment">//2020-01-01T01:01:01</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//LocalDate相同</span></span><br><span class="line">LocalDate date = LocalDate.now();</span><br><span class="line">DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern(<span class="string">"yyyy/MM/dd"</span>);</span><br><span class="line">formatter1.format(date);<span class="comment">//String: 2020/02/16</span></span><br><span class="line"><span class="comment">//标准格式2020-01-01，非标准格式，需传递格式化器</span></span><br><span class="line">LocalDate parse2 = LocalDate.parse(<span class="string">"2020/01/01"</span>, formatter1);</span><br><span class="line">parse2.toString(); <span class="comment">// 2020-01-01</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h5><p><a href="http://tutorials.jenkov.com/java-date-time/index.html" target="_blank" rel="noopener">Java Date Time  Tutorial</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/01/java8/7-optional取代null/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1786,195 +1936,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/30/redis/3.redis主从复制/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="younger">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="younger个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/11/30/redis/3.redis主从复制/" itemprop="url">redis主从复制</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-30T10:51:01+08:00">
-                2019-11-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/redis基础/" itemprop="url" rel="index">
-                    <span itemprop="name">redis基础</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>一主多从，主服务器负责处理写请求，从服务负责处理读请求。主服务器是可读、可写的，从服务是只读的。当主服务器数据更新后，实时同步到从服务器。</p>
-<p>从节点基本配置如下</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">   +------------------+      +---------------+</span></span><br><span class="line"><span class="meta">#</span><span class="bash">   |      Master      | ---&gt; |    Replica    |</span></span><br><span class="line"><span class="meta">#</span><span class="bash">   | (receive writes) |      |  (exact copy) |</span></span><br><span class="line"><span class="meta">#</span><span class="bash">   +------------------+      +---------------+</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 主服务器ip和port</span></span><br><span class="line">replicaof &lt;masterip&gt; &lt;masterport&gt;</span><br><span class="line"><span class="meta">#</span><span class="bash"> 主服务器密码</span></span><br><span class="line">masterauth &lt;master-password&gt;</span><br><span class="line"><span class="meta">#</span><span class="bash"> 当从服务器与主服务器失去连接，从服务器是否继续接收客户端请求</span></span><br><span class="line">replica-serve-stale-data yes</span><br><span class="line"><span class="meta">#</span><span class="bash"> 从服务器是否只可读</span></span><br><span class="line">replica-read-only yes</span><br></pre></td></tr></table></figure>
-
-<p>也可以通过命令方法实现</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">slaveof host ip <span class="comment">#是该服务变为host ip的从服务器</span></span><br><span class="line">slaveof no one <span class="comment"># 解除主从关系</span></span><br></pre></td></tr></table></figure>
-
-<p>通过命令<code>info replication</code>查看节点情况</p>
-<p>具体复制步骤</p>
-<table>
-<thead>
-<tr>
-<th>步骤</th>
-<th>主服务器操作</th>
-<th>从服务器操作</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td>等待命令进入</td>
-<td>连接主服务器，发送<code>sync</code>命令</td>
-</tr>
-<tr>
-<td>2</td>
-<td>开始执行BGSAVE，并使用缓冲区记录BGSAVE之后执行的所有命令</td>
-<td>从服务依据配置是否继续使用原有数据(如果有)处理请求</td>
-</tr>
-<tr>
-<td>3</td>
-<td>BGSAVE执行完毕，向从服务器发送快照文件，并在发送期间，继续使用缓冲区记录被执行的写命令</td>
-<td>丢弃原来所有数据，开始载入主服务发送过来的快照文件</td>
-</tr>
-<tr>
-<td>4</td>
-<td>快照文件发送完毕，开始向从服务器发送存储在缓冲区中的写命令</td>
-<td>完成对快照文件的解析操作，像往常一样接收命令请求</td>
-</tr>
-<tr>
-<td>5</td>
-<td>缓冲区存储的写命令发送完毕；从现在开始，每执行一个写命令，就向从服务器发送相同写命令</td>
-<td>执行主服务器发来的所有存储在缓冲区的写命令；并从现在开始接收并执行主服务器发送过来的写命令</td>
-</tr>
-</tbody></table>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2021,7 +1987,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="web,spring,">
+  <meta name="keywords" content="basic-java,java8,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="在web开发时，令人很烦的就是的时间格式，前端传到后端，后端传到数据库，然后又取出来传递到前端，时间每次都要转换，想当麻烦。有了@DateTimeFormat和@JsonFormat,省时又省力。 环境 数据库有一个字段是datetime类型 请求实体类ReqVo有个String类型yyyy-MM-dd HH:mm:ss字符串 一个Entity类有一个属性是LocalDateTime类型的变量">
-<meta name="keywords" content="web,spring">
+<meta name="description" content="LocalDate12345678910111213141516171819202122232425262728293031323334353637/**         * LocalDate localDate = LocalDate.now();         * LocalDate localDate2 = LocalDate.of(2015, 12, 31);         */Lo">
+<meta name="keywords" content="basic-java,java8">
 <meta property="og:type" content="article">
-<meta property="og:title" content="时间格式化">
-<meta property="og:url" content="http://yoursite.com/2019/10/14/web/web/index.html">
+<meta property="og:title" content="8-时间类API">
+<meta property="og:url" content="http://yoursite.com/2020/02/16/java8/8-时间类/index.html">
 <meta property="og:site_name" content="younger个人博客">
-<meta property="og:description" content="在web开发时，令人很烦的就是的时间格式，前端传到后端，后端传到数据库，然后又取出来传递到前端，时间每次都要转换，想当麻烦。有了@DateTimeFormat和@JsonFormat,省时又省力。 环境 数据库有一个字段是datetime类型 请求实体类ReqVo有个String类型yyyy-MM-dd HH:mm:ss字符串 一个Entity类有一个属性是LocalDateTime类型的变量">
+<meta property="og:description" content="LocalDate12345678910111213141516171819202122232425262728293031323334353637/**         * LocalDate localDate = LocalDate.now();         * LocalDate localDate2 = LocalDate.of(2015, 12, 31);         */Lo">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-14T14:53:03.224Z">
+<meta property="og:updated_time" content="2020-02-16T03:23:25.648Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="时间格式化">
-<meta name="twitter:description" content="在web开发时，令人很烦的就是的时间格式，前端传到后端，后端传到数据库，然后又取出来传递到前端，时间每次都要转换，想当麻烦。有了@DateTimeFormat和@JsonFormat,省时又省力。 环境 数据库有一个字段是datetime类型 请求实体类ReqVo有个String类型yyyy-MM-dd HH:mm:ss字符串 一个Entity类有一个属性是LocalDateTime类型的变量">
+<meta name="twitter:title" content="8-时间类API">
+<meta name="twitter:description" content="LocalDate12345678910111213141516171819202122232425262728293031323334353637/**         * LocalDate localDate = LocalDate.now();         * LocalDate localDate2 = LocalDate.of(2015, 12, 31);         */Lo">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/10/14/web/web/">
+  <link rel="canonical" href="http://yoursite.com/2020/02/16/java8/8-时间类/">
 
 
 
 
 
-  <title>时间格式化 | younger个人博客</title>
+  <title>8-时间类API | younger个人博客</title>
   
 
 
@@ -295,7 +295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/14/web/web/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/16/java8/8-时间类/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="younger">
@@ -312,7 +312,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">时间格式化</h1>
+          <h1 class="post-title" itemprop="name headline">8-时间类API</h1>
         
 
         <div class="post-meta">
@@ -324,8 +324,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-14T22:07:31+08:00">
-                2019-10-14
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-16T11:22:01+08:00">
+                2020-02-16
               </time>
             
 
@@ -347,8 +347,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/web/" itemprop="url" rel="index">
-                    <span itemprop="name">web</span>
+                  <a href="/categories/java8/" itemprop="url" rel="index">
+                    <span itemprop="name">java8</span>
                   </a>
                 </span>
 
@@ -384,21 +384,15 @@
       
 
       
-        <p>在web开发时，令人很烦的就是的时间格式，前端传到后端，后端传到数据库，然后又取出来传递到前端，时间每次都要转换，想当麻烦。有了<code>@DateTimeFormat</code>和<code>@JsonFormat</code>,省时又省力。</p>
-<h5 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h5><ul>
-<li>数据库有一个字段是<code>datetime</code>类型</li>
-<li>请求实体类<code>ReqVo</code>有个<code>String</code>类型<code>yyyy-MM-dd HH:mm:ss</code>字符串</li>
-<li>一个<code>Entity</code>类有一个属性是<code>LocalDateTime</code>类型的变量</li>
-</ul>
-<h5 id="DateTimeFormat"><a href="#DateTimeFormat" class="headerlink" title="@DateTimeFormat"></a>@DateTimeFormat</h5><p>当前端通过<code>Json</code>串传进来时间格式字符串str，需要转换为<code>LocalDateTime</code>类型,只需在<code>ReqVo</code>的属性上添加<code>@DateTimeFormat</code>注解。str必须符合pattern的格式，方能转化为<code>LocalDateTime</code></p>
-<p><code>ReqVo.java</code></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.format.annotation.DateTimeFormat; <span class="comment">//由spring自身提供</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@DateTimeFormat</span>(pattern = <span class="string">"yyyy-MM-dd HH:mm:ss"</span>) <span class="comment">//24小时制</span></span><br><span class="line"><span class="keyword">private</span> LocalDateTime birthday;</span><br></pre></td></tr></table></figure>
+        <h5 id="LocalDate"><a href="#LocalDate" class="headerlink" title="LocalDate"></a>LocalDate</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">         * LocalDate localDate = LocalDate.now();</span></span><br><span class="line"><span class="comment">         * LocalDate localDate2 = LocalDate.of(2015, 12, 31);</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">LocalDate date = LocalDate.now();</span><br><span class="line">date.toString();<span class="comment">//2020-02-16</span></span><br><span class="line">LocalDate date1 = LocalDate.of(<span class="number">2020</span>, <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">date1.toString();<span class="comment">//2020-01-01</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">         * getYear()</span></span><br><span class="line"><span class="comment">         * getMonth()</span></span><br><span class="line"><span class="comment">         * getDayOfMonth()</span></span><br><span class="line"><span class="comment">         * getDayOfWeek()</span></span><br><span class="line"><span class="comment">         * getDayOfYear()</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">date.getYear(); <span class="comment">//2020</span></span><br><span class="line">date.getMonth(); <span class="comment">//FEBRUARY</span></span><br><span class="line">date.getDayOfMonth();<span class="comment">//16</span></span><br><span class="line">date.getDayOfWeek();<span class="comment">//SUNDAY</span></span><br><span class="line">date.getDayOfYear();<span class="comment">//47</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">         * plusDays()</span></span><br><span class="line"><span class="comment">         * plusWeeks()</span></span><br><span class="line"><span class="comment">         * plusMonths()</span></span><br><span class="line"><span class="comment">         * plusYears()</span></span><br><span class="line"><span class="comment">         * minusDays()</span></span><br><span class="line"><span class="comment">         * minusWeeks()</span></span><br><span class="line"><span class="comment">         * minusMonths()</span></span><br><span class="line"><span class="comment">         * minusYears()</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line"></span><br><span class="line">LocalDate localDate = date.plusYears(<span class="number">2</span>);</span><br><span class="line"><span class="comment">//date的值不变</span></span><br><span class="line">localDate.toString(); <span class="comment">//2022-02-16</span></span><br></pre></td></tr></table></figure>
 
-<h5 id="JsonFormat"><a href="#JsonFormat" class="headerlink" title="@JsonFormat"></a>@JsonFormat</h5><p>当<code>LocalDateTime</code>类型变量通过Json串向前端传递时,需要格式为字符串，就在实体类加上注解<code>@JsonFormat</code></p>
-<p><code>Entity.java</code></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.annotation.JsonFormat;<span class="comment">//springboot自带Json转换器</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@JsonFormat</span>(pattern = <span class="string">"yyyy-MM-dd HH:mm:ss"</span>)</span><br><span class="line"><span class="keyword">private</span> LocalDateTime birthday;</span><br></pre></td></tr></table></figure>
+<h5 id="LocalTime"><a href="#LocalTime" class="headerlink" title="LocalTime"></a>LocalTime</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">         *  LocalTime localTime = LocalTime.now();</span></span><br><span class="line"><span class="comment">         *  LocalTime localTime2 = LocalTime.of(21, 30, 59, 11001);</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">LocalTime time = LocalTime.now();</span><br><span class="line">time.toString();<span class="comment">//10:08:30.006339900</span></span><br><span class="line"></span><br><span class="line">LocalTime time1 = LocalTime.of(<span class="number">10</span>,<span class="number">15</span>,<span class="number">50</span>,<span class="number">20</span>);</span><br><span class="line">time1.toString();<span class="comment">//10:15:50.000000020</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">         * getHour()</span></span><br><span class="line"><span class="comment">         * getMinute()</span></span><br><span class="line"><span class="comment">         * getSecond()</span></span><br><span class="line"><span class="comment">         * getNano()</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">time1.getHour();<span class="comment">//10</span></span><br><span class="line">time1.getMinute();<span class="comment">//15</span></span><br><span class="line">time1.getSecond();<span class="comment">//50</span></span><br><span class="line">time1.getNano();<span class="comment">//20</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">         * plusHours()</span></span><br><span class="line"><span class="comment">         * plusMinutes()</span></span><br><span class="line"><span class="comment">         * plusSeconds()</span></span><br><span class="line"><span class="comment">         * plusNanos()</span></span><br><span class="line"><span class="comment">         * minusHours()</span></span><br><span class="line"><span class="comment">         * minusMinutes()</span></span><br><span class="line"><span class="comment">         * minusSeconds()</span></span><br><span class="line"><span class="comment">         * minusNanos()</span></span><br><span class="line"><span class="comment">         * compareTo()</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">LocalTime localTime = time1.plusHours(<span class="number">2</span>);</span><br><span class="line"><span class="comment">//原始值不变</span></span><br><span class="line">localTime.toString();<span class="comment">// 12:15:50.000000020</span></span><br><span class="line"></span><br><span class="line">time.compareTo(time1);<span class="comment">//1:time &gt; time1 -1:time &lt; time1</span></span><br></pre></td></tr></table></figure>
 
-<h5 id="后台与数据库之间"><a href="#后台与数据库之间" class="headerlink" title="后台与数据库之间"></a>后台与数据库之间</h5><p>在使用<code>Mybatis</code>作为ORM工具时，格式自动转换，不用人工干预</p>
+<h5 id="LocalDateTime"><a href="#LocalDateTime" class="headerlink" title="LocalDateTime"></a>LocalDateTime</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">LocalDateTime dateTime = LocalDateTime.now();</span><br><span class="line">dateTime.toString();<span class="comment">//2020-02-16T10:31:18.944879100</span></span><br><span class="line">LocalDateTime dateTime1 = LocalDateTime.of(<span class="number">2020</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">dateTime1.toString();<span class="comment">//2020-01-01T01:01:01.000000001</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">         * getYear()</span></span><br><span class="line"><span class="comment">         * getMonth()</span></span><br><span class="line"><span class="comment">         * getDayOfMonth()</span></span><br><span class="line"><span class="comment">         * getDayOfWeek()</span></span><br><span class="line"><span class="comment">         * getDayOfYear()</span></span><br><span class="line"><span class="comment">         * getHour()</span></span><br><span class="line"><span class="comment">         * getMinute()</span></span><br><span class="line"><span class="comment">         * getSecond()</span></span><br><span class="line"><span class="comment">         * getNano()</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">         * plusYears()</span></span><br><span class="line"><span class="comment">         * plusMonths()</span></span><br><span class="line"><span class="comment">         * plusDays()</span></span><br><span class="line"><span class="comment">         * plusHours()</span></span><br><span class="line"><span class="comment">         * plusMinutes()</span></span><br><span class="line"><span class="comment">         * plusSeconds()</span></span><br><span class="line"><span class="comment">         * plusNanos()</span></span><br><span class="line"><span class="comment">         * minusYears()</span></span><br><span class="line"><span class="comment">         * minusMonths()</span></span><br><span class="line"><span class="comment">         * minusDays()</span></span><br><span class="line"><span class="comment">         * minusHours()</span></span><br><span class="line"><span class="comment">         * minusMinutes()</span></span><br><span class="line"><span class="comment">         * minusSeconds()</span></span><br><span class="line"><span class="comment">         * minusNanos()</span></span><br><span class="line"><span class="comment">         * isBefore()</span></span><br><span class="line"><span class="comment">         * isAfter()</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">LocalDateTime dateTime2 = dateTime1.plusYears(<span class="number">2</span>);</span><br><span class="line">dateTime2.toString();<span class="comment">//2022-01-01T01:01:01.000000001</span></span><br><span class="line"></span><br><span class="line">dateTime.isBefore(dateTime1);<span class="comment">//false</span></span><br><span class="line">dateTime2.isAfter(dateTime1); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="DateTimeFormatter"><a href="#DateTimeFormatter" class="headerlink" title="DateTimeFormatter"></a>DateTimeFormatter</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//LocalDateTime -&gt; String</span></span><br><span class="line">DateTimeFormatter formatter = DateTimeFormatter.ofPattern(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</span><br><span class="line">LocalDateTime dateTime = LocalDateTime.now();</span><br><span class="line">dateTime.format(formatter); <span class="comment">//String: 2020-02-16 10:53:39</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// String -&gt; LocalDateTime</span></span><br><span class="line"><span class="comment">//标准格式</span></span><br><span class="line">LocalDateTime parse = LocalDateTime.parse(<span class="string">"2020-01-01T01:01:01"</span>);</span><br><span class="line">parse.toString();<span class="comment">//2020-01-01T01:01:01</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//当string不符合标准字符串格式，需要传递该string的格式</span></span><br><span class="line">LocalDateTime parse1 = LocalDateTime.parse(<span class="string">"2020-01-01 01:01:01"</span>,formatter);</span><br><span class="line">parse1.toString();<span class="comment">//2020-01-01T01:01:01</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//LocalDate相同</span></span><br><span class="line">LocalDate date = LocalDate.now();</span><br><span class="line">DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern(<span class="string">"yyyy/MM/dd"</span>);</span><br><span class="line">formatter1.format(date);<span class="comment">//String: 2020/02/16</span></span><br><span class="line"><span class="comment">//标准格式2020-01-01，非标准格式，需传递格式化器</span></span><br><span class="line">LocalDate parse2 = LocalDate.parse(<span class="string">"2020/01/01"</span>, formatter1);</span><br><span class="line">parse2.toString(); <span class="comment">// 2020-01-01</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h5><p><a href="http://tutorials.jenkov.com/java-date-time/index.html" target="_blank" rel="noopener">Java Date Time  Tutorial</a></p>
 
       
     </div>
@@ -416,9 +410,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/web/" rel="tag"># web</a>
+            <a href="/tags/basic-java/" rel="tag"># basic-java</a>
           
-            <a href="/tags/spring/" rel="tag"># spring</a>
+            <a href="/tags/java8/" rel="tag"># java8</a>
           
         </div>
       
@@ -431,8 +425,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/10/12/SpringBoot/2.SpringBoot整合Druid+Mybatis/" rel="next" title="spirngboot整合Mybatis">
-                <i class="fa fa-chevron-left"></i> spirngboot整合Mybatis
+              <a href="/2020/02/01/java8/7-optional取代null/" rel="next" title="7.optional取代null">
+                <i class="fa fa-chevron-left"></i> 7.optional取代null
               </a>
             
           </div>
@@ -440,10 +434,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/10/19/redis/1.redis数据类型/" rel="prev" title="redis数据类型">
-                redis数据类型 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -576,7 +566,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#环境"><span class="nav-number">1.</span> <span class="nav-text">环境</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#DateTimeFormat"><span class="nav-number">2.</span> <span class="nav-text">@DateTimeFormat</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#JsonFormat"><span class="nav-number">3.</span> <span class="nav-text">@JsonFormat</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#后台与数据库之间"><span class="nav-number">4.</span> <span class="nav-text">后台与数据库之间</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#LocalDate"><span class="nav-number">1.</span> <span class="nav-text">LocalDate</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#LocalTime"><span class="nav-number">2.</span> <span class="nav-text">LocalTime</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#LocalDateTime"><span class="nav-number">3.</span> <span class="nav-text">LocalDateTime</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#DateTimeFormatter"><span class="nav-number">4.</span> <span class="nav-text">DateTimeFormatter</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
