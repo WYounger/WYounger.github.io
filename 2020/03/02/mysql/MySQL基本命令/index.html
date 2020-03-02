@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="MySQL基础,">
 
 
 
@@ -79,13 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="younger个人博客">
-<meta property="og:url" content="http://yoursite.com/tags/spring/index.html">
+<meta name="description" content="启动,关闭,重启12345678service mysql startservice mysql stopservice mysql restart# 若以上命令报错,使用如下命令:systemctl start mysqld.servicesystemctl stop mysqld,servicesystemctl restart mysqld.service  基本命令 连接数据库 12345">
+<meta name="keywords" content="MySQL基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL基本命令">
+<meta property="og:url" content="http://yoursite.com/2020/03/02/mysql/MySQL基本命令/index.html">
 <meta property="og:site_name" content="younger个人博客">
+<meta property="og:description" content="启动,关闭,重启12345678service mysql startservice mysql stopservice mysql restart# 若以上命令报错,使用如下命令:systemctl start mysqld.servicesystemctl stop mysqld,servicesystemctl restart mysqld.service  基本命令 连接数据库 12345">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-03-02T12:27:25.724Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="younger个人博客">
+<meta name="twitter:title" content="MySQL基本命令">
+<meta name="twitter:description" content="启动,关闭,重启12345678service mysql startservice mysql stopservice mysql restart# 若以上命令报错,使用如下命令:systemctl start mysqld.servicesystemctl stop mysqld,servicesystemctl restart mysqld.service  基本命令 连接数据库 12345">
 
 
 
@@ -115,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/spring/">
+  <link rel="canonical" href="http://yoursite.com/2020/03/02/mysql/MySQL基本命令/">
 
 
 
 
 
-  <title>Tag: spring | younger个人博客</title>
+  <title>MySQL基本命令 | younger个人博客</title>
   
 
 
@@ -140,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -276,52 +281,194 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>spring<small>Tag</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/02/mysql/MySQL基本命令/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="younger">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="younger个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/10/14/web/web/" itemprop="url">
-              
-                <span itemprop="name">时间格式化</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">MySQL基本命令</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-10-14T22:07:31+08:00" content="2019-10-14">
-          10-14
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-02T20:26:55+08:00">
+                2020-03-02
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="启动-关闭-重启"><a href="#启动-关闭-重启" class="headerlink" title="启动,关闭,重启"></a>启动,关闭,重启</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">service mysql start</span><br><span class="line">service mysql stop</span><br><span class="line">service mysql restart</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 若以上命令报错,使用如下命令:</span><br><span class="line">systemctl start mysqld.service</span><br><span class="line">systemctl stop mysqld,service</span><br><span class="line">systemctl restart mysqld.service</span><br></pre></td></tr></table></figure>
+
+<h4 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h4><ol>
+<li><p>连接数据库</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>　远程连接</span><br><span class="line">mysql -hHost -PPort -uUserName -pPwd</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 本地连接</span><br><span class="line">mysql -uUserName -pPwd</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 注意: 属性和值之间可以有无空格</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示数据库基本信息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 显示所有数据库</span><br><span class="line">show databases</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 选择一个库</span><br><span class="line">use dbName</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 显示一个库中所有表</span><br><span class="line">show tables</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 显示一个表的字段信息</span><br><span class="line">desc tableName</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h4 id="用户相关命令"><a href="#用户相关命令" class="headerlink" title="用户相关命令"></a>用户相关命令</h4><ol>
+<li><p>查看用户</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 切换到mysql数据库</span><br><span class="line">use mysql;</span><br><span class="line"><span class="meta">#</span> 从user表查找 用户名和主机</span><br><span class="line">select user,host from user;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建用户并授权</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 创建用户</span><br><span class="line">create user 'userName'@'host' identified by 'pwd';</span><br><span class="line"><span class="meta">#</span> host: 远程主机IP,localhost   '%': 表示所有IP</span><br><span class="line"><span class="meta">#</span> 授权</span><br><span class="line">grant 权限 on *.* to 'userName'@'host';</span><br><span class="line"><span class="meta">#</span> 权限： ALL,ALTER,CREATE,DROP,SELECT,UPDATE,DELETE</span><br><span class="line"><span class="meta">#</span> *.* 任意库任意表</span><br><span class="line"><span class="meta">#</span>刷新权限</span><br><span class="line">flush privileges</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 修改密码</span><br><span class="line">alter user 'userName'@'host' identified by 'newPWd';</span><br><span class="line"><span class="meta">#</span>修改当前用户的密码</span><br><span class="line">alter user user() identifed by 'newPwd';</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 删除用户</span><br><span class="line">drop user 'userName'@'host';</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 通常userName后面的"@'host'"被省略,表示host取%，所有IP</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h4 id="SQL操作"><a href="#SQL操作" class="headerlink" title="SQL操作"></a>SQL操作</h4><p>在命令行中写SQL语句，和我通常写的SQL一致。下面讲一下索引的创建和删除、事务</p>
+<h5 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-- 显示所有索引</span><br><span class="line">show index from tableName;</span><br><span class="line"></span><br><span class="line">-- 创建索引</span><br><span class="line">alter table tableName add index indexName (col1,col2,..,coln);</span><br><span class="line">-- 还有其他方式创建索引</span><br><span class="line"></span><br><span class="line">-- 删除索引</span><br><span class="line">drop index indexName on tableName</span><br></pre></td></tr></table></figure>
+
+<h5 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">-- 显示当前隔离级别</span><br><span class="line">-- global</span><br><span class="line">select @@global.transaction_isolation;</span><br><span class="line">-- 本次session</span><br><span class="line">select @@transaction_isolation;</span><br><span class="line">-- 以上两条命令针对mysql 8</span><br><span class="line"></span><br><span class="line">-- 设置隔离级别</span><br><span class="line">set 范围 transaction isolation level 级别</span><br><span class="line">-- 范围: </span><br><span class="line">--     global 针对所有以后session</span><br><span class="line">--     session 仅限于本次会话</span><br><span class="line">-- 级别:  Read uncommitted | Read committed | Repeatable Read| Serializable</span><br><span class="line"></span><br><span class="line">-- 事务自动提交</span><br><span class="line">set autocommit = 0; -- 设置手动提交</span><br><span class="line">set autocommit = 1; -- 设置自动提交</span><br><span class="line"></span><br><span class="line"># 开启事务</span><br><span class="line">begin; -- 或者</span><br><span class="line">start transaction;</span><br><span class="line"> </span><br><span class="line">#提交</span><br><span class="line">commit;</span><br><span class="line"></span><br><span class="line">-- 回滚</span><br><span class="line">rollback;</span><br></pre></td></tr></table></figure>
+
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="https://www.cnblogs.com/qmfsun/p/4845837.html" target="_blank" rel="noopener">Mysql常用命令总结</a></p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MySQL基础/" rel="tag"># MySQL基础</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/16/java8/8-时间类/" rel="next" title="8-时间类API">
+                <i class="fa fa-chevron-left"></i> 8-时间类API
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -329,6 +476,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -349,8 +500,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -411,6 +571,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#启动-关闭-重启"><span class="nav-number">1.</span> <span class="nav-text">启动,关闭,重启</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基本命令"><span class="nav-number">2.</span> <span class="nav-text">基本命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用户相关命令"><span class="nav-number">3.</span> <span class="nav-text">用户相关命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SQL操作"><span class="nav-number">4.</span> <span class="nav-text">SQL操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#索引"><span class="nav-number">4.1.</span> <span class="nav-text">索引</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#事务"><span class="nav-number">4.2.</span> <span class="nav-text">事务</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -551,6 +727,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
