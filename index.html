@@ -291,6 +291,173 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/29/SpringBoot/3.SpringBoot自定义事件与监听/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="younger">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="younger个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/05/29/SpringBoot/3.SpringBoot自定义事件与监听/" itemprop="url">3.SpringBoot自定义事件与监听</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-29T22:01:55+08:00">
+                2020-05-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/springboot-基础/" itemprop="url" rel="index">
+                    <span itemprop="name">springboot 基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="1-事件-监听模型"><a href="#1-事件-监听模型" class="headerlink" title="1.事件-监听模型"></a>1.事件-监听模型</h4><p>主要构成元素，事件、事件发布者、事件监听者</p>
+<p>事件监听者向事件发布者订阅事件。当事件发生时，事件发布者会通知事件监听者，然后事件监听者可以做出相应的处理。</p>
+<p>在Spring使用这一事件模型，主要是为了降低各个业务逻辑之间的耦合性。</p>
+<h4 id="2-实例"><a href="#2-实例" class="headerlink" title="2.实例"></a>2.实例</h4><h4 id="1-定义事件"><a href="#1-定义事件" class="headerlink" title="1.定义事件"></a>1.定义事件</h4><p>通常是继承<code>ApplicationEven</code>来定义自定义事件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 定义事件</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StuRegisterEvent</span> <span class="keyword">extends</span> <span class="title">ApplicationEvent</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 监听器感兴趣的信息</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> Student stu;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 事件构造器。</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> source 事件发出者。第一个参数必须有，首先调用父类构造器</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> stu 具体事件信息</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">StuRegisterEvent</span><span class="params">(Object source,Student stu)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(source);</span><br><span class="line">        <span class="keyword">this</span>.stu = stu;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-定义事件监听器"><a href="#2-定义事件监听器" class="headerlink" title="2.定义事件监听器"></a>2.定义事件监听器</h5><p>总共有三种方法来实现对事件的监听。</p>
+<ol>
+<li>使用<code>@EventListener</code>注解</li>
+<li>实现<code>ApplicationListener&lt;E&gt;</code>接口</li>
+<li>实现<code>SmartApplicationListener</code>接口.它继承了ApplicationListener<e>,并继承了``Ordered`接口.因此可以定义监听器触发的先后顺序</e></li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 使用注解定义监听器</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StuRegisterEventListener</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> stuRegisterEvent 事件</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@EventListener</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleStuRegisterEvent</span><span class="params">(StuRegisterEvent stuRegisterEvent)</span></span>&#123;</span><br><span class="line">        log.info(<span class="string">"监听器1"</span>);</span><br><span class="line">        log.info(stuRegisterEvent.toString());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> stuRegisterEvent 事件</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@EventListener</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleStuRegisterEvent1</span><span class="params">(StuRegisterEvent stuRegisterEvent)</span></span>&#123;</span><br><span class="line">        log.info(<span class="string">"监听器1-1"</span>);</span><br><span class="line">        log.info(stuRegisterEvent.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 直接实现ApplicationListener&lt;T&gt;接口</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StuRegisterEventListener2</span> <span class="keyword">implements</span> <span class="title">ApplicationListener</span>&lt;<span class="title">StuRegisterEvent</span>&gt; </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onApplicationEvent</span><span class="params">(StuRegisterEvent stuRegisterEvent)</span> </span>&#123;</span><br><span class="line">        log.info(<span class="string">"监听器2"</span>);</span><br><span class="line">        log.info(stuRegisterEvent.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StudentRegisterEventListener3</span> <span class="keyword">implements</span> <span class="title">SmartApplicationListener</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> sourceType 事件源类型</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">supportsSourceType</span><span class="params">(Class&lt;?&gt; sourceType)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line">      <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> aClass  事件的类型</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">supportsEventType</span><span class="params">(Class&lt;? extends ApplicationEvent&gt; aClass)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> aClass == StuRegisterEvent.class;</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 处理事件 supportsSourceType()和supportEventType都返回true，才会触发监听事件</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> applicationEvent 事件</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onApplicationEvent</span><span class="params">(ApplicationEvent applicationEvent)</span> </span>&#123;</span><br><span class="line">        StuRegisterEvent stuRegisterEvent = (StuRegisterEvent) applicationEvent;</span><br><span class="line">        log.info(<span class="string">"监听器0"</span>);</span><br><span class="line">        log.info(stuRegisterEvent.toString());</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 触发监听事件的顺序。</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 当一个事件发生，有多个监听器监听，可以规定这个几个监听器触发的顺序</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 返回值越小，越早触发</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getOrder</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用建议:</p>
+<ol>
+<li>当同一事件的多个监听器触发时间没有顺序,使用注解形式更加简单,并且在各个监听器类可以同时定义 多个监听方法</li>
+<li>有触发顺序要求的,就只能使用实现<code>SmartApplicationListener</code>接口的方式</li>
+</ol>
+<h5 id="3-发布事件"><a href="#3-发布事件" class="headerlink" title="3.发布事件"></a>3.发布事件</h5><p>使用<code>ApplicationEventPublisher</code>来发布事件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StuServiceImpl</span> <span class="keyword">implements</span> <span class="title">StuService</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 注入事件发布者</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    ApplicationEventPublisher publisher;</span><br><span class="line">  </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">registerStu</span><span class="params">(Student stu)</span> </span>&#123;</span><br><span class="line">        log.info(<span class="string">"注册一个学生"</span>);</span><br><span class="line">        <span class="comment">//发布事件. 通过事件源和事件信息构建事件</span></span><br><span class="line">        publisher.publishEvent(<span class="keyword">new</span> StuRegisterEvent(<span class="keyword">this</span>,stu));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-异步"><a href="#4-异步" class="headerlink" title="4.异步"></a>4.异步</h4>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/02/mysql/MySQL基本命令/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1800,157 +1967,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/01/redis/4.redis事务/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="younger">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="younger个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/12/01/redis/4.redis事务/" itemprop="url">redis事务</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-01T18:53:34+08:00">
-                2019-12-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/redis基础/" itemprop="url" rel="index">
-                    <span itemprop="name">redis基础</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="redis事务简介"><a href="#redis事务简介" class="headerlink" title="redis事务简介"></a>redis事务简介</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">multi #开启事务</span><br><span class="line">do something</span><br><span class="line">exec #执行事务</span><br></pre></td></tr></table></figure>
-
-<p>传统RDBMS,例如MySQL，以begin指令来开始事务，并执行接下来的指令，然后可以commit或rollback对数据库的修改。而redis使用multi标识事务开始，接下来的命令都会入队(命令尚未被执行)，当执行到exec，redis会在不受其他干扰下，取出并执行队列中的命令。</p>
-<h4 id="watch命令"><a href="#watch命令" class="headerlink" title="watch命令"></a>watch命令</h4><p>redis使用乐观锁来解决数据不一致问题。具体使用如下,</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">watch key</span><br><span class="line">do some prepared thing</span><br><span class="line">if (!condition)</span><br><span class="line">    unwatch key</span><br><span class="line">multi</span><br><span class="line">do something</span><br><span class="line">if (!condition)</span><br><span class="line">    discard</span><br><span class="line">exec</span><br></pre></td></tr></table></figure>
-
-<p>执行watch key之后一直到exec执行之前，如果key有任何修改，那么在执行exec时，事务执行会失败。</p>
-<h4 id="unwatch和discard"><a href="#unwatch和discard" class="headerlink" title="unwatch和discard"></a>unwatch和discard</h4><p>两者都使用在redis事物中，区别在于使用的时机不同:</p>
-<p>unwatch: 在执行watch之后和multi之前，取消watch</p>
-<p>discard: 在执行multi之后和exec之前，取消watch，并清空已经入队的命令</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2002,7 +2018,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
