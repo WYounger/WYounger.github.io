@@ -291,6 +291,317 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/01/java8/2-java8常用函数式接口/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="younger">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="younger个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/01/java8/2-java8常用函数式接口/" itemprop="url">2.java8常用函数式接口</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-01T15:02:06+08:00">
+                2020-02-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java8/" itemprop="url" rel="index">
+                    <span itemprop="name">java8</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h5 id="Predicate"><a href="#Predicate" class="headerlink" title="Predicate"></a>Predicate</h5><p>判断一个对象是否满足一定的条件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Predicate</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">boolean</span> <span class="title">test</span><span class="params">(T t)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        List&lt;Student&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        list.add(<span class="keyword">new</span> Student(<span class="string">"young1"</span>,<span class="number">17</span>));</span><br><span class="line">        list.add(<span class="keyword">new</span> Student(<span class="string">"young2"</span>,<span class="number">19</span>));</span><br><span class="line">        Predicate&lt;Student&gt; predicate = (Student stu) -&gt; stu.age &gt; <span class="number">18</span>;</span><br><span class="line">        <span class="comment">//传入Predicate</span></span><br><span class="line">        filter(list,predicate).forEach(System.out::println);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;Student&gt; <span class="title">filter</span><span class="params">(List&lt;Student&gt; students,Predicate&lt;Student&gt; predicate)</span></span>&#123;</span><br><span class="line">        List&lt;Student&gt; result = <span class="keyword">new</span> ArrayList&lt;&gt;(<span class="number">10</span>);</span><br><span class="line">        <span class="keyword">for</span>(Student stu : students)&#123;</span><br><span class="line">            <span class="keyword">if</span>(predicate.test(stu))&#123;</span><br><span class="line">                result.add(stu);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="Consumer"><a href="#Consumer" class="headerlink" title="Consumer"></a>Consumer</h5><p>仅仅执行一个关于对象的动作</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Consumer</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">accept</span><span class="params">(T t)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        List&lt;Student&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        list.add(<span class="keyword">new</span> Student(<span class="string">"young1"</span>,<span class="number">17</span>));</span><br><span class="line">        list.add(<span class="keyword">new</span> Student(<span class="string">"young2"</span>,<span class="number">19</span>));</span><br><span class="line">        Consumer&lt;Student&gt; consumer = (Student stu) -&gt; System.out.println(stu);</span><br><span class="line">        forEach(list,consumer);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;E&gt; <span class="function"><span class="keyword">void</span> <span class="title">forEach</span><span class="params">(List&lt;E&gt; list, Consumer&lt;E&gt; consumer)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (E e : list)&#123;</span><br><span class="line">            consumer.accept(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="Function"><a href="#Function" class="headerlink" title="Function"></a>Function</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Function</span>&lt;<span class="title">T</span>, <span class="title">R</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function">R <span class="title">apply</span><span class="params">(T t)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        List&lt;Student&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        list.add(<span class="keyword">new</span> Student(<span class="string">"young1"</span>,<span class="number">17</span>));</span><br><span class="line">        list.add(<span class="keyword">new</span> Student(<span class="string">"young2"</span>,<span class="number">19</span>));</span><br><span class="line">        map(list,(Student stu) -&gt; stu.name).forEach(System.out::println);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T,R&gt; <span class="function">List&lt;R&gt; <span class="title">map</span><span class="params">(List&lt;T&gt; list,Function&lt;T,R&gt; function)</span></span>&#123;</span><br><span class="line">        List&lt;R&gt; result = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (T t : list)&#123;</span><br><span class="line">            result.add(function.apply(t));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/01/java8/1-lambda表达式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="younger">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="younger个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/01/java8/1-lambda表达式/" itemprop="url">1.lambda表达式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-01T15:00:01+08:00">
+                2020-02-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java8/" itemprop="url" rel="index">
+                    <span itemprop="name">java8</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h5 id="1-看个例子"><a href="#1-看个例子" class="headerlink" title="1.看个例子"></a>1.看个例子</h5><p>匿名内部类实现一个线程启动</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Thread thread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"匿名内部类"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">thread.start();</span><br></pre></td></tr></table></figure>
+
+<p>匿名内部类实现了Runnale接口,重写run方法.</p>
+<p>看看lambda的简洁性</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Thread thread2 = <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">"lambda表达式"</span>);</span><br><span class="line">&#125;);</span><br><span class="line">thread2.start();</span><br></pre></td></tr></table></figure>
+
+<p>显而易见,lambda表达式代码更加简洁清晰</p>
+<h5 id="2-lambda表达式的一般式"><a href="#2-lambda表达式的一般式" class="headerlink" title="2.lambda表达式的一般式"></a>2.lambda表达式的一般式</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(Type1 var1,Type2 var2,...) -&gt; expresssion</span><br><span class="line"></span><br><span class="line">(Type1 var1,Type2 var2,...) -&gt; &#123;</span><br><span class="line">		expressions</span><br><span class="line">&#125;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * Type1 var1,Type2 var2,...:待重写方法的参数列表</span></span><br><span class="line"><span class="comment">         * 方法体: 一条语句或多条语句(用&#123;&#125;括起来)</span></span><br><span class="line"><span class="comment">         * 返回值: 待重写方法的返回值类型</span></span><br><span class="line"><span class="comment">         */</span></span><br></pre></td></tr></table></figure>
+
+<p>实例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        A a1 = (<span class="keyword">int</span> var1,String var2) -&gt; var1 + var2; <span class="comment">//单条语句不用显示的通过return语句来返回值</span></span><br><span class="line">      </span><br><span class="line">        A a2 = (<span class="keyword">int</span> var1,String var2) -&gt; &#123;</span><br><span class="line">            <span class="comment">//模拟多条语句</span></span><br><span class="line">            String str = String.valueOf(var1);</span><br><span class="line">            <span class="keyword">return</span> str + var2;</span><br><span class="line">        &#125;;</span><br><span class="line">      </span><br><span class="line">        System.out.println(a1.dosomething(<span class="number">1</span>,<span class="string">"2"</span>));</span><br><span class="line">        System.out.println(a2.dosomething(<span class="number">1</span>,<span class="string">"2"</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    <span class="function">String  <span class="title">dosomething</span><span class="params">(<span class="keyword">int</span> var1,String var2)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个实例解释了lambda表达式的实质: <strong>一个实现接口的对象</strong>。</p>
+<h5 id="3-使用场景"><a href="#3-使用场景" class="headerlink" title="3.使用场景"></a>3.使用场景</h5><p>先解释一个概念,<code>函数式接口</code>: 只包含一个抽象方法，默认方法不是抽象方法 。lambda就是用在实现这样的接口上。</p>
+<p>举几个JDK中常见的函数式接口。可以使用@FunctionalInterface进行标注,提供便便宜检查，当被标注的接口不满足函数式接口，就会报错，</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Comparator</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">compare</span><span class="params">(T o1, T o2)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Callable</span>&lt;<span class="title">V</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function">V <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> 实例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        List&lt;Student&gt; students = <span class="keyword">new</span> ArrayList&lt;&gt;(<span class="number">10</span>);</span><br><span class="line">        <span class="keyword">int</span> LENGTH = <span class="number">10</span>;</span><br><span class="line">        Random random = <span class="keyword">new</span> Random(<span class="number">1L</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= LENGTH; i++)&#123;</span><br><span class="line">            students.add(<span class="keyword">new</span> Student(<span class="string">"young"</span>+i,random.nextInt(<span class="number">100</span>)));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//使用Lambda表达式实现Comparator接口</span></span><br><span class="line">        Collections.sort(students,(Student s1,Student s2) -&gt; s1.getGrade() - s2.getGrade());</span><br><span class="line"><span class="comment">//        Collections.sort(students, Comparator.comparingInt(Student::getGrade));</span></span><br><span class="line">        students.forEach(System.out::println);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> grade;</span><br><span class="line">    <span class="comment">//getter setter toString...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/01/redis/4.redis事务/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -689,7 +1000,7 @@
           
             <p>一主多从，主服务器负责处理写请求，从服务负责处理读请求。主服务器是可读、可写的，从服务是只读的。当主服务器数据更新后，实时同步到从服务器。</p>
 <p>从节点基本配置如下</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">   +------------------+      +---------------+</span></span><br><span class="line"><span class="meta">#</span><span class="bash">   |      Master      | ---&gt; |    Replica    |</span></span><br><span class="line"><span class="meta">#</span><span class="bash">   | (receive writes) |      |  (exact copy) |</span></span><br><span class="line"><span class="meta">#</span><span class="bash">   +------------------+      +---------------+</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 主服务器ip和port</span></span><br><span class="line">replicaof &lt;masterip&gt; &lt;masterport&gt;</span><br><span class="line"><span class="meta">#</span><span class="bash"> 主服务器密码</span></span><br><span class="line">masterauth &lt;master-password&gt;</span><br><span class="line"><span class="meta">#</span><span class="bash"> 当从服务器与主服务器失去连接，从服务器是否继续接收客户端请求</span></span><br><span class="line">replica-serve-stale-data yes</span><br><span class="line"><span class="meta">#</span><span class="bash"> 从服务器是否只可读</span></span><br><span class="line">replica-read-only yes</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>   +------------------+      +---------------+</span><br><span class="line"><span class="meta">#</span>   |      Master      | ---&gt; |    Replica    |</span><br><span class="line"><span class="meta">#</span>   | (receive writes) |      |  (exact copy) |</span><br><span class="line"><span class="meta">#</span>   +------------------+      +---------------+</span><br><span class="line"><span class="meta">#</span> 主服务器ip和port</span><br><span class="line">replicaof &lt;masterip&gt; &lt;masterport&gt;</span><br><span class="line"><span class="meta">#</span> 主服务器密码</span><br><span class="line">masterauth &lt;master-password&gt;</span><br><span class="line"><span class="meta">#</span> 当从服务器与主服务器失去连接，从服务器是否继续接收客户端请求</span><br><span class="line">replica-serve-stale-data yes</span><br><span class="line"><span class="meta">#</span> 从服务器是否只可读</span><br><span class="line">replica-read-only yes</span><br></pre></td></tr></table></figure>
 
 <p>也可以通过命令方法实现</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">slaveof host ip <span class="comment">#是该服务变为host ip的从服务器</span></span><br><span class="line">slaveof no one <span class="comment"># 解除主从关系</span></span><br></pre></td></tr></table></figure>
@@ -1584,386 +1895,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/25/effective-java/1-创建和销毁对象/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="younger">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="younger个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/25/effective-java/1-创建和销毁对象/" itemprop="url">1.创建和销毁对象</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-25T21:56:08+08:00">
-                2019-10-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/basic-java/" itemprop="url" rel="index">
-                    <span itemprop="name">basic-java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="1-用静态工厂方法代替构造器"><a href="#1-用静态工厂方法代替构造器" class="headerlink" title="1. 用静态工厂方法代替构造器"></a>1. 用静态工厂方法代替构造器</h3><p>创建一个的实例，通常做法是提供一个公有的构造器。还有一种是提供一个静态工厂方法，他是一个返回类的实例的静态方法。</p>
-<p>下面列出使用静态工厂方法的优点</p>
-<ol>
-<li>有名称</li>
-<li>不必在每次调用他们的时候都创建一个新的对象</li>
-<li>可以返回类型的任何子类型的对象</li>
-<li>所返回的对象的类可以随着每次调用而发生变化，这取决于该方法的参数值</li>
-<li>方法返回的对象所属的类，在编写包含该静态工厂方法的类时可以不存在</li>
-</ol>
-<h3 id="2-遇到多个构造器函数参数时要考虑使用构建器"><a href="#2-遇到多个构造器函数参数时要考虑使用构建器" class="headerlink" title="2.遇到多个构造器函数参数时要考虑使用构建器"></a>2.遇到多个构造器函数参数时要考虑使用构建器</h3><p>当一个类的构造器有许多参数，并且有些参数是可选的，首先想到可以通过几个构造函数之间逐级调用来创建对象，但这种方法让客户端编写难以理解。不妨使用构建器来创建对象。见下面一个例子：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        A a = <span class="keyword">new</span> A.Builder(<span class="string">"requiredParam1"</span>,<span class="string">"requiredParam2"</span>).optionalParam3(<span class="string">"optionalParam3"</span>).build();</span><br><span class="line">        System.out.println(a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String requiredParam1;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String requiredParam2;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String optionalParam3;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String optionalParam4;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String optionalParam5;</span><br><span class="line"></span><br><span class="line">  	<span class="comment">//静态内部类来充当构建器</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Builder</span></span>&#123;</span><br><span class="line">      	<span class="comment">//成员变量和构建的目标对象基本保持一致，对可选值进行初始化</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">final</span> String requiredParam1;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">final</span> String requiredParam2;</span><br><span class="line">        <span class="keyword">private</span> String optionalParam3 = <span class="string">"default"</span>;</span><br><span class="line">        <span class="keyword">private</span> String optionalParam4 = <span class="string">"default"</span>;</span><br><span class="line">        <span class="keyword">private</span> String optionalParam5 = <span class="string">"default"</span>;</span><br><span class="line"></span><br><span class="line">      	<span class="comment">//构建器的构造函数传入必填参数</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Builder</span><span class="params">(String requiredParam1,String requiredParam2)</span></span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.requiredParam1 = requiredParam1;</span><br><span class="line">            <span class="keyword">this</span>.requiredParam2 = requiredParam2;</span><br><span class="line">        &#125;</span><br><span class="line">      	<span class="comment">//使用链式API来设置可选值</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Builder <span class="title">optionalParam3</span><span class="params">(String optionalParam3)</span></span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.optionalParam3 = optionalParam3;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> Builder <span class="title">optionalParam4</span><span class="params">(String optionalParam4)</span></span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.optionalParam4 = optionalParam4;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> Builder <span class="title">optionalParam5</span><span class="params">(String optionalParam5)</span></span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.optionalParam5 = optionalParam5;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      	<span class="comment">//使用无参构造函数来构建目标对象</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> A <span class="title">build</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="comment">//调用目标对象的私有构造函数来创建对象，并返回</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> A(<span class="keyword">this</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//私有构造函数中传入构建器对象来初始化目标对象</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">A</span><span class="params">(Builder builder)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.requiredParam1 = builder.requiredParam1;</span><br><span class="line">        <span class="keyword">this</span>.requiredParam2 = builder.requiredParam2;</span><br><span class="line">        <span class="keyword">this</span>.optionalParam3 = builder.optionalParam3;</span><br><span class="line">        <span class="keyword">this</span>.optionalParam4 = builder.optionalParam4;</span><br><span class="line">        <span class="keyword">this</span>.optionalParam5 = builder.optionalParam5;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"A&#123;"</span> +</span><br><span class="line">                <span class="string">"requiredParam1='"</span> + requiredParam1 + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", requiredParam2='"</span> + requiredParam2 + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", optionalParam3='"</span> + optionalParam3 + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", optionalParam4='"</span> + optionalParam4 + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", optionalParam5='"</span> + optionalParam5 + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这里的Builder可以看成是目标对象参数的收集器和创建者，首先是收集必要的参数，然后收集可选参数，最后创建目标对象。</p>
-<h3 id="3-用私有构造器强化Singleton属性"><a href="#3-用私有构造器强化Singleton属性" class="headerlink" title="3.用私有构造器强化Singleton属性"></a>3.用私有构造器强化<code>Singleton</code>属性</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SingletonInstance</span></span>&#123;</span><br><span class="line">    <span class="comment">//公有，静态，final实例变量</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> SingletonInstance INSTANCE = <span class="keyword">new</span> SingletonInstance();</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingletonInstance</span><span class="params">()</span></span>&#123;<span class="comment">/**/&#125;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>或者</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SingletonInstance</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> SingletonInstance INSTANCE = <span class="keyword">new</span> SingletonInstance();</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingletonInstance</span><span class="params">()</span></span>&#123;<span class="comment">/**/&#125;</span></span><br><span class="line"><span class="comment">    public SingletonInstance getInstance()&#123;</span></span><br><span class="line"><span class="comment">        return INSTANCE;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="4-通过私有构造器强化不可实例化的能力"><a href="#4-通过私有构造器强化不可实例化的能力" class="headerlink" title="4.通过私有构造器强化不可实例化的能力"></a>4.通过私有构造器强化不可实例化的能力</h3><p>通常一些工具类可以定义为只含静态属性和方法的类，不需要被实例化，可以通过私有构造函数加以限制。例如JDK中的<code>java.lang.Math</code>和<code>java.util.Collections</code>。</p>
-<h3 id="5-优先考虑依赖注入引入资源"><a href="#5-优先考虑依赖注入引入资源" class="headerlink" title="5.优先考虑依赖注入引入资源"></a>5.优先考虑依赖注入引入资源</h3><p>当一个类要依赖一个或多个资源，例如一个拼写检查器需要依赖于字典，静态工厂方法和单例可以实现，但有不同字典的话，这两种方法显然是不同的。所以需要将字典或字典工厂注入到拼写检查器中。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SpellChecker</span></span>&#123;</span><br><span class="line">    <span class="comment">//将资源定义为不可变</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Lexicon dictionary;</span><br><span class="line">    <span class="comment">//通过构造器注入</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SpellChecker</span><span class="params">(Lexicon dictionary)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.dictionary = dictionary;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isValid</span><span class="params">(String word)</span></span>&#123;</span><br><span class="line">        <span class="comment">/**/</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>总之，不要用Singleton和静态工具类来实现依赖一个或多个底层资源的类，且该资源的行为会影响该类的行为；也不要直接用这个类来创建这些资源，而应该将这些资源或者工厂传递给构造器(静态工厂或构建器)，通过他们来创建类，可以提供类的灵活性、可重用性和可测性。</p>
-<h3 id="6-避免创建不必要的对象"><a href="#6-避免创建不必要的对象" class="headerlink" title="6.避免创建不必要的对象"></a>6.避免创建不必要的对象</h3><p>一般尽量重用对象。一个对象是不可变的，那么它就可以被重用。</p>
-<h3 id="7-消除过期的对象引用"><a href="#7-消除过期的对象引用" class="headerlink" title="7.消除过期的对象引用"></a>7.消除过期的对象引用</h3><p>只要是自己管理内存，就要警惕内存泄露问题。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">pop</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(size == <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> EmptyStackException();</span><br><span class="line">  &#125;</span><br><span class="line">  Object result = elements[--size];</span><br><span class="line">  elements[size] = <span class="keyword">null</span>;<span class="comment">//消除过期引用</span></span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="8-避免使用中介方法和清除方法"><a href="#8-避免使用中介方法和清除方法" class="headerlink" title="8.避免使用中介方法和清除方法"></a>8.避免使用中介方法和清除方法</h3><p>垃圾回收最好还是让GC自己处理，不要手动。</p>
-<h3 id="9-try-with-resources优先于try-finally"><a href="#9-try-with-resources优先于try-finally" class="headerlink" title="9.try-with-resources优先于try-finally"></a>9.<code>try-with-resources</code>优先于<code>try-finally</code></h3><p>Java7引入了try-with-resources语法，可以自动关闭资源，但有一个前提是该资源实现或扩展了AutoCloseable接口。下面是FileInputStream实现AutoCloseabe接口的代码，</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">close</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (closed) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">synchronized</span> (closeLock) &#123;</span><br><span class="line">            <span class="keyword">if</span> (closed) &#123;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            closed = <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        FileChannel fc = channel;</span><br><span class="line">        <span class="keyword">if</span> (fc != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">// possible race with getChannel(), benign since</span></span><br><span class="line">            <span class="comment">// FileChannel.close is final and idempotent</span></span><br><span class="line">            fc.close();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        fd.closeAll(<span class="keyword">new</span> Closeable() &#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">close</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">               close0();</span><br><span class="line">           &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>在 try语句块后，会自动调用该close方法。还有一点的是，Closeable接口继承了AutoCloseable接口，所以实现了Closeable也就实现了AutoCloseable接口</p>
-<p>简单试用一下该语法，下面是是一个文件复制的例子，</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">copy</span><span class="params">(String src,String dst)</span></span>&#123;</span><br><span class="line">        <span class="comment">//定义两个资源</span></span><br><span class="line">        <span class="keyword">try</span>(InputStream in = <span class="keyword">new</span> FileInputStream(src);</span><br><span class="line">            OutputStream out = <span class="keyword">new</span> FileOutputStream(dst)</span><br><span class="line">        )&#123;</span><br><span class="line">            <span class="keyword">byte</span>[] buf = <span class="keyword">new</span> <span class="keyword">byte</span>[BUFFER_SIZE];</span><br><span class="line">            <span class="keyword">int</span> n;</span><br><span class="line">            <span class="keyword">while</span>((n = in.read(buf)) &gt;= <span class="number">0</span>)&#123;</span><br><span class="line">                out.write(buf,<span class="number">0</span>,n);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">catch</span>(IOException ex)&#123;<span class="comment">//同样可以使用catch语句</span></span><br><span class="line">            ex.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>代码简洁、清晰!</p>
-<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul>
-<li><a href="https://book.douban.com/subject/30412517/" target="_blank" rel="noopener">Effective Java中文版（第3版）</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/19/redis/1.redis数据类型/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="younger">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="younger个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/19/redis/1.redis数据类型/" itemprop="url">redis数据类型</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-19T19:05:29+08:00">
-                2019-10-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/redis基础/" itemprop="url" rel="index">
-                    <span itemprop="name">redis基础</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Redis是一个速度非常块的非关系型数据库，可以存储key和5种不同数据类型的value之间的映射，还支持持久化、主从复制(增加读性能)、分片(扩展写性能)。</p>
-<p>Redis提供五种基本数据类型，分别为<code>string</code>,<code>list</code>,<code>set</code>,<code>hash</code>,<code>zset</code>。注意一点是，这里的数据类型指的是value的数据类型,而key都是字符串类型</p>
-<table>
-<thead>
-<tr>
-<th>结构类型</th>
-<th>结构存储的值</th>
-<th>能力</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>string</td>
-<td>字符串、整数、浮点数</td>
-<td>字符串进行操作；整数和浮点数自增、自减</td>
-</tr>
-<tr>
-<td>list</td>
-<td>链表，每个节点包含一个字符串</td>
-<td>两端推入和推出元素；修剪；查找移除元素</td>
-</tr>
-<tr>
-<td>set</td>
-<td>无序，唯一</td>
-<td>集合计算</td>
-</tr>
-<tr>
-<td>hash</td>
-<td>包含键值对的无需散列表</td>
-<td>添加、获取、移除元素</td>
-</tr>
-<tr>
-<td>zset</td>
-<td>字符串成员（member）与浮点数分值（score）之间的有序映射，元素的排列顺序由分值的大小决定</td>
-<td>添加、获取、移除元素</td>
-</tr>
-</tbody></table>
-<h5 id="string"><a href="#string" class="headerlink" title="string"></a>string</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">key:value</span><br></pre></td></tr></table></figure>
-
-<p>常用命令: <code>set</code> <code>get</code> <code>del</code></p>
-<h5 id="list"><a href="#list" class="headerlink" title="list"></a>list</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">listKey:</span><br><span class="line">    item1</span><br><span class="line">		item2</span><br><span class="line">		item3</span><br><span class="line">    ...</span><br><span class="line">		itemn</span><br><span class="line">//有序，可重复</span><br></pre></td></tr></table></figure>
-
-<p>常用命令: <code>rpush</code> <code>lrange</code> <code>lindex</code> <code>lpop</code></p>
-<h5 id="set"><a href="#set" class="headerlink" title="set"></a>set</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">setKey:</span><br><span class="line">		item2</span><br><span class="line">		item1</span><br><span class="line">		itemn</span><br><span class="line">		...</span><br><span class="line">		item3</span><br><span class="line">//无序，不可重复</span><br></pre></td></tr></table></figure>
-
-<p>常用命令： <code>sadd</code>  <code>sismember</code> <code>srem</code> <code>smembers</code></p>
-<h5 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">hashKey:</span><br><span class="line">  subKey1:value1</span><br><span class="line">	subKey2:value2</span><br><span class="line">	...</span><br><span class="line">	sunKeyn:valuen</span><br><span class="line">//subKey无序，不重复</span><br></pre></td></tr></table></figure>
-
-<p>常用命令： <code>hset</code> <code>hget</code> <code>hdel</code></p>
-<h5 id="zset"><a href="#zset" class="headerlink" title="zset"></a>zset</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">zsetKey:</span><br><span class="line">		member1:score1</span><br><span class="line"> 		member2:score2</span><br><span class="line">		...</span><br><span class="line">		membern:scoren</span><br><span class="line">//score为浮点数，每个成员按照score排序，</span><br></pre></td></tr></table></figure>
-
-<p>常用命令: <code>zadd</code>  <code>zrange</code> <code>zrem</code> <code>zrangebyscore</code></p>
-<p>使用<code>Jedis</code>练习一下</p>
-<p>依赖:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">redis-client: jedis</span><br><span class="line">test-tool: junit-jupiter-api</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.BeforeAll;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.Test;</span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.Jedis;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Redis1Th</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Jedis jedis;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@BeforeAll</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">setRedisConfig</span><span class="params">()</span></span>&#123;</span><br><span class="line">        jedis = <span class="keyword">new</span> Jedis(<span class="string">"127.0.0.1"</span>,<span class="number">6379</span>);</span><br><span class="line">        jedis.auth(<span class="string">"redispassword"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testString</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//存在该key，则覆盖; 不存在该key，则创建</span></span><br><span class="line">        jedis.set(<span class="string">"id"</span>,<span class="string">"2"</span>);</span><br><span class="line">        <span class="comment">//获取</span></span><br><span class="line">        print(jedis.get(<span class="string">"id"</span>));<span class="comment">// 2</span></span><br><span class="line">        <span class="comment">//增加一定的增量</span></span><br><span class="line">        jedis.incrBy(<span class="string">"id"</span>,<span class="number">2L</span>);</span><br><span class="line">        print(jedis.get(<span class="string">"id"</span>)); <span class="comment">// 4</span></span><br><span class="line">        <span class="comment">//删除key值对</span></span><br><span class="line">        jedis.del(<span class="string">"id"</span>);</span><br><span class="line">        print(jedis.get(<span class="string">"id"</span>));<span class="comment">// null</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testList</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//不存在该key，则会自动创建</span></span><br><span class="line">        <span class="comment">//左进</span></span><br><span class="line">        jedis.lpush(<span class="string">"hobbies"</span>,<span class="string">"basketball"</span>,<span class="string">"swimming"</span>);</span><br><span class="line">        <span class="comment">//lrange(key,0,-1)返回该key的所有value</span></span><br><span class="line">        print(jedis.lrange(<span class="string">"hobbies"</span>,<span class="number">0</span>,-<span class="number">1</span>)); <span class="comment">//[swimming, basketball]</span></span><br><span class="line">        <span class="comment">//右进</span></span><br><span class="line">        jedis.rpush(<span class="string">"hobbies"</span>,<span class="string">"game"</span>);</span><br><span class="line">        print(jedis.lrange(<span class="string">"hobbies"</span>,<span class="number">0</span>,-<span class="number">1</span>));<span class="comment">//[swimming, basketball, game]</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//右出</span></span><br><span class="line">        jedis.rpop(<span class="string">"hobbies"</span>);</span><br><span class="line">        print(jedis.lrange(<span class="string">"hobbies"</span>,<span class="number">0</span>,-<span class="number">1</span>));<span class="comment">//[swimming, basketball]</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//左出</span></span><br><span class="line">        jedis.lpop(<span class="string">"hobbies"</span>);</span><br><span class="line">        print(jedis.lrange(<span class="string">"hobbies"</span>,<span class="number">0</span>,-<span class="number">1</span>));<span class="comment">//[basketball]</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//取该key的指定的下标的值</span></span><br><span class="line">        print(jedis.lindex(<span class="string">"hobbies"</span>,<span class="number">0</span>));<span class="comment">//basketball</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//通过list的rpush/rpop和lpush/lpop可以模拟栈和队列</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSet</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//key不存在创建并加入元素</span></span><br><span class="line">        jedis.sadd(<span class="string">"ids"</span>,<span class="string">"1"</span>);</span><br><span class="line">        print(jedis.sadd(<span class="string">"ids"</span>,<span class="string">"1"</span>));<span class="comment">// 0,有重复，添加失败</span></span><br><span class="line">        jedis.sadd(<span class="string">"ids"</span>,<span class="string">"2"</span>);</span><br><span class="line">        <span class="comment">//查询该key对应的所有value</span></span><br><span class="line">        print(jedis.smembers(<span class="string">"ids"</span>)); <span class="comment">//[1, 2]</span></span><br><span class="line">        <span class="comment">//删除指定key的value</span></span><br><span class="line">        jedis.srem(<span class="string">"ids"</span>,<span class="string">"2"</span>);</span><br><span class="line">        print(jedis.smembers(<span class="string">"ids"</span>)); <span class="comment">//[1]</span></span><br><span class="line">        <span class="comment">//判断该key是否存在该value</span></span><br><span class="line">        print(jedis.sismember(<span class="string">"ids"</span>,<span class="string">"1"</span>)); <span class="comment">// true</span></span><br><span class="line">        print(jedis.smembers(<span class="string">"ids"</span>)); <span class="comment">//[1]</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testHash</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Map&lt;String,String&gt; hashValues = <span class="keyword">new</span> HashMap&lt;&gt;(<span class="number">2</span>);</span><br><span class="line">        hashValues.put(<span class="string">"name"</span>,<span class="string">"young"</span>);</span><br><span class="line">        hashValues.put(<span class="string">"age"</span>,<span class="string">"21"</span>);</span><br><span class="line">        <span class="comment">//key-hashValues</span></span><br><span class="line">        jedis.hset(<span class="string">"user"</span>,hashValues);</span><br><span class="line">        <span class="comment">//取key的多个subKey对应的值</span></span><br><span class="line">        print(jedis.hmget(<span class="string">"user"</span>,<span class="string">"name"</span>,<span class="string">"age"</span>)); <span class="comment">//[young, 21]</span></span><br><span class="line">        <span class="comment">//取key所有subKey</span></span><br><span class="line">        print(jedis.hkeys(<span class="string">"user"</span>)); <span class="comment">//[age, name]</span></span><br><span class="line">        <span class="comment">//取key所有subKey对应的value</span></span><br><span class="line">        print(jedis.hvals(<span class="string">"user"</span>)); <span class="comment">//[21, young]</span></span><br><span class="line">        jedis.hdel(<span class="string">"user"</span>,<span class="string">"age"</span>);</span><br><span class="line">        <span class="comment">//删除key的subkey-subValue</span></span><br><span class="line">        print(jedis.hkeys(<span class="string">"user"</span>)); <span class="comment">//[ name]</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testZSet</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Map&lt;String,Double&gt; grades = <span class="keyword">new</span> HashMap&lt;&gt;(<span class="number">2</span>);</span><br><span class="line">        grades.put(<span class="string">"tom"</span>,<span class="number">85.0</span>D);</span><br><span class="line">        grades.put(<span class="string">"bob"</span>,<span class="number">90.0</span>D);</span><br><span class="line">        grades.put(<span class="string">"alice"</span>,<span class="number">80.0</span>D);</span><br><span class="line">        grades.put(<span class="string">"henry"</span>,<span class="number">86.0</span>D);</span><br><span class="line">        grades.put(<span class="string">"jerry"</span>,<span class="number">91.0</span>D);</span><br><span class="line">        jedis.zadd(<span class="string">"game"</span>,grades);</span><br><span class="line">       <span class="comment">//返回按照score排序(升序)后名次在start~stop的member</span></span><br><span class="line">        print(jedis.zrange(<span class="string">"game"</span>,<span class="number">0</span>,<span class="number">2</span>)); <span class="comment">//[alice, tom, henry]</span></span><br><span class="line">        <span class="comment">//返回按照score在min~max的member</span></span><br><span class="line">        print(jedis.zrangeByScore(<span class="string">"game"</span>,<span class="number">80</span>,<span class="number">90</span>)); <span class="comment">//[alice, tom, henry, bob]</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">(Object o)</span></span>&#123;</span><br><span class="line">        System.out.println(o);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>参考资料:</p>
-<p><a href="https://book.douban.com/subject/26612779/" target="_blank" rel="noopener">Redis 实战</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2015,7 +1946,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

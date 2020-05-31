@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="spirngboot 基础,">
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="底层码农一枚,坐标武汉。 github地址 Stay hungry,stay foolish!">
-<meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="http://yoursite.com/about/index.html">
+<meta name="description" content="1.自定义注解有时，校验API提供的注解不满足我们的需求，需要自定义校验注解 1.实例1.定义注解1234567891011121314151617/** * 标明注解使用具体的类进行校验 * @Constraint(validatedBy = MyEmailValidator.class) */@Constraint(validatedBy = MyEmailValidator.class)@T">
+<meta name="keywords" content="spirngboot 基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="4.自定义校验注解">
+<meta property="og:url" content="http://yoursite.com/2020/05/31/SpringBoot/4.自定义校验注解/index.html">
 <meta property="og:site_name" content="younger个人博客">
-<meta property="og:description" content="底层码农一枚,坐标武汉。 github地址 Stay hungry,stay foolish!">
+<meta property="og:description" content="1.自定义注解有时，校验API提供的注解不满足我们的需求，需要自定义校验注解 1.实例1.定义注解1234567891011121314151617/** * 标明注解使用具体的类进行校验 * @Constraint(validatedBy = MyEmailValidator.class) */@Constraint(validatedBy = MyEmailValidator.class)@T">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-27T10:32:14.279Z">
+<meta property="og:updated_time" content="2020-05-31T13:02:28.342Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="about">
-<meta name="twitter:description" content="底层码农一枚,坐标武汉。 github地址 Stay hungry,stay foolish!">
+<meta name="twitter:title" content="4.自定义校验注解">
+<meta name="twitter:description" content="1.自定义注解有时，校验API提供的注解不满足我们的需求，需要自定义校验注解 1.实例1.定义注解1234567891011121314151617/** * 标明注解使用具体的类进行校验 * @Constraint(validatedBy = MyEmailValidator.class) */@Constraint(validatedBy = MyEmailValidator.class)@T">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/about/">
+  <link rel="canonical" href="http://yoursite.com/2020/05/31/SpringBoot/4.自定义校验注解/">
 
 
 
 
 
-  <title>about | younger个人博客</title>
+  <title>4.自定义校验注解 | younger个人博客</title>
   
 
 
@@ -282,36 +283,180 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/31/SpringBoot/4.自定义校验注解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="younger">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="younger个人博客">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">about</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <p>底层码农一枚,坐标武汉。</p>
-<p><a href="https://github.com/WYounger" target="_blank" rel="noopener">github地址</a></p>
-<p><strong>Stay hungry,stay foolish!</strong></p>
-
+          <h1 class="post-title" itemprop="name headline">4.自定义校验注解</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-31T20:21:50+08:00">
+                2020-05-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/springboot-基础/" itemprop="url" rel="index">
+                    <span itemprop="name">springboot 基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h4 id="1-自定义注解"><a href="#1-自定义注解" class="headerlink" title="1.自定义注解"></a>1.自定义注解</h4><p>有时，校验API提供的注解不满足我们的需求，需要自定义校验注解</p>
+<h4 id="1-实例"><a href="#1-实例" class="headerlink" title="1.实例"></a>1.实例</h4><h5 id="1-定义注解"><a href="#1-定义注解" class="headerlink" title="1.定义注解"></a>1.定义注解</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 标明注解使用具体的类进行校验</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Constraint</span>(validatedBy = MyEmailValidator.class)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Constraint</span>(validatedBy = MyEmailValidator.class)</span><br><span class="line"><span class="meta">@Target</span>(&#123;ElementType.FIELD, ElementType.PARAMETER&#125;)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> MyEmail &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//提示信息</span></span><br><span class="line">    <span class="function">String <span class="title">message</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//分组使用</span></span><br><span class="line">    Class&lt;?&gt;[] groups() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    Class&lt;? extends Payload&gt;[] payload() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-定义注解校验类"><a href="#2-定义注解校验类" class="headerlink" title="2.定义注解校验类"></a>2.定义注解校验类</h5><p>需要实现<code>ConstraintValidator&lt;Annotation,Type&gt;</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 该类自动注入spring 容器中</span></span><br><span class="line"><span class="comment"> * ConstraintValidator&lt;注解类型, 注解标注的对象的类型&gt;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyEmailValidator</span> <span class="keyword">implements</span> <span class="title">ConstraintValidator</span>&lt;<span class="title">MyEmail</span>, <span class="title">String</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Pattern PATTERN = Pattern.compile(<span class="string">"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]&#123;2,&#125;)$"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initialize</span><span class="params">(MyEmail constraintAnnotation)</span> </span>&#123;</span><br><span class="line">        log.info(<span class="string">"initialize!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 校验</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> value 待校验的值</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> constraintValidatorContext</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 返回是否校验通过</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isValid</span><span class="params">(String value, ConstraintValidatorContext constraintValidatorContext)</span> </span>&#123;</span><br><span class="line">        log.info(<span class="string">"value: "</span> + value);</span><br><span class="line">        <span class="comment">//邮箱非必填项</span></span><br><span class="line">        <span class="keyword">if</span> (StringUtils.isEmpty(value)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> isEmail(value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isEmail</span><span class="params">(String email)</span></span>&#123;</span><br><span class="line">        Matcher matcher = PATTERN.matcher(email);</span><br><span class="line">        <span class="keyword">return</span> matcher.matches();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-使用"><a href="#3-使用" class="headerlink" title="3.使用"></a>3.使用</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EmailUnit</span> </span>&#123;</span><br><span class="line">    <span class="meta">@MyEmail</span>(message = <span class="string">"邮箱格式不正确"</span>)</span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping</span>(<span class="string">"/testMyEmailValidator"</span>)</span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">testMyEmailValidator</span><span class="params">(@Valid  @RequestBody EmailUnit email)</span></span>&#123;</span><br><span class="line">       System.out.println(email);</span><br><span class="line">       <span class="keyword">return</span> <span class="string">"hello!"</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://juejin.im/post/5dafcdcb6fb9a04ddc6258f9" target="_blank" rel="noopener">参考链接</a></p>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/spirngboot-基础/" rel="tag"># spirngboot 基础</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/29/SpringBoot/3.SpringBoot自定义事件与监听/" rel="next" title="3.SpringBoot自定义事件与监听">
+                <i class="fa fa-chevron-left"></i> 3.SpringBoot自定义事件与监听
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/05/31/SpringBoot/5.嵌套校验/" rel="prev" title="4.嵌套检验">
+                4.嵌套检验 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -344,8 +489,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -406,6 +560,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-自定义注解"><span class="nav-number">1.</span> <span class="nav-text">1.自定义注解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-实例"><span class="nav-number">2.</span> <span class="nav-text">1.实例</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-定义注解"><span class="nav-number">2.1.</span> <span class="nav-text">1.定义注解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-定义注解校验类"><span class="nav-number">2.2.</span> <span class="nav-text">2.定义注解校验类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-使用"><span class="nav-number">2.3.</span> <span class="nav-text">3.使用</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
