@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="1.事件-监听模型主要构成元素，事件、事件发布者、事件监听者 事件监听者向事件发布者订阅事件。当事件发生时，事件发布者会通知事件监听者，然后事件监听者可以做出相应的处理。 在Spring使用这一事件模型，主要是为了降低各个业务逻辑之间的耦合性。 2.实例1.定义事件通常是继承ApplicationEven来定义自定义事件 1234567891011121314151617181920/** * 定">
+<meta name="description" content="1.事件-监听模型主要构成元素，事件、事件发布者、事件监听者 事件监听者向事件发布者订阅事件。当事件发生时，事件发布者会通知事件监听者，然后事件监听者可以做出相应的处理。 在Spring使用这一事件模型，主要是为了降低各个业务逻辑之间的耦合性。 2.实例1.定义事件通常是继承ApplicationEvent来定义自定义事件 1234567891011121314151617181920/** *">
 <meta name="keywords" content="spirngboot 基础">
 <meta property="og:type" content="article">
 <meta property="og:title" content="3.SpringBoot自定义事件与监听">
 <meta property="og:url" content="http://yoursite.com/2020/05/29/SpringBoot/3.SpringBoot自定义事件与监听/index.html">
 <meta property="og:site_name" content="younger个人博客">
-<meta property="og:description" content="1.事件-监听模型主要构成元素，事件、事件发布者、事件监听者 事件监听者向事件发布者订阅事件。当事件发生时，事件发布者会通知事件监听者，然后事件监听者可以做出相应的处理。 在Spring使用这一事件模型，主要是为了降低各个业务逻辑之间的耦合性。 2.实例1.定义事件通常是继承ApplicationEven来定义自定义事件 1234567891011121314151617181920/** * 定">
+<meta property="og:description" content="1.事件-监听模型主要构成元素，事件、事件发布者、事件监听者 事件监听者向事件发布者订阅事件。当事件发生时，事件发布者会通知事件监听者，然后事件监听者可以做出相应的处理。 在Spring使用这一事件模型，主要是为了降低各个业务逻辑之间的耦合性。 2.实例1.定义事件通常是继承ApplicationEvent来定义自定义事件 1234567891011121314151617181920/** *">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-05-29T14:28:04.835Z">
+<meta property="og:updated_time" content="2020-05-31T03:12:23.578Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="3.SpringBoot自定义事件与监听">
-<meta name="twitter:description" content="1.事件-监听模型主要构成元素，事件、事件发布者、事件监听者 事件监听者向事件发布者订阅事件。当事件发生时，事件发布者会通知事件监听者，然后事件监听者可以做出相应的处理。 在Spring使用这一事件模型，主要是为了降低各个业务逻辑之间的耦合性。 2.实例1.定义事件通常是继承ApplicationEven来定义自定义事件 1234567891011121314151617181920/** * 定">
+<meta name="twitter:description" content="1.事件-监听模型主要构成元素，事件、事件发布者、事件监听者 事件监听者向事件发布者订阅事件。当事件发生时，事件发布者会通知事件监听者，然后事件监听者可以做出相应的处理。 在Spring使用这一事件模型，主要是为了降低各个业务逻辑之间的耦合性。 2.实例1.定义事件通常是继承ApplicationEvent来定义自定义事件 1234567891011121314151617181920/** *">
 
 
 
@@ -387,7 +387,7 @@
         <h4 id="1-事件-监听模型"><a href="#1-事件-监听模型" class="headerlink" title="1.事件-监听模型"></a>1.事件-监听模型</h4><p>主要构成元素，事件、事件发布者、事件监听者</p>
 <p>事件监听者向事件发布者订阅事件。当事件发生时，事件发布者会通知事件监听者，然后事件监听者可以做出相应的处理。</p>
 <p>在Spring使用这一事件模型，主要是为了降低各个业务逻辑之间的耦合性。</p>
-<h4 id="2-实例"><a href="#2-实例" class="headerlink" title="2.实例"></a>2.实例</h4><h4 id="1-定义事件"><a href="#1-定义事件" class="headerlink" title="1.定义事件"></a>1.定义事件</h4><p>通常是继承<code>ApplicationEven</code>来定义自定义事件</p>
+<h4 id="2-实例"><a href="#2-实例" class="headerlink" title="2.实例"></a>2.实例</h4><h4 id="1-定义事件"><a href="#1-定义事件" class="headerlink" title="1.定义事件"></a>1.定义事件</h4><p>通常是继承<code>ApplicationEvent</code>来定义自定义事件</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 定义事件</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StuRegisterEvent</span> <span class="keyword">extends</span> <span class="title">ApplicationEvent</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 监听器感兴趣的信息</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> Student stu;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 事件构造器。</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> source 事件发出者。第一个参数必须有，首先调用父类构造器</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> stu 具体事件信息</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">StuRegisterEvent</span><span class="params">(Object source,Student stu)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(source);</span><br><span class="line">        <span class="keyword">this</span>.stu = stu;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h5 id="2-定义事件监听器"><a href="#2-定义事件监听器" class="headerlink" title="2.定义事件监听器"></a>2.定义事件监听器</h5><p>总共有三种方法来实现对事件的监听。</p>
