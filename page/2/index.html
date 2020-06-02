@@ -291,6 +291,568 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/01/java8/5-stream的基本用法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="younger">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="younger个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/01/java8/5-stream的基本用法/" itemprop="url">5.stream基本用法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-01T15:20:01+08:00">
+                2020-02-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java8/" itemprop="url" rel="index">
+                    <span itemprop="name">java8</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h5 id="1-删选和切片"><a href="#1-删选和切片" class="headerlink" title="1.删选和切片"></a>1.删选和切片</h5><p>直接看例子进行讲解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Dish&gt; collect = menu</span><br><span class="line">                .stream()</span><br><span class="line">                .filter(Dish::isCaloriesOver500)<span class="comment">//传入一个谓词</span></span><br><span class="line">                .distinct()<span class="comment">//元素所属类必须实现equals方法,才能删选各异元素</span></span><br><span class="line">                .limit(<span class="number">2</span>)<span class="comment">//取前多少个元素</span></span><br><span class="line">                .skip(<span class="number">1</span>)<span class="comment">//与limit互补，跳过前多少个元素</span></span><br><span class="line">                .collect(Collectors.toList());</span><br><span class="line">        collect.forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-映射"><a href="#2-映射" class="headerlink" title="2.映射"></a>2.映射</h5><p>和转换类型相似，将一个但是映射创建的全新的值，不会影响原数据。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//map</span></span><br><span class="line">List&lt;String&gt; collect = menu.stream()</span><br><span class="line">                .map(Dish::getName).collect(Collectors.toList());</span><br><span class="line">        collect.forEach(System.out::println);</span><br><span class="line"></span><br><span class="line"><span class="comment">//flatMap</span></span><br><span class="line">String[] arr = &#123;<span class="string">"hello"</span>,<span class="string">"world"</span>&#125;; <span class="comment">//得到h,e,l,o,w,r,d</span></span><br><span class="line"></span><br><span class="line">Stream&lt;String&gt; stream = Arrays.stream(arr);</span><br><span class="line"><span class="comment">//     Stream&lt;String[]&gt;                  -&gt;Stream&lt;String&gt;</span></span><br><span class="line">stream.map(word -&gt; word.split(<span class="string">""</span>)). <span class="comment">// Stream&lt;String[]&gt;</span></span><br><span class="line">       flatMap(Arrays::stream).  <span class="comment">// Arrays::stream -&gt; Stream&lt;String&gt; + flatMap -&gt;  Stream&lt;String&gt;</span></span><br><span class="line">       distinct().         </span><br><span class="line">       collect(Collectors.toList());</span><br></pre></td></tr></table></figure>
+
+<p>注意的是latMap,将多个同类型的流合并为一个同类型流。</p>
+<h5 id="3-规约"><a href="#3-规约" class="headerlink" title="3.规约"></a>3.规约</h5><p>lambda反复结合每一个元素，直至流里面只剩一个元素</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1 + 2 + ... + 5</span></span><br><span class="line"><span class="keyword">int</span>[] numbers = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> sum = Arrays.stream(numbers).reduce(<span class="number">0</span>, (a,b) -&gt; a + b);</span><br><span class="line"><span class="comment">//或</span></span><br><span class="line">sum = Arrays.stream(numbers).reduce((a,b) -&gt; a + b).getAsInt();</span><br><span class="line"><span class="comment">//或</span></span><br><span class="line">sum = Arrays.stream(numbers).reduce(Integer::sum).getAsInt();</span><br><span class="line">System.out.println(sum);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">int reduce(int identity, IntBinaryOperator op);</span></span><br><span class="line"><span class="comment">int reduce(IntBinaryOperator op);</span></span><br><span class="line"><span class="comment">@FunctionalInterface</span></span><br><span class="line"><span class="comment">public interface IntBinaryOperator &#123;</span></span><br><span class="line"><span class="comment">    int applyAsInt(int left, int right);</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">int</span> max = Arrays.stream(numbers).reduce((a,b) -&gt; a &lt; b ? b : a).getAsInt();</span><br><span class="line"><span class="keyword">int</span> min = Arrays.stream(numbers).reduce((a,b) -&gt; a &lt; b ? a : b).getAsInt();</span><br><span class="line"><span class="comment">//方法引用描述</span></span><br><span class="line"><span class="keyword">int</span> max = Arrays.stream(numbers).reduce(Integer::max).getAsInt();</span><br><span class="line"><span class="keyword">int</span> min = Arrays.stream(numbers).reduce(Integer::min).getAsInt();</span><br></pre></td></tr></table></figure>
+
+<p>浅析执行求sum过程，</p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>操作</th>
+<th>stream</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td></td>
+<td>1，2，3，4，5</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1+2=3            1,2出stream,3入stream</td>
+<td>3,  3，4，5</td>
+</tr>
+<tr>
+<td>2</td>
+<td>3 +3 = 6          3,3出stream，6入stream</td>
+<td>6,4,5</td>
+</tr>
+<tr>
+<td>3</td>
+<td>6 + 4 = 10        6,4出stream，10入stream</td>
+<td>10，5</td>
+</tr>
+<tr>
+<td>4</td>
+<td>10 + 5 = 15     10,5出stream，15入stream,计算结束</td>
+<td>15</td>
+</tr>
+</tbody></table>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/01/java8/4-stream基本概念/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="younger">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="younger个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/01/java8/4-stream基本概念/" itemprop="url">4.Stream基本概念</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-01T15:11:09+08:00">
+                2020-02-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java8/" itemprop="url" rel="index">
+                    <span itemprop="name">java8</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>首先了解以下<code>流</code>的概念</p>
+<blockquote>
+<p>从支持数据处理操作的源生成的元素序列 </p>
+</blockquote>
+<p><code>流</code>的特性的如下:</p>
+<ul>
+<li>元素序列。就像和集合一样，区别在与集合强调数据的存储，而流强调数据的计算</li>
+<li>源。流需要源，通常来自集合和数组</li>
+<li>数据处理操作。filter,map,reduce,find,match,sort,limit</li>
+<li>流水线。很多流操作会返回流，所以可以进行流水线操作</li>
+<li>内部迭代。不像迭代器的显示迭代元素，流的迭代操作在背后进行</li>
+</ul>
+<p>例子</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dish</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">boolean</span> vegetarian;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> calories;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Type type;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">enum</span> Type &#123;MEAT, FISH, OTHER&#125;</span><br><span class="line">    <span class="comment">//constructor,getter,setter,toString...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//数据源</span></span><br><span class="line">List&lt;Dish&gt; menu = Arrays.asList(</span><br><span class="line">                <span class="keyword">new</span> Dish(<span class="string">"pork"</span>, <span class="keyword">false</span>, <span class="number">800</span>, Dish.Type.MEAT),</span><br><span class="line">                <span class="keyword">new</span> Dish(<span class="string">"beef"</span>, <span class="keyword">false</span>, <span class="number">700</span>, Dish.Type.MEAT),</span><br><span class="line">                <span class="keyword">new</span> Dish(<span class="string">"chicken"</span>, <span class="keyword">false</span>, <span class="number">400</span>, Dish.Type.MEAT),</span><br><span class="line">                <span class="keyword">new</span> Dish(<span class="string">"french fries"</span>, <span class="keyword">true</span>, <span class="number">530</span>, Dish.Type.OTHER),</span><br><span class="line">                <span class="keyword">new</span> Dish(<span class="string">"rice"</span>, <span class="keyword">true</span>, <span class="number">350</span>, Dish.Type.OTHER),</span><br><span class="line">                <span class="keyword">new</span> Dish(<span class="string">"season fruit"</span>, <span class="keyword">true</span>, <span class="number">120</span>, Dish.Type.OTHER),</span><br><span class="line">                <span class="keyword">new</span> Dish(<span class="string">"pizza"</span>, <span class="keyword">true</span>, <span class="number">550</span>, Dish.Type.OTHER),</span><br><span class="line">                <span class="keyword">new</span> Dish(<span class="string">"prawns"</span>, <span class="keyword">false</span>, <span class="number">300</span>, Dish.Type.FISH),</span><br><span class="line">                <span class="keyword">new</span> Dish(<span class="string">"salmon"</span>, <span class="keyword">false</span>, <span class="number">450</span>, Dish.Type.FISH));</span><br><span class="line"></span><br><span class="line">List&lt;String&gt; list = menu</span><br><span class="line">                .stream() <span class="comment">//集合可以生成stream</span></span><br><span class="line">                .filter( dish -&gt; dish.getCalories() &gt; <span class="number">500</span>) <span class="comment">//1 </span></span><br><span class="line">                .map(Dish::getName)                        <span class="comment">//2</span></span><br><span class="line">                .sorted(String::compareToIgnoreCase)       <span class="comment">//3</span></span><br><span class="line">                .limit(<span class="number">2</span>)                                  <span class="comment">//4 </span></span><br><span class="line">                .collect(Collectors.toList());             <span class="comment">//5</span></span><br></pre></td></tr></table></figure>
+
+<p>1,2,3,4属于流的中间操作(返回stream的操作)，5属于终端操作</p>
+<p>常见的中间操作</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>操作对象</th>
+<th>函数描述符</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>filter</td>
+<td>Predicate<t></t></td>
+<td>T -&gt; boolean</td>
+</tr>
+<tr>
+<td>map</td>
+<td>Function&lt;T,R&gt;</td>
+<td>T -&gt; R</td>
+</tr>
+<tr>
+<td>limit</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>sorted</td>
+<td>Comparator<t></t></td>
+<td>(T,T) -&gt; int</td>
+</tr>
+<tr>
+<td>distinct</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>常见的终端操作</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>forEach</td>
+<td>Consumer&lt;? super T&gt;</td>
+</tr>
+<tr>
+<td>count</td>
+<td>返回流中的元素个数</td>
+</tr>
+<tr>
+<td>collect</td>
+<td>把流归约成一个集合,如List,Map</td>
+</tr>
+</tbody></table>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/01/java8/3-方法引用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="younger">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="younger个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/01/java8/3-方法引用/" itemprop="url">3.方法引用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-01T15:05:22+08:00">
+                2020-02-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java8/" itemprop="url" rel="index">
+                    <span itemprop="name">java8</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>方法引用是运用<strong>现有函数</strong>对lambda表达式的一种简化。基本思想是:如果一个lambda表达式只是<strong>直接调用这个方法</strong>，那最好还是用名称来调用它，而不是描述如何调用它。</p>
+<p>实例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//lambda: (E e) -&gt; System.out.println(e)</span></span><br><span class="line"><span class="comment">//方法引用: System.out::println</span></span><br><span class="line">list.forEach(System.out::println);</span><br><span class="line"></span><br><span class="line"><span class="comment">//Iterable中的默认方法</span></span><br><span class="line"><span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">forEach</span><span class="params">(Consumer&lt;? <span class="keyword">super</span> T&gt; action)</span> </span>&#123;</span><br><span class="line">        Objects.requireNonNull(action);</span><br><span class="line">        <span class="keyword">for</span> (T t : <span class="keyword">this</span>) &#123;</span><br><span class="line">            action.accept(t);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="如何构建方法引用"><a href="#如何构建方法引用" class="headerlink" title="如何构建方法引用"></a>如何构建方法引用</h5><ul>
+<li>指向静态方法的方法引用</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">        * (args) -&gt; ClassName.staticMethod(args);</span></span><br><span class="line"><span class="comment">        * ClassName::staticMethod</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">       Function&lt;String,Integer&gt; function = (String str) -&gt; Integer.parseInt(str);</span><br><span class="line">       Function&lt;String,Integer&gt; fc = Integer::valueOf;</span><br><span class="line">       System.out.println(function.apply(<span class="string">"1"</span>).getClass());</span><br><span class="line">       System.out.println(fc.apply(<span class="string">"1"</span>).getClass());</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>指向任意类型实例方法的方法引用</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ClassName::instanceMethod</span></span><br><span class="line"><span class="comment">//eg:</span></span><br><span class="line">String::lenth</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>指向现有对象的实例方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//obj::instanceMethod</span></span><br><span class="line"><span class="comment">//eg:</span></span><br><span class="line">stu::getName</span><br></pre></td></tr></table></figure>
+
+<p>实例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt;   list = Arrays.asList(<span class="string">"a"</span>,<span class="string">"A"</span>,<span class="string">"C"</span>,<span class="string">"b"</span>);</span><br><span class="line"><span class="comment">//(arg0,arg1) -&gt; arg0.instannceMethod(arg1)</span></span><br><span class="line">list.sort(String::compareToIgnoreCase);</span><br><span class="line"><span class="comment">//(arg) -&gt; System.out.print(arg)</span></span><br><span class="line">list.forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/01/java8/2-java8常用函数式接口/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1370,531 +1932,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/07/effective-java/4.泛型/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="younger">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="younger个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/11/07/effective-java/4.泛型/" itemprop="url">4.泛型</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-07T20:53:01+08:00">
-                2019-11-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/basic-java/" itemprop="url" rel="index">
-                    <span itemprop="name">basic-java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="26-请不要使用原生态类型"><a href="#26-请不要使用原生态类型" class="headerlink" title="26.请不要使用原生态类型"></a>26.请不要使用原生态类型</h3><p>泛型是在1.5引入的，使用它可以有两点优势:</p>
-<ol>
-<li>向集合插入不正确的类型的时，可以在<code>编译时</code>就抛出错误，而不是在运行时才抛出异常，即有<code>类型检查</code>。</li>
-<li>从集合检索元素时，编译器帮我们做隐式转换，而不需要我们显示强转，既有<code>隐式转换</code>。</li>
-</ol>
-<p>标题中的提到的原生态类型是不带任何实际类型的泛型名称，例如<code>List&lt;E&gt;</code>的原生态类型是<code>List</code>。原生态类型缺乏类型安全性，而继续使用仅仅是为了兼容性。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义一个原生类型的列表，允许插入任何类型的数据</span></span><br><span class="line">List list = <span class="keyword">new</span> ArrayList();</span><br><span class="line"><span class="comment">//误插入String和Integer两种不同类型的数据</span></span><br><span class="line">list.add(<span class="string">"123"</span>);</span><br><span class="line">list.add(<span class="number">123</span>);</span><br><span class="line"><span class="comment">//编译通过，运行时取出强转报错</span></span><br><span class="line">Integer i = (Integer) list.get(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义泛型列表</span></span><br><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;(<span class="number">10</span>);</span><br><span class="line">list.add(<span class="string">"123"</span>);</span><br><span class="line"><span class="comment">//编译类型检查，直接报错</span></span><br><span class="line">list.add(<span class="number">123</span>)；</span><br><span class="line"><span class="comment">//隐式转换</span></span><br><span class="line">String str = list.get(<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
-
-<p>而原生类型其实也有几处适用的地方:</p>
-<ol>
-<li><p>必须在<code>类文字</code>中使用原生类型</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List.class String[].class <span class="keyword">int</span>.class都是合法的，而List&lt;String.class&gt;和List&lt;?&gt;.class则不合法</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在使用<code>instanceof</code></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">(Collection&lt;E&gt; collection)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(collection <span class="keyword">instanceof</span> Set)&#123;<span class="comment">//此处使用原生类型</span></span><br><span class="line">            Set&lt;?&gt; set = (Set&lt;?&gt;) collection;<span class="comment">//可以强转</span></span><br><span class="line">            Iterator&lt;?&gt; it = set.iterator();</span><br><span class="line">            <span class="keyword">while</span> (it.hasNext())&#123;</span><br><span class="line">                System.out.println(it.next());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h3 id="27-消除非受检的警告"><a href="#27-消除非受检的警告" class="headerlink" title="27.消除非受检的警告"></a>27.消除非受检的警告</h3><p>在使用泛型的代码中，很容易出现警告，不要忽略他们。每一条警告都可能在运行时抛出<code>ClassCaseException</code>异常，要尽最大努力消除他们。如果无法消除，但能确定引起警告的代码是类型的安全的，就可以在尽可能小的范围内使用<code>@SuppersssWarnings(&quot;unchecked&quot;)</code>注解禁止该警告。</p>
-<h3 id="28-列表由于数组"><a href="#28-列表由于数组" class="headerlink" title="28.列表由于数组"></a>28.列表由于数组</h3><p>数组具有协变性，而集合没有</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Father[] 依旧是 Son1[] 的父类</span></span><br><span class="line">Father[] sons = <span class="keyword">new</span> Son1[<span class="number">1</span>];</span><br><span class="line"><span class="comment">//'运行时'抛出异常ArrayStoreException</span></span><br><span class="line">sons[<span class="number">0</span>] = <span class="keyword">new</span> Son2();</span><br><span class="line"></span><br><span class="line"><span class="comment">//List&lt;Father&gt; 不是 ArrayList&lt;Son1&gt;的父类</span></span><br><span class="line">List&lt;Father&gt; list = <span class="keyword">new</span> ArrayList&lt;Son1&gt;();</span><br></pre></td></tr></table></figure>
-
-<p>以上很容易看出，由于数组的协变性，很容易随意存入元素，然后再运行时抛出异常。</p>
-<p>再举个例子</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&lt;<span class="title">E</span>&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> E[] arr;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">A</span><span class="params">(Collection&lt;E&gt; collection)</span></span>&#123;</span><br><span class="line">        <span class="comment">//这里有unchecked cast 警告</span></span><br><span class="line">        arr = (E[]) collection.toArray();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&lt;<span class="title">E</span>&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> List&lt;E&gt; list;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">A</span><span class="params">(Collection&lt;E&gt; collection)</span></span>&#123;</span><br><span class="line">        <span class="comment">//无任何警告</span></span><br><span class="line">        list = <span class="keyword">new</span> ArrayList&lt;&gt;(collection);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>只想说明一点，数组和泛型不能很好的混合使用。如果在混合使用时，出现异常，应该立马尝试将数组换成列表。</p>
-<h3 id="29-优先使用泛型"><a href="#29-优先使用泛型" class="headerlink" title="29.优先使用泛型"></a>29.优先使用泛型</h3><p>直接看实例，忽略下标范围检查</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stack</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> Object[] elements;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span>  DEFAULT_SIZE = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Stack</span><span class="params">()</span></span>&#123;</span><br><span class="line">        elements = <span class="keyword">new</span> Object[DEFAULT_SIZE];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(Object e)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.elements[size++] = e;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">pop</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> elements[--size];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>方案一</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stack</span>&lt;<span class="title">E</span>&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> E[] elements;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span>  DEFAULT_SIZE = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Stack</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//创建时强转</span></span><br><span class="line">        elements = (E[]) <span class="keyword">new</span> Object[DEFAULT_SIZE];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(E e)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.elements[size++] = e;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> E <span class="title">pop</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> elements[--size];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>方案二</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stack</span>&lt;<span class="title">E</span>&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> Object[] elements;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span>  DEFAULT_SIZE = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Stack</span><span class="params">()</span></span>&#123;</span><br><span class="line">        elements = <span class="keyword">new</span> Object[DEFAULT_SIZE];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(Object e)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.elements[size++] = e;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> E <span class="title">pop</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (E) elements[--size];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>原始代码没有使用泛型，容易造成类型安全问题。方案一和方案二都是用了泛型了，更加安全些。</p>
-<p>方案一要确保elements中的元素都是通过push存储进去的，不能将elements暴露在外，否则容易造成类型全问题</p>
-<p>优先使用方案一，方案一只需强转一次，而方案二在每次pop元素时都要进行强转。</p>
-<h3 id="30-优先考虑泛型方法"><a href="#30-优先考虑泛型方法" class="headerlink" title="30.优先考虑泛型方法"></a>30.优先考虑泛型方法</h3><p>静态工具方法尤其适合泛型化，例如Collections中的排序和查找算法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTest</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Set&lt;String&gt; set1 = Set.of(<span class="string">"1"</span>,<span class="string">"2"</span>);</span><br><span class="line">        Set&lt;String&gt; set2 = Set.of(<span class="string">"2"</span>,<span class="string">"3"</span>);</span><br><span class="line">        Set&lt;String&gt; resultUnion = A.union(set1,set2);</span><br><span class="line">        System.out.println(resultUnion);</span><br><span class="line">        Set&lt;String&gt; resultIntersection = A.intersection(set1,set2);</span><br><span class="line">        System.out.println(resultIntersection);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    <span class="comment">//计算两个集合的并集</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;E&gt; <span class="function">Set&lt;E&gt; <span class="title">union</span><span class="params">(Set&lt;E&gt; set1,Set&lt;E&gt; set2)</span></span>&#123;</span><br><span class="line">        Set&lt;E&gt; result = <span class="keyword">new</span> HashSet&lt;&gt;(set1);</span><br><span class="line">        result.addAll(set2);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//计算两个集合的交集</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;E&gt; <span class="function">Set&lt;E&gt; <span class="title">intersection</span><span class="params">(Set&lt;E&gt; set1,Set&lt;E&gt; set2)</span></span>&#123;</span><br><span class="line">        Set&lt;E&gt; result = <span class="keyword">new</span> HashSet&lt;&gt;(set1);</span><br><span class="line">        result.retainAll(set2);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>下面递归泛型的例子</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTest</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;(<span class="number">3</span>);</span><br><span class="line">        list.add(<span class="string">"1"</span>);</span><br><span class="line">        list.add(<span class="string">"3"</span>);</span><br><span class="line">        list.add(<span class="string">"2"</span>);</span><br><span class="line">        System.out.println(A.max(list));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;E extends Comparable&lt;E&gt;&gt; <span class="function">E <span class="title">max</span><span class="params">(Collection&lt;E&gt; collection)</span></span>&#123;</span><br><span class="line">        E max = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">for</span> (E e : collection)&#123;</span><br><span class="line">            <span class="keyword">if</span>(max == <span class="keyword">null</span> || e.compareTo(max) &gt; <span class="number">0</span>)&#123;</span><br><span class="line">                max = e;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="31-利用有限制通配符类提升API的灵活性"><a href="#31-利用有限制通配符类提升API的灵活性" class="headerlink" title="31.利用有限制通配符类提升API的灵活性"></a>31.利用有限制通配符类提升API的灵活性</h3><p>A是B的子类，但<code>List&lt;A&gt;</code>不是<code>List&lt;B&gt;</code>的子类。可以使用<code>?</code>提高灵活性</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTest</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Stack&lt;A&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        stack.pushAll(<span class="keyword">new</span> ArrayList&lt;B&gt;());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stack</span>&lt;<span class="title">E</span>&gt;</span>&#123;</span><br><span class="line">    List&lt;E&gt; list;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Stack</span><span class="params">()</span></span>&#123;</span><br><span class="line">        list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//E的任何子类的集合都可以传入</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pushAll</span><span class="params">(Collection&lt;? extends E&gt; src)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (E e : src)&#123;</span><br><span class="line">            list.add(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTest</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Stack&lt;B&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        stack.pushAll(<span class="keyword">new</span> ArrayList&lt;A&gt;());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stack</span>&lt;<span class="title">E</span>&gt;</span>&#123;</span><br><span class="line">    List&lt;E&gt; list;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Stack</span><span class="params">()</span></span>&#123;</span><br><span class="line">        list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//可以传入任何E的父类的集合</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pushAll</span><span class="params">(Collection&lt;? <span class="keyword">super</span> E&gt; dst)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (E e : list)&#123;</span><br><span class="line">            dst.add(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>总结一下，当外来元素要进来，就是用<code>? extents E</code>, 因为传入的元素必须是E以及子类，才能被E接收。</p>
-<p>当内部元素要出去，就使用<code>? super E</code>，因为E要出去，必须要使用E以及父类才能接收。</p>
-<h3 id="32-谨慎并用泛型和可变参数"><a href="#32-谨慎并用泛型和可变参数" class="headerlink" title="32.谨慎并用泛型和可变参数"></a>32.谨慎并用泛型和可变参数</h3><p>略</p>
-<h3 id="33-优先考虑类型安全的异构容器"><a href="#33-优先考虑类型安全的异构容器" class="headerlink" title="33.优先考虑类型安全的异构容器"></a>33.优先考虑类型安全的异构容器</h3><p>略</p>
-<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul>
-<li>[Effective Java中文版（第3版）]</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/07/effective-java/3.接口和类/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="younger">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="younger个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/11/07/effective-java/3.接口和类/" itemprop="url">3.接口和类</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-07T20:51:06+08:00">
-                2019-11-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/basic-java/" itemprop="url" rel="index">
-                    <span itemprop="name">basic-java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>本章节放在最后学习!</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/30/effective-java/2.对于所有对象都通用的方法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="younger">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="younger个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/30/effective-java/2.对于所有对象都通用的方法/" itemprop="url">2.对于所有对象通用的方法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-30T22:57:19+08:00">
-                2019-10-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/basic-java/" itemprop="url" rel="index">
-                    <span itemprop="name">basic-java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="10-覆盖equals时请遵守通用约定"><a href="#10-覆盖equals时请遵守通用约定" class="headerlink" title="10.覆盖equals时请遵守通用约定"></a>10.覆盖<code>equals</code>时请遵守通用约定</h3><p>当一个类要具有“逻辑相等”，且父类没有覆盖<code>equals</code>方法，就需要覆盖<code>equals</code>.</p>
-<p>等价需要遵循以下性质:</p>
-<ul>
-<li>自反性</li>
-<li>对称性</li>
-<li>传递性</li>
-<li>一致性(当比较的信息没改变时，多次调用<code>equals</code>方法，结果相同)</li>
-</ul>
-<p>实际覆盖步骤</p>
-<ol>
-<li>使用<code>==</code>操作符检查”参数是否为这个对象的引用”</li>
-<li>使用<code>instanceof</code>操作符检查”参数是否为正确的类型”</li>
-<li>把参数转换为正确的类型</li>
-<li>对于该类中每个“关键域”，检查参数中的域是否与该对象中对应的域相匹配</li>
-</ol>
-<p>实例，JDK中<code>String</code>的<code>equals</code>方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object anObject)</span> </span>&#123;<span class="comment">//注意参数类型是Object类型，否则不是覆盖</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span> == anObject) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (anObject <span class="keyword">instanceof</span> String) &#123;</span><br><span class="line">            String aString = (String)anObject;</span><br><span class="line">            <span class="keyword">if</span> (coder() == aString.coder()) &#123;</span><br><span class="line">                <span class="keyword">return</span> isLatin1() ? StringLatin1.equals(value, aString.value)</span><br><span class="line">                                  : StringUTF16.equals(value, aString.value);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="11-覆盖equals时总要覆盖hashCode"><a href="#11-覆盖equals时总要覆盖hashCode" class="headerlink" title="11.覆盖equals时总要覆盖hashCode"></a>11.覆盖equals时总要覆盖hashCode</h3><p>约定:</p>
-<ol>
-<li>在程序运行期间，只要对象的equals方法的比较操作所用到的信息没有被修改，那么对同一个对象多次的调用，<code>hashCode</code>方法必须始终返回同一个值。简单说就是，比较的属性没变，那么<code>hashCode</code>就保持不变</li>
-<li>如果两个对象根据<code>equals(Object)</code>方法比较是相等的，那么这两个对象的<code>hashCode()</code>返回值应该是一致的</li>
-<li>如果两个对象根据<code>equals(Obejct)</code>方法比较是不想等的，那么这两对象的<code>hashCode()</code>返回值不一定要不相等</li>
-</ol>
-<p>总结以下2，3两条，相等的两个对象，<code>hashCode</code>一定要相等。而不相等的两个对象，<code>hashCode</code>可以相等也可以不相等，当然，为了减少散列表的发生冲突的概率，应尽量保持不相等。</p>
-<p><code>HashMap</code>和<code>HashSet</code>中比较对象对象相等，<code>hashCode</code>至关重要。</p>
-<p>至于怎样重写<code>hashCode</code>方法，最好使用专业工具来生成。</p>
-<h3 id="12-始终要覆盖toString"><a href="#12-始终要覆盖toString" class="headerlink" title="12.始终要覆盖toString"></a>12.始终要覆盖toString</h3><p>大多数情况下使用<code>toString</code>方法是为了调试，覆盖它应该养成一种编码习惯</p>
-<h3 id="13-谨慎覆盖clone"><a href="#13-谨慎覆盖clone" class="headerlink" title="13.谨慎覆盖clone"></a>13.谨慎覆盖clone</h3><p>这里只谈深拷贝，不谈浅拷贝。</p>
-<p>拷贝一个对象最好使用拷贝构造器或者是静态工厂方法。下面举个例子</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span>  String param;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">B</span><span class="params">(String param)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.param = param;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//拷贝构造器，产生一个新对象</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">B</span><span class="params">(B b)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.param = b.param;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//工厂方法，产生一个新对象</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> B <span class="title">newInstance</span><span class="params">(B b)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> B(b.param);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> B b;</span><br><span class="line">    <span class="keyword">public</span> String param;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">A</span><span class="params">(B b,String param)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.b = b;</span><br><span class="line">        <span class="keyword">this</span>.param = param;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//拷贝构造器</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">A</span><span class="params">(A a)</span></span>&#123;</span><br><span class="line">        <span class="comment">//对于引用类型必须产生一个新的对象，才能完成深拷贝。而基本数据类型直接赋值即可</span></span><br><span class="line">        <span class="comment">//调用B的工厂方法</span></span><br><span class="line">        <span class="keyword">this</span>.b = B.newInstance(a.b);</span><br><span class="line">        <span class="keyword">this</span>.param = a.param;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//工厂方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> A <span class="title">newInstance</span><span class="params">(A a)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> A(B.newInstance(a.b),a.param);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>当编写拷贝代码时，遇到引用类型，一定要注意是否创建了新的对象。</p>
-<h3 id="14-考虑实现Comparable接口"><a href="#14-考虑实现Comparable接口" class="headerlink" title="14.考虑实现Comparable接口"></a>14.考虑实现<code>Comparable</code>接口</h3><p>首先看两个例子</p>
-<p>1.实现<code>Comparable</code>接口</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Person[] persons = <span class="keyword">new</span> Person[<span class="number">10</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = persons.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">            persons[i] = <span class="keyword">new</span> Person(i);</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(persons);</span><br><span class="line">        <span class="keyword">for</span> (Person item : persons)&#123;</span><br><span class="line">            System.out.println(item);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//实现Comparable&lt;T&gt;接口</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Person</span>&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//复写compareTo(T o)方法</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Person o)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//升序</span></span><br><span class="line">        <span class="keyword">return</span> Integer.compare(<span class="keyword">this</span>.age,o.getAge());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(<span class="keyword">int</span> age)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Person&#123;"</span> +</span><br><span class="line">                <span class="string">"age="</span> + age +</span><br><span class="line">                <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>2.使用比较器</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Person[] persons = <span class="keyword">new</span> Person[<span class="number">10</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = persons.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">            persons[i] = <span class="keyword">new</span> Person(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//传入泛型比较器</span></span><br><span class="line">        Arrays.sort(persons, <span class="keyword">new</span> Comparator&lt;Person&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Person o1, Person o2)</span> </span>&#123;</span><br><span class="line">                <span class="comment">//升序</span></span><br><span class="line">                <span class="keyword">return</span> Integer.compare(o1.getAge(),o2.getAge());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">for</span> (Person item : persons)&#123;</span><br><span class="line">            System.out.println(item);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(<span class="keyword">int</span> age)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Person&#123;"</span> +</span><br><span class="line">                <span class="string">"age="</span> + age +</span><br><span class="line">                <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>需要注意注意一点的是，在Java7中，基本数据类型的包装类型都给出了静态的<code>compare</code>方法，所以最好在对基本数据类型作比较的时候，推荐使用它。如下，Integer中compare方法的实现，</p>
-<pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (x &lt; y) ? -<span class="number">1</span> : ((x == y) ? <span class="number">0</span> : <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre><h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul>
-<li><a href="https://book.douban.com/subject/30412517/" target="_blank" rel="noopener">Effective Java中文版（第3版）</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1946,7 +1983,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
